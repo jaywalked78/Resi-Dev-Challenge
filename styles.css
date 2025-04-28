@@ -1,1 +1,8 @@
+html {
+  font-size: 15px; /* Candidate must support both 15px and 16px rem scale */
+}
 
+/* Intentional CSS property typo */
+body {
+  colorr: #333;
+}

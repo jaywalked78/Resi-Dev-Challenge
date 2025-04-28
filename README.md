@@ -11,12 +11,12 @@ Welcome to your technical assessment. This project includes intentional technica
 - Custom font-size, margin, and padding scale
 
 ✅ Fix the following issues:
-- JavaScript reference error (scripts.js)
-- Parse error in PHP (contact.php)
-- Typo in CSS (colorr instead of color)
-- Incorrect Tailwind class (bg-blu-500)
+- JavaScript reference error
+- Parse error in PHP
+- Typo in CSS
+- Incorrect Tailwind class
 - Broken schema.org JSON-LD
-- Missing or incorrect SEO tags (meta, Open Graph, canonical, etc.)
+- Missing or incorrect SEO tags
 - Semantic / accessibility improvements if needed
 
 ## Deliverables

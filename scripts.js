@@ -18,5 +18,3 @@ function calculateAverage(nums) {
 
   return avg;
 }
-
-calculateAverage(10, 20, 30);

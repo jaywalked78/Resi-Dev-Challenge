@@ -1,6 +1,17 @@
 <?php
-  echo "<h2>Contact Us</h2>"  
+$pageTitle    = "Contact Us";
+$contactName  = "Jane Smith";
+$emailAddress = "contact@example.com";
 
-  // Missing semicolon (syntax error)
-  echo "<p>Email: contact@example.com</p>"
+$htmlBlock = <<EOT
+<section class="contact-card">
+  <h1>$pageTitle</h1>
+  <p>
+    <strong>Name:</strong> $contactName<br>
+    <strong>Email:</strong> <a href="mailto:$emailAddress">$emailAdress</a>
+  </p>
+</section>
+EOT
+
+echo $htmlBlock;
 ?>

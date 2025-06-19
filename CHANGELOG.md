@@ -1,5 +1,74 @@
 # CHANGELOG
 
+## [1.1.0] - 2025-06-19
+
+### Added
+- **Interactive Calculator Modal System**
+  - Base Modal component with accessibility features (focus trap, ARIA labels, keyboard navigation)
+  - Sophisticated CalculatorModal with tabbed interface
+  - Custom Numbers tab with dynamic input fields (2-10 numbers)
+  - Random Numbers tab with range controls and quantity selector
+  - Smooth animations and transitions (fade in/out, scale effects)
+  - Backdrop blur effect for better visual hierarchy
+  
+- **Enhanced User Experience**
+  - Keyboard shortcut support (Ctrl/Cmd + K to open calculator)
+  - "Clear all" button to reset inputs while preserving calculation memory
+  - "Calculate Again" preserves previous numbers for iterative calculations
+  - Real-time input validation with visual feedback
+  - Animated number counting effect when displaying results
+  - Copy to clipboard functionality with success feedback
+  - Number pills display showing all input values
+  
+- **Brand Identity & Visual Design**
+  - Rebranded from "Average Calculator" to "MeanMachine"
+  - Creative tagline: "Where numbers meet their destiny ✨"
+  - Full-page hero image background with geometric patterns
+  - Glassmorphism design with backdrop blur effects
+  - Centered card layout with semi-transparent overlays
+  
+- **UI/UX Improvements**
+  - Custom styled number inputs (removed spinner controls)
+  - Custom range slider styling for random number controls
+  - Responsive design for all screen sizes
+  - Touch-friendly button sizes and spacing
+  - Error handling with user-friendly messages
+  - Focus visible indicators for accessibility
+  - Dark header and footer framing with matching gray theme
+  - Bright green CTA button for visual hierarchy
+
+- **SEO & Content Optimization**
+  - Enhanced structured data with WebApplication and SoftwareApplication schemas
+  - SEO-optimized meta tags and descriptions
+  - Semantic HTML structure with proper heading hierarchy
+  - Feature showcase with icon-based benefits
+  - Improved alt text and accessibility labels
+
+### Technical Implementation Details
+- **Component Architecture**:
+  - `Modal.js`: Reusable base modal class with event handling
+  - `CalculatorModal.js`: Extends Modal with calculator-specific features
+  - Event delegation for dynamically added elements
+  - Proper cleanup and memory management
+
+- **Design System**:
+  - Full-viewport background image with `fixed` positioning
+  - CSS backdrop-filter for glassmorphism effects
+  - Coordinated color scheme (dark gray headers, green accents)
+  - Flexbox layout for perfect vertical centering
+
+- **Accessibility Features**:
+  - Focus trap implementation
+  - ARIA attributes (role="dialog", aria-modal="true", aria-label)
+  - Keyboard navigation (Tab, Shift+Tab, Escape)
+  - Focus restoration on modal close
+  - Screen reader announcements
+
+- **State Management**:
+  - Maintains calculation history
+  - Preserves user inputs between calculations
+  - Separate state for custom vs random modes
+
 ## [1.0.0] - 2025-06-19
 
 ### Added

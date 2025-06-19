@@ -28,19 +28,27 @@ try {
   console.error('Test failed:', error.message);
 }
 
-// Add event listener for the button when DOM is loaded
+// Import the calculator modal
+import { CalculatorModal } from './components/CalculatorModal.js';
+
+// Initialize calculator modal when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+  // Create modal instance
+  const calculatorModal = new CalculatorModal(calculateAverage);
+  
+  // Add event listener for the button
   const button = document.getElementById('calculate-btn');
   if (button) {
     button.addEventListener('click', () => {
-      try {
-        // Call the function with an array (fixing the original incorrect call)
-        const result = calculateAverage([10, 20, 30]);
-        alert(`The average is: ${result}`);
-      } catch (error) {
-        console.error('Error calculating average:', error.message);
-        alert('Error: ' + error.message);
-      }
+      calculatorModal.open();
     });
   }
+  
+  // Add keyboard shortcut (Ctrl/Cmd + K)
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      calculatorModal.open();
+    }
+  });
 });

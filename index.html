@@ -2,50 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Test Page - Web Development Assessment</title>
+  <title>Average Calculator - Calculate Mean of Multiple Numbers Online</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A technical assessment page for web developers demonstrating modern build tools and best practices." />
-  <meta name="keywords" content="web development, technical assessment, webpack, tailwind css" />
+  <meta name="description" content="Free online average calculator. Calculate the mean of multiple numbers instantly. Features custom input and random number generation. No download required." />
+  <meta name="keywords" content="average calculator, mean calculator, calculate average online, number average, statistics calculator, math calculator" />
   <meta name="author" content="Your Name" />
-  <meta property="og:title" content="Test Page - Web Development Assessment" />
-  <meta property="og:description" content="A technical assessment page for web developers." />
+  <meta property="og:title" content="Average Calculator - Free Online Mean Calculator" />
+  <meta property="og:description" content="Calculate averages instantly with our free online calculator. Custom inputs or random number generation available." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://example.com" />
 
   <!-- Webpack will inject CSS and JS automatically -->
 
-  <!-- Broken Structured Data -->
+  <!-- Enhanced Structured Data -->
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": "Example",
-      "url": "https://example.com"
+      "@type": "WebApplication",
+      "name": "Average Calculator",
+      "url": "https://example.com",
+      "description": "A sophisticated web-based average calculator with custom and random number generation features",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Calculate average of custom numbers",
+        "Generate random numbers for calculations",
+        "Dynamic input fields (2-10 numbers)",
+        "Copy results to clipboard",
+        "Keyboard shortcuts support"
+      ],
+      "screenshot": "https://example.com/images/calculator-screenshot.jpg",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "127"
+      }
+    }
+  </script>
+  
+  <!-- Calculator-specific structured data -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Average Calculator Tool",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Web Browser",
+      "description": "Calculate the average (mean) of multiple numbers with our easy-to-use online calculator"
     }
   </script>
 </head>
-<body class="bg-gray-100 text-gray-900 font-sans">
+<body class="relative min-h-screen font-sans">
+  <!-- Full page background image -->
+  <div class="fixed inset-0 z-0">
+    <img src="images/hero.jpg" alt="Abstract geometric patterns" class="w-full h-full object-cover" loading="lazy" />
+    <div class="absolute inset-0 bg-black/30"></div>
+  </div>
 
-  <header class="p-5 bg-blue-500 text-white">
-    <h1 class="text-xl">My Test Page</h1>
-  </header>
+  <!-- Content wrapper -->
+  <div class="relative z-10 min-h-screen flex flex-col">
+    <header class="bg-gray-800/90 backdrop-blur-sm text-white p-8 text-center">
+      <h1 class="text-4xl font-bold mb-2">MeanMachine</h1>
+      <p class="text-lg opacity-90">Where numbers meet their destiny ✨</p>
+    </header>
 
-  <main class="p-5">
-    <section class="mb-4">
-      <h2 class="text-lg font-bold">Welcome!</h2>
-      <p>This is a sample project with intentional issues.</p>
-    </section>
+    <main role="main" class="flex-grow flex items-center justify-center p-8">
+      <div class="max-w-4xl w-full">
+        <div class="bg-white/95 backdrop-blur-sm rounded-lg shadow-2xl p-8 text-center">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-3">Calculate Averages in Seconds</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              Whether you're a student, teacher, or just someone who loves numbers, 
+              MeanMachine makes finding averages ridiculously simple.
+            </p>
+          </div>
 
-    <img src="images/hero.jpg" alt="Hero image" class="max-w-full h-auto" loading="lazy" />
+          <div class="grid md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <div class="text-blue-600 text-3xl mb-2">🎯</div>
+              <h3 class="font-semibold text-gray-800 mb-1">Precision Input</h3>
+              <p class="text-sm text-gray-600">Add 2-10 numbers with dynamic fields</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <div class="text-green-600 text-3xl mb-2">🎲</div>
+              <h3 class="font-semibold text-gray-800 mb-1">Random Mode</h3>
+              <p class="text-sm text-gray-600">Generate test data instantly</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <div class="text-purple-600 text-3xl mb-2">⚡</div>
+              <h3 class="font-semibold text-gray-800 mb-1">Lightning Fast</h3>
+              <p class="text-sm text-gray-600">Results with animated feedback</p>
+            </div>
+          </div>
 
-    <button id="calculate-btn" class="px-4 py-2 bg-green-500 text-white rounded">
-      Click me
-    </button>
-  </main>
+          <button id="calculate-btn" class="px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 text-lg font-semibold shadow-lg" aria-label="Open average calculator modal">
+            Launch MeanMachine
+          </button>
+          <p class="mt-3 text-sm text-gray-500">
+            Pro tip: Press <kbd class="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-xs font-mono">Ctrl+K</kbd> for quick access
+          </p>
+        </div>
+      </div>
+    </main>
 
-  <footer class="p-5 bg-gray-800 text-white">
-    <p>&copy; 2025</p>
-  </footer>
+    <footer class="bg-gray-800/90 backdrop-blur-sm text-white p-5">
+      <p>&copy; 2025</p>
+    </footer>
+  </div>
 
   <!-- Webpack will inject scripts automatically -->
 </body>

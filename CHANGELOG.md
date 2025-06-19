@@ -18,6 +18,42 @@
   - Color-coded statistic cards with gradient backgrounds for visual distinction
   - Variance replaces Mode for more meaningful statistical insights in typical use cases
 
+- **Dark Mode & Visual Enhancements (Phase 3)**
+  - Complete dark mode implementation with system preference detection
+  - Theme toggle in header with smooth transitions (300ms duration)
+  - localStorage persistence for theme preference across sessions
+  - Dynamic favicon updates based on theme
+  - All components support dark mode with proper contrast ratios
+
+- **Enhanced Animations & Micro-interactions**
+  - Page load animations: staggered card reveals, header fade-in, main content slide-up
+  - Advanced number morphing animation with 3D rotation effects
+  - Success celebration with confetti particles (50 colorful particles)
+  - Button press animations with scale effects
+  - Tooltip animations with smooth appearance transitions
+  - Pulse glow effects on statistics cards with staggered reveals
+  - Loading states with spinning indicators during calculations
+
+- **Data Visualization**
+  - Interactive SVG bar chart showing input numbers
+  - Animated average line with dashed styling
+  - Responsive chart sizing with proper scaling
+  - Smooth bar growth animations with 100ms stagger
+  - Value labels on bars with fade-in effects
+  - Grid lines and axis labels for better readability
+  - Dark mode support with theme-appropriate colors
+  - Smart rendering that ensures chart displays correctly from any tab
+
+- **Dark Mode Polish & Bug Fixes**
+  - Complete modal dark mode implementation with proper contrast ratios
+  - Fixed Overview tab text colors appearing too dark on initial calculation
+  - Enhanced History tab contrast with neutral gray backgrounds
+  - Improved Statistics tab card readability in dark mode
+  - Fixed "Calculate Again" button stuck in loading state
+  - Smart color enforcement with DOM settling delays
+  - All form elements (inputs, labels, buttons) fully dark mode compatible
+  - Error states and tooltips properly themed for dark mode
+
 - **Tabbed Results Interface**
   - **Overview Tab**: Primary average display with sum and count summary
   - **Statistics Tab**: Four statistical measures in responsive grid layout
@@ -84,6 +120,14 @@
   - Smart timestamp formatting with relative time display
   - Tab state management for both input and results interfaces
   - Error boundaries for calculation failures
+
+- **Visual & Animation System (Phase 3)**:
+  - `src/utils/theme.js`: Complete theme management with system preference detection
+  - `src/utils/animations.css`: 20+ custom animations with GPU acceleration
+  - `src/components/Chart.js`: Lightweight SVG chart component with smooth animations
+  - Performance optimized animations (60fps) with `will-change` and `transform: translateZ(0)`
+  - Reduced motion support for accessibility compliance
+  - Custom scrollbar styling with dark mode variants
 
 - **Design System**:
   - Full-viewport background image with `fixed` positioning

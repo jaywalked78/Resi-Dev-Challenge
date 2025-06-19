@@ -29,7 +29,7 @@ export class Modal {
     this.container.className = 'modal-container fixed inset-0 flex items-center justify-center p-4 z-50 hidden';
     
     this.modal = document.createElement('div');
-    this.modal.className = 'modal bg-white rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-auto transform scale-95 opacity-0 transition-all duration-300';
+    this.modal.className = 'modal bg-white dark:bg-gray-800 rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-auto transform scale-95 opacity-0 transition-all duration-300';
     this.modal.setAttribute('role', 'dialog');
     this.modal.setAttribute('aria-modal', 'true');
     

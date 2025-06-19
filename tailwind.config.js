@@ -4,6 +4,7 @@ module.exports = {
     "./*.html",
     "./*.php"
   ],
+  darkMode: 'class',
   theme: {
     fontSize: {
       'xs': ['0.75rem', { lineHeight: '1rem' }],

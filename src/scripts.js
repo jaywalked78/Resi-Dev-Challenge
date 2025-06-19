@@ -30,9 +30,13 @@ try {
 
 // Import the calculator modal
 import { CalculatorModal } from './components/CalculatorModal.js';
+import { ThemeManager } from './utils/theme.js';
 
 // Initialize calculator modal when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize theme manager
+  const themeManager = new ThemeManager();
+  
   // Create modal instance
   const calculatorModal = new CalculatorModal(calculateAverage);
   
@@ -41,6 +45,35 @@ document.addEventListener('DOMContentLoaded', () => {
   if (button) {
     button.addEventListener('click', () => {
       calculatorModal.open();
+    });
+  }
+  
+  // Theme toggle functionality
+  const themeToggle = document.getElementById('theme-toggle');
+  const lightIcon = document.querySelector('.theme-icon-light');
+  const darkIcon = document.querySelector('.theme-icon-dark');
+  
+  if (themeToggle) {
+    // Update icons based on current theme
+    const updateIcons = (theme) => {
+      if (theme === 'dark') {
+        lightIcon.classList.add('hidden');
+        darkIcon.classList.remove('hidden');
+      } else {
+        lightIcon.classList.remove('hidden');
+        darkIcon.classList.add('hidden');
+      }
+    };
+    
+    // Set initial icon state
+    updateIcons(themeManager.getTheme());
+    
+    // Listen for theme changes
+    themeManager.onThemeChange(updateIcons);
+    
+    // Toggle theme on click
+    themeToggle.addEventListener('click', () => {
+      themeManager.toggleTheme();
     });
   }
   

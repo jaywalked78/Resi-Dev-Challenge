@@ -11,6 +11,27 @@
   - Smooth animations and transitions (fade in/out, scale effects)
   - Backdrop blur effect for better visual hierarchy
   
+- **Comprehensive Statistical Analysis (Phase 2)**
+  - Advanced statistical calculations: Median, Variance, Range, Standard Deviation, Sum, Count
+  - All calculations accurate to 2 decimal places with proper number formatting
+  - Interactive tooltips explaining each statistical term (hover ⓘ icons)
+  - Color-coded statistic cards with gradient backgrounds for visual distinction
+  - Variance replaces Mode for more meaningful statistical insights in typical use cases
+
+- **Tabbed Results Interface**
+  - **Overview Tab**: Primary average display with sum and count summary
+  - **Statistics Tab**: Four statistical measures in responsive grid layout
+  - **History Tab**: Last 10 calculations with timestamps and re-run functionality
+  - Seamless tab switching with proper ARIA attributes for accessibility
+
+- **Calculation History & Persistence**
+  - localStorage integration for persistent calculation history across browser sessions
+  - Click any history item to instantly re-run previous calculations
+  - History shows first 5 numbers with count indicator for longer lists
+  - Clear history functionality with confirmation dialog
+  - Timestamps with smart formatting (relative time: "2m ago", "1h ago", etc.)
+  - Input type tracking (custom vs random number generation)
+
 - **Enhanced User Experience**
   - Keyboard shortcut support (Ctrl/Cmd + K to open calculator)
   - "Clear all" button to reset inputs while preserving calculation memory
@@ -18,7 +39,7 @@
   - Real-time input validation with visual feedback
   - Animated number counting effect when displaying results
   - Copy to clipboard functionality with success feedback
-  - Number pills display showing all input values
+  - Number pills display showing all input values with formatted numbers
   
 - **Brand Identity & Visual Design**
   - Rebranded from "Average Calculator" to "MeanMachine"
@@ -51,11 +72,25 @@
   - Event delegation for dynamically added elements
   - Proper cleanup and memory management
 
+- **Utility Modules (Phase 2)**:
+  - `src/utils/statistics.js`: Mathematical functions for all statistical calculations
+  - `src/utils/storage.js`: localStorage wrapper with error handling and data validation
+  - `formatNumber()`: Internationalized number formatting with configurable decimals
+  - `calculateAllStats()`: Single function returning complete statistical analysis
+
+- **Advanced Features**:
+  - Tooltip system with dynamic positioning relative to modal container
+  - History management with automatic pruning (max 10 items)
+  - Smart timestamp formatting with relative time display
+  - Tab state management for both input and results interfaces
+  - Error boundaries for calculation failures
+
 - **Design System**:
   - Full-viewport background image with `fixed` positioning
   - CSS backdrop-filter for glassmorphism effects
   - Coordinated color scheme (dark gray headers, green accents)
   - Flexbox layout for perfect vertical centering
+  - Gradient card system for statistical categories (green=median, purple=variance, orange=range, red=std dev)
 
 - **Accessibility Features**:
   - Focus trap implementation
@@ -63,11 +98,15 @@
   - Keyboard navigation (Tab, Shift+Tab, Escape)
   - Focus restoration on modal close
   - Screen reader announcements
+  - Semantic HTML with proper heading hierarchy
+  - Tooltip content for screen readers
 
 - **State Management**:
-  - Maintains calculation history
+  - Maintains calculation history with localStorage persistence
   - Preserves user inputs between calculations
   - Separate state for custom vs random modes
+  - Complete statistical results caching for performance
+  - History item click-to-load functionality
 
 ## [1.0.0] - 2025-06-19
 

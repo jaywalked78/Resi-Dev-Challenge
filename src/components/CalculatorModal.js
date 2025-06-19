@@ -1,4 +1,6 @@
 import { Modal } from './Modal.js';
+import { calculateAllStats, formatNumber } from '../utils/statistics.js';
+import { saveCalculation, getCalculationHistory, formatTimestamp } from '../utils/storage.js';
 
 /**
  * Calculator Modal Component
@@ -104,20 +106,112 @@ export class CalculatorModal extends Modal {
         </div>
 
         <!-- Result Display -->
-        <div id="result-display" class="hidden mt-6 p-6 bg-gray-50 rounded-lg">
-          <div class="text-center">
-            <p class="text-sm text-gray-600 mb-2">The average is:</p>
-            <div id="result-value" class="text-4xl font-bold text-blue-600 mb-4">0</div>
-            <div id="number-pills" class="flex flex-wrap gap-2 justify-center mb-4"></div>
-            <div class="flex gap-3 justify-center">
-              <button id="calculate-again" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors">
-                Calculate Again
-              </button>
-              <button id="copy-result" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
-                Copy Result
-              </button>
+        <div id="result-display" class="hidden mt-6">
+          <!-- Input Numbers Display -->
+          <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+            <p class="text-sm text-gray-600 mb-2">Your numbers:</p>
+            <div id="number-pills" class="flex flex-wrap gap-2"></div>
+          </div>
+
+          <!-- Results Tab Navigation -->
+          <div class="flex border-b border-gray-200 mb-4">
+            <button class="result-tab-btn px-4 py-2 font-medium text-gray-700 border-b-2 border-blue-500 focus:outline-none transition-colors" 
+                    data-result-tab="overview" aria-selected="true">
+              Overview
+            </button>
+            <button class="result-tab-btn px-4 py-2 font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition-colors" 
+                    data-result-tab="statistics" aria-selected="false">
+              Statistics
+            </button>
+            <button class="result-tab-btn px-4 py-2 font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition-colors" 
+                    data-result-tab="history" aria-selected="false">
+              History
+            </button>
+          </div>
+
+          <!-- Results Tab Content -->
+          <div class="result-tab-content">
+            <!-- Overview Tab -->
+            <div id="overview-tab" class="result-tab-panel">
+              <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg">
+                <p class="text-sm text-gray-600 mb-2">Average</p>
+                <div id="result-value" class="text-5xl font-bold text-blue-600 mb-4">0</div>
+                <div class="grid grid-cols-2 gap-4 mt-6 text-sm">
+                  <div class="text-center">
+                    <p class="text-gray-500">Sum</p>
+                    <p id="sum-value" class="font-semibold text-gray-700">0</p>
+                  </div>
+                  <div class="text-center">
+                    <p class="text-gray-500">Count</p>
+                    <p id="count-value" class="font-semibold text-gray-700">0</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Statistics Tab -->
+            <div id="statistics-tab" class="result-tab-panel hidden">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="stat-card p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg">
+                  <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-medium text-gray-700">Median</h3>
+                    <span class="tooltip-trigger text-gray-400 cursor-help" data-tooltip="The middle value when numbers are sorted">ⓘ</span>
+                  </div>
+                  <p id="median-value" class="text-2xl font-bold text-green-600">0</p>
+                </div>
+                
+                <div class="stat-card p-4 bg-gradient-to-br from-purple-50 to-violet-50 rounded-lg">
+                  <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-medium text-gray-700">Variance</h3>
+                    <span class="tooltip-trigger text-gray-400 cursor-help" data-tooltip="Sample variance: average squared deviation from mean (s²)">ⓘ</span>
+                  </div>
+                  <p id="variance-value" class="text-2xl font-bold text-purple-600">0</p>
+                </div>
+                
+                <div class="stat-card p-4 bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg">
+                  <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-medium text-gray-700">Range</h3>
+                    <span class="tooltip-trigger text-gray-400 cursor-help" data-tooltip="The difference between the highest and lowest values">ⓘ</span>
+                  </div>
+                  <p id="range-value" class="text-2xl font-bold text-orange-600">0</p>
+                </div>
+                
+                <div class="stat-card p-4 bg-gradient-to-br from-red-50 to-rose-50 rounded-lg">
+                  <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-medium text-gray-700">Std. Deviation</h3>
+                    <span class="tooltip-trigger text-gray-400 cursor-help" data-tooltip="A measure of how spread out the numbers are">ⓘ</span>
+                  </div>
+                  <p id="stddev-value" class="text-2xl font-bold text-red-600">0</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- History Tab -->
+            <div id="history-tab" class="result-tab-panel hidden">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-medium text-gray-700">Recent Calculations</h3>
+                <button id="clear-history" class="text-sm text-red-600 hover:text-red-700 focus:outline-none">
+                  Clear History
+                </button>
+              </div>
+              <div id="history-list" class="space-y-2 max-h-60 overflow-y-auto">
+                <!-- History items will be populated here -->
+              </div>
             </div>
           </div>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-3 justify-center mt-6">
+            <button id="calculate-again" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors">
+              Calculate Again
+            </button>
+            <button id="copy-result" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+              Copy Result
+            </button>
+          </div>
+
+          <!-- Tooltip -->
+          <div id="tooltip" class="hidden absolute bg-gray-800 text-white text-xs rounded px-2 py-1 pointer-events-none z-50"></div>
         </div>
 
         <!-- Error Display -->
@@ -182,9 +276,28 @@ export class CalculatorModal extends Modal {
     });
     
     
+    // Result tabs
+    this.modal.querySelectorAll('.result-tab-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => this.switchResultTab(e.target.dataset.resultTab));
+    });
+
     // Result actions
     this.modal.querySelector('#calculate-again').addEventListener('click', () => this.reset());
     this.modal.querySelector('#copy-result').addEventListener('click', () => this.copyResult());
+    this.modal.querySelector('#clear-history').addEventListener('click', () => this.clearHistory());
+
+    // Tooltip functionality
+    this.modal.addEventListener('mouseenter', (e) => {
+      if (e.target.classList.contains('tooltip-trigger')) {
+        this.showTooltip(e.target, e.target.dataset.tooltip);
+      }
+    }, true);
+    
+    this.modal.addEventListener('mouseleave', (e) => {
+      if (e.target.classList.contains('tooltip-trigger')) {
+        this.hideTooltip();
+      }
+    }, true);
 
     // Dynamic event delegation for remove buttons
     this.modal.addEventListener('click', (e) => {
@@ -361,7 +474,17 @@ export class CalculatorModal extends Modal {
 
   displayResult() {
     try {
-      this.result = this.calculateFunction(this.numbers);
+      // Calculate all statistics
+      const stats = calculateAllStats(this.numbers);
+      this.result = stats.average;
+      this.allStats = stats;
+      
+      // Save to history
+      saveCalculation({
+        numbers: this.numbers,
+        results: stats,
+        inputType: this.mode
+      });
       
       // Hide input section
       this.modal.querySelector('.tab-content').classList.add('hidden');
@@ -371,14 +494,20 @@ export class CalculatorModal extends Modal {
       const resultDisplay = this.modal.querySelector('#result-display');
       resultDisplay.classList.remove('hidden');
       
-      // Animate number
-      this.animateNumber(this.result);
-      
       // Show number pills
       const pillsContainer = this.modal.querySelector('#number-pills');
       pillsContainer.innerHTML = this.numbers.map(num => 
-        `<span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">${num}</span>`
+        `<span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">${formatNumber(num)}</span>`
       ).join('');
+      
+      // Populate all result values
+      this.populateResults(stats);
+      
+      // Animate the main average number
+      this.animateNumber(stats.average);
+      
+      // Load history for history tab
+      this.loadHistory();
       
     } catch (error) {
       this.showError(error.message);
@@ -453,5 +582,136 @@ export class CalculatorModal extends Modal {
 
   hideResult() {
     this.modal.querySelector('#result-display').classList.add('hidden');
+  }
+
+  switchResultTab(tab) {
+    // Update tab buttons
+    this.modal.querySelectorAll('.result-tab-btn').forEach(btn => {
+      if (btn.dataset.resultTab === tab) {
+        btn.classList.add('text-gray-700', 'border-b-2', 'border-blue-500');
+        btn.classList.remove('text-gray-500');
+        btn.setAttribute('aria-selected', 'true');
+      } else {
+        btn.classList.remove('text-gray-700', 'border-b-2', 'border-blue-500');
+        btn.classList.add('text-gray-500');
+        btn.setAttribute('aria-selected', 'false');
+      }
+    });
+
+    // Update tab panels
+    this.modal.querySelectorAll('.result-tab-panel').forEach(panel => {
+      if (panel.id === `${tab}-tab`) {
+        panel.classList.remove('hidden');
+      } else {
+        panel.classList.add('hidden');
+      }
+    });
+  }
+
+  populateResults(stats) {
+    // Overview tab
+    this.modal.querySelector('#sum-value').textContent = formatNumber(stats.sum);
+    this.modal.querySelector('#count-value').textContent = stats.count;
+    
+    // Statistics tab
+    this.modal.querySelector('#median-value').textContent = formatNumber(stats.median);
+    this.modal.querySelector('#variance-value').textContent = formatNumber(stats.variance);
+    this.modal.querySelector('#range-value').textContent = formatNumber(stats.range);
+    this.modal.querySelector('#stddev-value').textContent = formatNumber(stats.standardDeviation);
+  }
+
+  loadHistory() {
+    const history = getCalculationHistory();
+    const historyList = this.modal.querySelector('#history-list');
+    
+    if (history.length === 0) {
+      historyList.innerHTML = '<p class="text-gray-500 text-center py-4">No calculations yet</p>';
+      return;
+    }
+
+    historyList.innerHTML = history.map(calc => `
+      <div class="history-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors" 
+           data-calculation-id="${calc.id}">
+        <div class="flex justify-between items-start">
+          <div class="flex-1">
+            <div class="flex flex-wrap gap-1 mb-1">
+              ${calc.numbers.slice(0, 5).map(num => 
+                `<span class="text-xs px-2 py-0.5 bg-blue-100 text-blue-600 rounded">${formatNumber(num)}</span>`
+              ).join('')}
+              ${calc.numbers.length > 5 ? `<span class="text-xs text-gray-500">+${calc.numbers.length - 5} more</span>` : ''}
+            </div>
+            <p class="text-sm font-medium text-gray-700">Avg: ${formatNumber(calc.results.average)}</p>
+          </div>
+          <div class="text-right">
+            <p class="text-xs text-gray-500">${formatTimestamp(calc.timestamp)}</p>
+            <p class="text-xs text-gray-400 capitalize">${calc.inputType}</p>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // Add click handlers for history items
+    historyList.addEventListener('click', (e) => {
+      const historyItem = e.target.closest('.history-item');
+      if (historyItem) {
+        const calcId = parseInt(historyItem.dataset.calculationId);
+        this.loadFromHistory(calcId);
+      }
+    });
+  }
+
+  loadFromHistory(calcId) {
+    const history = getCalculationHistory();
+    const calculation = history.find(calc => calc.id === calcId);
+    
+    if (!calculation) return;
+
+    // Set the numbers and mode
+    this.numbers = [...calculation.numbers];
+    this.mode = calculation.inputType;
+    this.allStats = calculation.results;
+    this.result = calculation.results.average;
+
+    // Update the display
+    this.populateResults(calculation.results);
+    
+    // Update number pills
+    const pillsContainer = this.modal.querySelector('#number-pills');
+    pillsContainer.innerHTML = this.numbers.map(num => 
+      `<span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">${formatNumber(num)}</span>`
+    ).join('');
+    
+    // Update main average display
+    this.modal.querySelector('#result-value').textContent = formatNumber(calculation.results.average);
+    
+    // Switch to overview tab
+    this.switchResultTab('overview');
+  }
+
+  clearHistory() {
+    if (confirm('Are you sure you want to clear all calculation history?')) {
+      const success = getCalculationHistory().length > 0;
+      if (success) {
+        localStorage.removeItem('meanmachine_calculations');
+        this.loadHistory();
+      }
+    }
+  }
+
+  showTooltip(trigger, text) {
+    const tooltip = this.modal.querySelector('#tooltip');
+    tooltip.textContent = text;
+    tooltip.classList.remove('hidden');
+    
+    const rect = trigger.getBoundingClientRect();
+    const modalRect = this.modal.getBoundingClientRect();
+    
+    tooltip.style.left = `${rect.left - modalRect.left + rect.width / 2}px`;
+    tooltip.style.top = `${rect.top - modalRect.top - tooltip.offsetHeight - 5}px`;
+    tooltip.style.transform = 'translateX(-50%)';
+  }
+
+  hideTooltip() {
+    this.modal.querySelector('#tooltip').classList.add('hidden');
   }
 }

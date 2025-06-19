@@ -1,3 +1,8 @@
+/**
+ * Calculate the median (middle value) of a set of numbers
+ * @param {number[]} numbers - Array of numbers
+ * @returns {number} The median value
+ */
 export function calculateMedian(numbers) {
     if (!numbers || numbers.length === 0) return 0;
     
@@ -10,6 +15,11 @@ export function calculateMedian(numbers) {
     return sorted[middle];
 }
 
+/**
+ * Calculate the sample variance of a set of numbers
+ * @param {number[]} numbers - Array of numbers
+ * @returns {number} The sample variance
+ */
 export function calculateVariance(numbers) {
     if (!numbers || numbers.length === 0) return 0;
     if (numbers.length === 1) return 0; // No variance with single data point
@@ -21,6 +31,11 @@ export function calculateVariance(numbers) {
     return squaredDifferences.reduce((sum, diff) => sum + diff, 0) / (numbers.length - 1);
 }
 
+/**
+ * Calculate the range (difference between max and min) of a set of numbers
+ * @param {number[]} numbers - Array of numbers
+ * @returns {number} The range value
+ */
 export function calculateRange(numbers) {
     if (!numbers || numbers.length === 0) return 0;
     
@@ -29,21 +44,42 @@ export function calculateRange(numbers) {
     return max - min;
 }
 
+/**
+ * Calculate the standard deviation of a set of numbers
+ * @param {number[]} numbers - Array of numbers
+ * @returns {number} The standard deviation
+ */
 export function calculateStandardDeviation(numbers) {
     if (!numbers || numbers.length === 0) return 0;
     
     return Math.sqrt(calculateVariance(numbers));
 }
 
+/**
+ * Calculate the sum of a set of numbers
+ * @param {number[]} numbers - Array of numbers
+ * @returns {number} The sum of all numbers
+ */
 export function calculateSum(numbers) {
     if (!numbers || numbers.length === 0) return 0;
     return numbers.reduce((sum, num) => sum + num, 0);
 }
 
+/**
+ * Get the count of numbers in the array
+ * @param {number[]} numbers - Array of numbers
+ * @returns {number} The count of numbers
+ */
 export function calculateCount(numbers) {
     return numbers ? numbers.length : 0;
 }
 
+/**
+ * Format a number for display with specified decimal places
+ * @param {number|string} value - The value to format
+ * @param {number} decimals - Number of decimal places (default: 2)
+ * @returns {string} Formatted number string
+ */
 export function formatNumber(value, decimals = 2) {
     if (value === null || value === undefined) return 'N/A';
     if (typeof value !== 'number') return value.toString();

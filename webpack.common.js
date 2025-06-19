@@ -6,10 +6,34 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   entry: {
     main: './src/index.js',
+    calculator: {
+      import: './src/components/CalculatorModal.js',
+      dependOn: 'main'
+    }
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].js',
+    clean: true
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+        common: {
+          name: 'common',
+          minChunks: 2,
+          chunks: 'all',
+          enforce: true
+        }
+      }
+    }
   },
   resolve: {
     extensions: ['.js', '.json']

@@ -1,8 +1,7 @@
 /**
  * Calculates the average of an array of numbers, logs it, and returns the result.
- *
- * @param {number[]} nums
- * @returns {number}
+ * @param {number[]} nums - Array of numbers to calculate average for
+ * @returns {number} The calculated average
  * @throws {Error} if nums is empty or not an array
  */
 function calculateAverage(nums) {
@@ -28,24 +27,61 @@ try {
   console.error('Test failed:', error.message);
 }
 
-// Import the calculator modal
-import { CalculatorModal } from './components/CalculatorModal.js';
+// Import theme manager and error boundary
 import { ThemeManager } from './utils/theme.js';
+import { createErrorBoundary, withErrorBoundary } from './utils/errorBoundary.js';
 
 // Initialize calculator modal when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  // Create error boundary for the main app
+  const appContainer = document.querySelector('main') || document.body;
+  const errorBoundary = createErrorBoundary(appContainer, {
+    onError: (error, source) => {
+      console.error(`[App Error] ${source}:`, error);
+      // Send to analytics if available
+      if (window.gtag) {
+        window.gtag('event', 'exception', {
+          description: error.message,
+          fatal: false
+        });
+      }
+    }
+  });
+
   // Initialize theme manager
   const themeManager = new ThemeManager();
   
-  // Create modal instance
-  const calculatorModal = new CalculatorModal(calculateAverage);
+  // Lazy load calculator modal with error boundary
+  let calculatorModal = null;
+  const loadCalculatorModal = async () => {
+    if (!calculatorModal) {
+      const { CalculatorModal } = await import('./components/CalculatorModal.js');
+      const ModalWithErrorBoundary = withErrorBoundary(() => new CalculatorModal(calculateAverage));
+      calculatorModal = ModalWithErrorBoundary();
+    }
+    return calculatorModal;
+  };
   
   // Add event listener for the button
   const button = document.getElementById('calculate-btn');
+  console.log('Button found:', button);
   if (button) {
-    button.addEventListener('click', () => {
-      calculatorModal.open();
+    button.addEventListener('click', async () => {
+      console.log('Button clicked - loading modal...');
+      try {
+        const modal = await loadCalculatorModal();
+        console.log('Modal loaded:', modal);
+        if (modal && modal.open) {
+          modal.open();
+        } else {
+          console.error('Modal is null or missing open method');
+        }
+      } catch (error) {
+        console.error('Error loading modal:', error);
+      }
     });
+  } else {
+    console.error('Calculate button not found!');
   }
   
   // Theme toggle functionality
@@ -78,10 +114,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Add keyboard shortcut (Ctrl/Cmd + K)
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', async (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
-      calculatorModal.open();
+      const modal = await loadCalculatorModal();
+      modal.open();
     }
   });
 });

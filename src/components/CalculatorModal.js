@@ -642,8 +642,45 @@ export class CalculatorModal extends Modal {
   }
 
   copyResult() {
-    if (this.result !== null) {
-      navigator.clipboard.writeText(this.result.toFixed(2)).then(() => {
+    if (this.result !== null && this.allStats) {
+      let textToCopy = '';
+      
+      // Get the current active result tab
+      const activeTab = this.modal.querySelector('.result-tab-btn[aria-selected="true"]');
+      const currentTab = activeTab ? activeTab.dataset.resultTab : 'overview';
+      
+      switch (currentTab) {
+        case 'overview':
+          textToCopy = `Average: ${formatNumber(this.result)}`;
+          break;
+          
+        case 'statistics':
+          textToCopy = `Statistics for [${this.numbers.map(n => formatNumber(n)).join(', ')}]:
+Average: ${formatNumber(this.allStats.average)}
+Median: ${formatNumber(this.allStats.median)}
+Variance: ${formatNumber(this.allStats.variance)}
+Range: ${formatNumber(this.allStats.range)}
+Standard Deviation: ${formatNumber(this.allStats.standardDeviation)}
+Sum: ${formatNumber(this.allStats.sum)}
+Count: ${this.allStats.count}`;
+          break;
+          
+        case 'history':
+          const history = getCalculationHistory();
+          if (history.length > 0) {
+            textToCopy = `Calculation History:\n${history.map(calc => 
+              `Numbers: [${calc.numbers.map(n => formatNumber(n)).join(', ')}] → Average: ${formatNumber(calc.results.average)} (${formatTimestamp(calc.timestamp)})`
+            ).join('\n')}`;
+          } else {
+            textToCopy = 'No calculation history available';
+          }
+          break;
+          
+        default:
+          textToCopy = `Average: ${formatNumber(this.result)}`;
+      }
+      
+      navigator.clipboard.writeText(textToCopy).then(() => {
         const btn = this.modal.querySelector('#copy-result');
         const originalText = btn.textContent;
         btn.textContent = 'Copied!';

@@ -1,8 +1,19 @@
 /**
  * Base Modal Component
  * Provides backdrop, animations, and accessibility features
+ * 
+ * @class Modal
+ * @param {Object} options - Configuration options for the modal
+ * @param {boolean} options.closeOnBackdrop - Whether to close on backdrop click
+ * @param {boolean} options.closeOnEscape - Whether to close on escape key
+ * @param {boolean} options.focusTrap - Whether to trap focus within modal
+ * @param {number} options.animationDuration - Animation duration in milliseconds
  */
 export class Modal {
+  /**
+   * Create a modal instance
+   * @param {Object} options - Configuration options
+   */
   constructor(options = {}) {
     this.options = {
       closeOnBackdrop: true,
@@ -20,6 +31,10 @@ export class Modal {
     this.init();
   }
 
+  /**
+   * Initialize modal DOM structure and setup
+   * @private
+   */
   init() {
     // Create modal structure
     this.backdrop = document.createElement('div');

@@ -1,0 +1,40 @@
+{
+  "name": "dev-challenge",
+  "version": "1.0.0",
+  "description": "Welcome to your technical assessment. This project includes intentional technical SEO and development issues. Identify and fix them using best practices.",
+  "main": "scripts.js",
+  "scripts": {
+    "dev": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "start": "php -S localhost:8000 & npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaywalked78/dev-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaywalked78/dev-challenge/issues"
+  },
+  "homepage": "https://github.com/jaywalked78/dev-challenge#readme",
+  "devDependencies": {
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "autoprefixer": "^10.4.21",
+    "babel-loader": "^10.0.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.2",
+    "postcss": "^8.5.6",
+    "postcss-loader": "^8.1.1",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "^3.4.17",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2",
+    "webpack-merge": "^6.0.1"
+  }
+}

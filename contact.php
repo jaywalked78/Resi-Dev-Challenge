@@ -8,7 +8,7 @@ $htmlBlock = <<EOT
   <h1>$pageTitle</h1>
   <p>
     <strong>Name:</strong> $contactName<br>
-    <strong>Email:</strong> <a href="mailto:$emailAddress">$emailAdress</a>
+    <strong>Email:</strong> <a href="mailto:$emailAddress">$emailAddress</a>
   </p>
 </section>
 EOT

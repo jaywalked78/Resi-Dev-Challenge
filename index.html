@@ -2,29 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Test Page</title>
+  <title>Test Page - Web Development Assessment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A technical assessment page for web developers demonstrating modern build tools and best practices." />
+  <meta name="keywords" content="web development, technical assessment, webpack, tailwind css" />
+  <meta name="author" content="Your Name" />
+  <meta property="og:title" content="Test Page - Web Development Assessment" />
+  <meta property="og:description" content="A technical assessment page for web developers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com" />
 
-  <!-- Tailwind CDN (candidate must replace with compiled build) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css" />
+  <!-- Webpack will inject CSS and JS automatically -->
 
   <!-- Broken Structured Data -->
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
       "@type": "WebSite",
-      "naem": "Example",
-      "url": "https://example.com",
-      "invalidProperty": "XYZ"
+      "name": "Example",
+      "url": "https://example.com"
     }
   </script>
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
 
-  <header class="p-5 bg-blu-500 text-white">
+  <header class="p-5 bg-blue-500 text-white">
     <h1 class="text-xl">My Test Page</h1>
   </header>
 
@@ -36,15 +38,15 @@
 
     <img src="images/hero.jpg" alt="Hero image" class="max-w-full h-auto" loading="lazy" />
 
-    <button onclick="calculateAverage(10, 20, 30);" class="px-4 py-2 bg-green-500 text-white rounded">
+    <button id="calculate-btn" class="px-4 py-2 bg-green-500 text-white rounded">
       Click me
     </button>
   </main>
 
   <footer class="p-5 bg-gray-800 text-white">
-    <p>&copy; 2024</p>
+    <p>&copy; 2025</p>
   </footer>
 
-  <script src="scripts.js"></script>
+  <!-- Webpack will inject scripts automatically -->
 </body>
 </html>

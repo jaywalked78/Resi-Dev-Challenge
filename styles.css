@@ -1,3 +1,0 @@
-html {
-  text-size: 15px; /* Candidate must support both global 15px font size and 16px rem scale for Tailwind font sizes and sizing utilities */
-}

@@ -2,6 +2,9 @@
 node_modules
 PRD-ENHANCEMENTS.md
 
+# Build artifacts
+dist/
+
 # Handoff documents
 HANDOFF-*.md
 

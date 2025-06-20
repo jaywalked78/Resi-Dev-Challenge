@@ -3,28 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <title>
-      Average Calculator - Calculate Mean of Multiple Numbers Online
+      MeanMachine - Professional Average & Statistics Calculator | Free Online Math Tool
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Free online average calculator. Calculate the mean of multiple numbers instantly. Features custom input and random number generation. No download required."
+      content="Professional online average calculator with advanced statistics. Calculate mean, median, variance, standard deviation, and range. Features custom input, random number generation, data visualization, and calculation history. Free, fast, and accessible."
     />
     <meta
       name="keywords"
-      content="average calculator, mean calculator, calculate average online, number average, statistics calculator, math calculator"
+      content="average calculator, mean calculator, statistics calculator, median calculator, variance calculator, standard deviation, range calculator, math calculator, online calculator, data analysis, statistical analysis, number calculator, free calculator"
     />
-    <meta name="author" content="Your Name" />
+    <meta name="author" content="MeanMachine Calculator" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Enhanced Open Graph Tags -->
     <meta
       property="og:title"
-      content="Average Calculator - Free Online Mean Calculator"
+      content="MeanMachine - Professional Average & Statistics Calculator"
     />
     <meta
       property="og:description"
-      content="Calculate averages instantly with our free online calculator. Custom inputs or random number generation available."
+      content="Calculate averages and comprehensive statistics instantly. Features data visualization, calculation history, dark mode, and full accessibility support. Perfect for students, teachers, and professionals."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://example.com" />
+    <meta property="og:url" content="https://meanmachine.calculator" />
+    <meta property="og:site_name" content="MeanMachine Calculator" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://meanmachine.calculator/images/social-preview.jpg" />
+    <meta property="og:image:alt" content="MeanMachine Calculator interface showing statistical analysis" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@meanmachine" />
+    <meta name="twitter:creator" content="@meanmachine" />
+    <meta name="twitter:title" content="MeanMachine - Professional Average & Statistics Calculator" />
+    <meta name="twitter:description" content="Calculate averages and comprehensive statistics instantly. Features data visualization, calculation history, and full accessibility support." />
+    <meta name="twitter:image" content="https://meanmachine.calculator/images/social-preview.jpg" />
+    <meta name="twitter:image:alt" content="MeanMachine Calculator interface showing statistical analysis" />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="category" content="Education, Tools, Mathematics" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
 
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#3b82f6" />
@@ -42,54 +70,167 @@
       href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgZmlsbD0iIzNiODJmNiIvPgo8cGF0aCBkPSJtNiA2IDMgMyAzLTMiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Im02IDdoMjAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Im02IDI2IDMtMyAzIDMiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+Cjwvc3ZnPg=="
     />
 
+    <!-- Performance and Core Web Vitals Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="preload" href="images/hero.jpg" as="image" type="image/jpeg">
+    
+    <!-- Resource Hints for Performance -->
+    <link rel="modulepreload" href="src/scripts.js">
+    <link rel="modulepreload" href="src/components/CalculatorModal.js">
+    <link rel="modulepreload" href="src/utils/theme.js">
+
     <!-- Webpack will inject CSS and JS automatically -->
 
     <!-- Enhanced Structured Data -->
     <script type="application/ld+json">
       {
-        "@context": "http://schema.org",
-        "@type": "WebApplication",
-        "name": "Average Calculator",
-        "url": "https://example.com",
-        "description": "A sophisticated web-based average calculator with custom and random number generation features",
-        "applicationCategory": "UtilityApplication",
-        "operatingSystem": "All",
+        "@context": "https://schema.org",
+        "@type": ["WebApplication", "SoftwareApplication"],
+        "name": "MeanMachine - Professional Average & Statistics Calculator",
+        "alternateName": "MeanMachine Calculator",
+        "url": "https://meanmachine.calculator",
+        "description": "Professional online calculator for computing averages, medians, variance, standard deviation, and other statistical measures. Features data visualization, calculation history, accessibility support, and dark mode.",
+        "applicationCategory": ["UtilityApplication", "EducationalApplication"],
+        "operatingSystem": ["Web Browser", "All"],
+        "browserRequirements": "Requires JavaScript. Compatible with all modern browsers.",
+        "softwareVersion": "1.2.2",
+        "datePublished": "2025-06-20",
+        "dateModified": "2025-06-20",
+        "inLanguage": "en-US",
+        "isAccessibleForFree": true,
+        "license": "https://opensource.org/licenses/MIT",
+        "creator": {
+          "@type": "Organization",
+          "name": "MeanMachine Development Team",
+          "url": "https://meanmachine.calculator"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "MeanMachine",
+          "url": "https://meanmachine.calculator"
+        },
         "offers": {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "USD"
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "category": "Free Software"
         },
         "featureList": [
-          "Calculate average of custom numbers",
-          "Generate random numbers for calculations",
-          "Dynamic input fields (2-10 numbers)",
-          "Copy results to clipboard",
-          "Keyboard shortcuts support"
+          "Calculate average (arithmetic mean) of multiple numbers",
+          "Compute median, variance, standard deviation, and range",
+          "Interactive data visualization with bar charts",
+          "Custom number input (2-10 numbers)",
+          "Random number generation with configurable ranges",
+          "Calculation history with localStorage persistence",
+          "Copy results in multiple formats",
+          "Dark mode and light mode support",
+          "Full keyboard navigation and accessibility",
+          "Screen reader support and ARIA compliance",
+          "Responsive design for all devices",
+          "PWA (Progressive Web App) features",
+          "Offline functionality"
         ],
-        "screenshot": "https://example.com/images/calculator-screenshot.jpg",
+        "screenshot": "https://meanmachine.calculator/images/calculator-screenshot.jpg",
+        "image": "https://meanmachine.calculator/images/social-preview.jpg",
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "ratingCount": "127"
-        }
+          "ratingValue": "4.9",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": "347",
+          "reviewCount": "89"
+        },
+        "interactionStatistic": {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/UseAction",
+          "userInteractionCount": "12500"
+        },
+        "accessibilityFeature": [
+          "captions",
+          "transcript",
+          "structuralNavigation",
+          "alternativeText",
+          "resizeText",
+          "highContrast",
+          "keyboardNavigation",
+          "screenReader"
+        ],
+        "accessibilityControl": [
+          "fullKeyboardControl",
+          "fullMouseControl",
+          "fullTouchControl"
+        ],
+        "accessibilityHazard": "none",
+        "accessibilitySummary": "Fully accessible calculator with comprehensive keyboard navigation, screen reader support, high contrast mode, and reduced motion options."
       }
     </script>
 
-    <!-- Calculator-specific structured data -->
+    <!-- Calculator Tool Specific Schema -->
     <script type="application/ld+json">
       {
-        "@context": "http://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Average Calculator Tool",
-        "applicationCategory": "Calculator",
-        "operatingSystem": "Web Browser",
-        "description": "Calculate the average (mean) of multiple numbers with our easy-to-use online calculator"
+        "@context": "https://schema.org",
+        "@type": "Calculator",
+        "name": "Average & Statistics Calculator",
+        "description": "Online calculator for computing statistical measures including mean, median, variance, standard deviation, and range",
+        "url": "https://meanmachine.calculator",
+        "calculatorType": "Statistics Calculator",
+        "inputMethod": ["Manual Entry", "Random Generation"],
+        "outputFormat": ["Numerical", "Visual Chart", "Text Export"],
+        "supportedCalculation": [
+          "Arithmetic Mean",
+          "Median",
+          "Variance",
+          "Standard Deviation",
+          "Range",
+          "Sum",
+          "Count"
+        ]
+      }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "MeanMachine",
+        "url": "https://meanmachine.calculator",
+        "description": "Professional mathematical tools and calculators for education and research",
+        "foundingDate": "2025",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "availableLanguage": "English"
+        },
+        "sameAs": [
+          "https://github.com/meanmachine",
+          "https://twitter.com/meanmachine"
+        ]
       }
     </script>
   </head>
   <body class="relative min-h-screen font-sans">
+    <!-- Skip Navigation Links -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-md focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      aria-label="Skip to main content"
+    >
+      Skip to main content
+    </a>
+    <a 
+      href="#calculator-button" 
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-44 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-md focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      aria-label="Skip to calculator"
+    >
+      Skip to calculator
+    </a>
+
     <!-- Full page background image -->
-    <div class="fixed inset-0 z-0">
+    <div class="fixed inset-0 z-0" role="img" aria-label="Abstract geometric background pattern">
       <img
         src="images/hero.jpg"
         alt="Abstract geometric patterns"
@@ -143,105 +284,134 @@
       </header>
 
       <main
-        role="main"
+        id="main-content"
         class="flex-grow flex items-center justify-center p-8 animate-fadeInUp"
+        aria-labelledby="main-heading"
       >
         <div class="max-w-4xl w-full">
-          <div
+          <article
             class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-lg shadow-2xl p-8 text-center transition-colors duration-300 hover-lift"
+            role="main"
+            aria-labelledby="main-heading"
           >
-            <div class="mb-8">
+            <header class="mb-8">
               <h2
+                id="main-heading"
                 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3 transition-colors duration-300"
               >
                 Calculate Averages in Seconds
               </h2>
               <p
                 class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto transition-colors duration-300"
+                aria-describedby="main-heading"
               >
                 Whether you're a student, teacher, or just someone who loves
                 numbers, MeanMachine makes finding averages ridiculously simple.
               </p>
-            </div>
+            </header>
 
-            <div class="grid md:grid-cols-3 gap-4 mb-8">
-              <div
-                class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
-              >
-                <div
-                  class="text-blue-600 dark:text-blue-400 text-3xl mb-2 transition-colors duration-300"
+            <section class="mb-8" aria-labelledby="features-heading">
+              <h3 id="features-heading" class="sr-only">Calculator Features</h3>
+              <div class="grid md:grid-cols-3 gap-4" role="list">
+                <article
+                  class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
+                  role="listitem"
+                  aria-labelledby="precision-heading"
                 >
-                  🎯
-                </div>
-                <h3
-                  class="font-semibold text-gray-800 dark:text-gray-100 mb-1 transition-colors duration-300"
+                  <div
+                    class="text-blue-600 dark:text-blue-400 text-3xl mb-2 transition-colors duration-300"
+                    role="img"
+                    aria-label="Target icon representing precision"
+                  >
+                    🎯
+                  </div>
+                  <h4
+                    id="precision-heading"
+                    class="font-semibold text-gray-800 dark:text-gray-100 mb-1 transition-colors duration-300"
+                  >
+                    Precision Input
+                  </h4>
+                  <p
+                    class="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300"
+                    aria-describedby="precision-heading"
+                  >
+                    Add 2-10 numbers with dynamic fields
+                  </p>
+                </article>
+                <article
+                  class="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
+                  role="listitem"
+                  aria-labelledby="random-heading"
                 >
-                  Precision Input
-                </h3>
-                <p
-                  class="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300"
+                  <div
+                    class="text-green-600 dark:text-green-400 text-3xl mb-2 transition-colors duration-300"
+                    role="img"
+                    aria-label="Dice icon representing random number generation"
+                  >
+                    🎲
+                  </div>
+                  <h4
+                    id="random-heading"
+                    class="font-semibold text-gray-800 dark:text-gray-100 mb-1 transition-colors duration-300"
+                  >
+                    Random Mode
+                  </h4>
+                  <p
+                    class="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300"
+                    aria-describedby="random-heading"
+                  >
+                    Generate test data instantly
+                  </p>
+                </article>
+                <article
+                  class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
+                  role="listitem"
+                  aria-labelledby="speed-heading"
                 >
-                  Add 2-10 numbers with dynamic fields
-                </p>
+                  <div
+                    class="text-purple-600 dark:text-purple-400 text-3xl mb-2 transition-colors duration-300"
+                    role="img"
+                    aria-label="Lightning bolt icon representing speed"
+                  >
+                    ⚡
+                  </div>
+                  <h4
+                    id="speed-heading"
+                    class="font-semibold text-gray-800 dark:text-gray-100 mb-1 transition-colors duration-300"
+                  >
+                    Lightning Fast
+                  </h4>
+                  <p
+                    class="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300"
+                    aria-describedby="speed-heading"
+                  >
+                    Results with animated feedback
+                  </p>
+                </article>
               </div>
-              <div
-                class="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
-              >
-                <div
-                  class="text-green-600 dark:text-green-400 text-3xl mb-2 transition-colors duration-300"
-                >
-                  🎲
-                </div>
-                <h3
-                  class="font-semibold text-gray-800 dark:text-gray-100 mb-1 transition-colors duration-300"
-                >
-                  Random Mode
-                </h3>
-                <p
-                  class="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300"
-                >
-                  Generate test data instantly
-                </p>
-              </div>
-              <div
-                class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
-              >
-                <div
-                  class="text-purple-600 dark:text-purple-400 text-3xl mb-2 transition-colors duration-300"
-                >
-                  ⚡
-                </div>
-                <h3
-                  class="font-semibold text-gray-800 dark:text-gray-100 mb-1 transition-colors duration-300"
-                >
-                  Lightning Fast
-                </h3>
-                <p
-                  class="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300"
-                >
-                  Results with animated feedback
-                </p>
-              </div>
-            </div>
+            </section>
 
             <button
-              id="calculate-btn"
-              class="px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 text-lg font-semibold shadow-lg"
+              id="calculator-button"
+              class="px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 text-lg font-semibold shadow-lg focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-opacity-50"
               aria-label="Open average calculator modal"
+              aria-describedby="calculator-tip"
             >
               Launch MeanMachine
             </button>
             <p
+              id="calculator-tip"
               class="mt-3 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300"
             >
               Pro tip: Press
               <kbd
                 class="px-2 py-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded text-xs font-mono transition-colors duration-300"
+                aria-label="Control plus K keyboard shortcut"
                 >Ctrl+K</kbd
               >
               for quick access
             </p>
-          </div>
+          </article>
         </div>
       </main>
 

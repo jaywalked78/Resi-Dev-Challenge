@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // Add event listener for the button
-  const button = document.getElementById('calculate-btn');
+  const button = document.getElementById('calculator-button');
   console.log('Button found:', button);
   if (button) {
     button.addEventListener('click', async () => {

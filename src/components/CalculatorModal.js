@@ -32,23 +32,48 @@ export class CalculatorModal extends Modal {
     const content = `
       <div class="p-6">
         <!-- Header -->
-        <div class="flex items-center justify-between mb-6">
+        <header class="flex items-center justify-between mb-6">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 transition-colors duration-300" id="modal-title">Average Calculator</h2>
-          <button class="close-btn text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300" aria-label="Close modal">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button 
+            class="close-btn text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-md p-1" 
+            aria-label="Close calculator modal"
+            type="button"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-        </div>
+        </header>
+        
+        <!-- Modal Description for Screen Readers -->
+        <p id="modal-description" class="sr-only">
+          Interactive calculator for computing averages. Use tab navigation to move between controls. 
+          Choose between custom number input or random number generation modes.
+        </p>
 
         <!-- Tab Navigation -->
-        <div class="flex border-b border-gray-200 dark:border-gray-600 mb-6 transition-colors duration-300">
-          <button class="tab-btn px-4 py-2 font-medium text-gray-700 dark:text-gray-200 border-b-2 border-blue-500 dark:border-blue-400 focus:outline-none transition-colors duration-300" 
-                  data-tab="custom" aria-selected="true">
+        <div class="flex border-b border-gray-200 dark:border-gray-600 mb-6 transition-colors duration-300" role="tablist" aria-labelledby="input-mode-label">
+          <h3 id="input-mode-label" class="sr-only">Input Mode Selection</h3>
+          <button 
+            class="tab-btn px-4 py-2 font-medium text-gray-700 dark:text-gray-200 border-b-2 border-blue-500 dark:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-300" 
+            data-tab="custom" 
+            role="tab"
+            aria-selected="true"
+            aria-controls="custom-tab"
+            id="custom-tab-button"
+            tabindex="0"
+          >
             Custom Numbers
           </button>
-          <button class="tab-btn px-4 py-2 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none transition-colors duration-300" 
-                  data-tab="random" aria-selected="false">
+          <button 
+            class="tab-btn px-4 py-2 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-300" 
+            data-tab="random" 
+            role="tab"
+            aria-selected="false"
+            aria-controls="random-tab"
+            id="random-tab-button"
+            tabindex="-1"
+          >
             Random Numbers
           </button>
         </div>
@@ -56,18 +81,34 @@ export class CalculatorModal extends Modal {
         <!-- Tab Content -->
         <div class="tab-content">
           <!-- Custom Numbers Tab -->
-          <div id="custom-tab" class="tab-panel">
+          <div 
+            id="custom-tab" 
+            class="tab-panel" 
+            role="tabpanel" 
+            aria-labelledby="custom-tab-button"
+            aria-hidden="false"
+          >
             <div class="mb-4">
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 transition-colors duration-300">Enter numbers to calculate their average (2-10 numbers)</p>
-              <div id="number-inputs" class="space-y-3">
+              <div id="number-inputs" class="space-y-3" role="group" aria-label="Number input fields">
                 ${this.createNumberInput(0)}
                 ${this.createNumberInput(1)}
               </div>
-              <div class="mt-3 flex items-center gap-4">
-                <button id="add-input" class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 focus:outline-none transition-colors duration-300">
+              <div class="mt-3 flex items-center gap-4" role="group" aria-label="Input controls">
+                <button 
+                  id="add-input" 
+                  class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded transition-colors duration-300"
+                  aria-label="Add another number input field"
+                  type="button"
+                >
                   + Add another number
                 </button>
-                <button id="clear-inputs" class="text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 focus:outline-none transition-colors duration-300">
+                <button 
+                  id="clear-inputs" 
+                  class="text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded transition-colors duration-300"
+                  aria-label="Clear all number inputs"
+                  type="button"
+                >
                   Clear all
                 </button>
               </div>
@@ -75,62 +116,124 @@ export class CalculatorModal extends Modal {
           </div>
 
           <!-- Random Numbers Tab -->
-          <div id="random-tab" class="tab-panel hidden">
+          <div 
+            id="random-tab" 
+            class="tab-panel hidden" 
+            role="tabpanel" 
+            aria-labelledby="random-tab-button"
+            aria-hidden="true"
+          >
             <div class="space-y-4">
               <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300">
+                <label 
+                  for="random-count"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300"
+                >
                   How many numbers?
                 </label>
-                <input type="range" id="random-count" min="2" max="10" value="5" 
-                       class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer transition-colors duration-300">
-                <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1 transition-colors duration-300">
+                <input 
+                  type="range" 
+                  id="random-count" 
+                  min="2" 
+                  max="10" 
+                  value="5" 
+                  class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                  aria-describedby="count-display count-range"
+                >
+                <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1 transition-colors duration-300" id="count-range">
                   <span>2</span>
-                  <span id="count-display" class="font-medium text-gray-700 dark:text-gray-300 transition-colors duration-300">5</span>
+                  <span id="count-display" class="font-medium text-gray-700 dark:text-gray-300 transition-colors duration-300" aria-live="polite">5</span>
                   <span>10</span>
                 </div>
               </div>
               
-              <div class="grid grid-cols-2 gap-4">
+              <fieldset class="grid grid-cols-2 gap-4">
+                <legend class="sr-only">Random number generation range</legend>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300">
+                  <label 
+                    for="random-min"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300"
+                  >
                     Min Value
                   </label>
-                  <input type="number" id="random-min" value="1" 
-                         class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300">
+                  <input 
+                    type="number" 
+                    id="random-min" 
+                    value="1" 
+                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300"
+                    aria-label="Minimum value for random number generation"
+                    aria-describedby="random-range-help"
+                  >
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300">
+                  <label 
+                    for="random-max"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300"
+                  >
                     Max Value
                   </label>
-                  <input type="number" id="random-max" value="100" 
-                         class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300">
+                  <input 
+                    type="number" 
+                    id="random-max" 
+                    value="100" 
+                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300"
+                    aria-label="Maximum value for random number generation"
+                    aria-describedby="random-range-help"
+                  >
                 </div>
-              </div>
+                <p id="random-range-help" class="sr-only col-span-2">
+                  Set the minimum and maximum values for random number generation. Generated numbers will be between these values inclusive.
+                </p>
+              </fieldset>
               
             </div>
           </div>
         </div>
 
         <!-- Result Display -->
-        <div id="result-display" class="hidden mt-6">
+        <section id="result-display" class="hidden mt-6" aria-labelledby="results-heading">
+          <h3 id="results-heading" class="sr-only">Calculation Results</h3>
+          
           <!-- Input Numbers Display -->
-          <div class="mb-6 p-4 bg-gray-50 rounded-lg">
-            <p class="text-sm text-gray-600 mb-2">Your numbers:</p>
-            <div id="number-pills" class="flex flex-wrap gap-2"></div>
+          <div class="mb-6 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg transition-colors duration-300" role="region" aria-labelledby="input-summary">
+            <p id="input-summary" class="text-sm text-gray-600 dark:text-gray-400 mb-2 transition-colors duration-300">Your numbers:</p>
+            <div id="number-pills" class="flex flex-wrap gap-2" role="list" aria-label="Input numbers used in calculation"></div>
           </div>
 
           <!-- Results Tab Navigation -->
-          <div class="flex border-b border-gray-200 mb-4">
-            <button class="result-tab-btn px-4 py-2 font-medium text-gray-700 border-b-2 border-blue-500 focus:outline-none transition-colors" 
-                    data-result-tab="overview" aria-selected="true">
+          <div class="flex border-b border-gray-200 dark:border-gray-600 mb-4 transition-colors duration-300" role="tablist" aria-labelledby="results-tabs-label">
+            <h4 id="results-tabs-label" class="sr-only">Results Display Options</h4>
+            <button 
+              class="result-tab-btn px-4 py-2 font-medium text-gray-700 dark:text-gray-200 border-b-2 border-blue-500 dark:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors" 
+              data-result-tab="overview" 
+              role="tab"
+              aria-selected="true"
+              aria-controls="overview-tab"
+              id="overview-tab-button"
+              tabindex="0"
+            >
               Overview
             </button>
-            <button class="result-tab-btn px-4 py-2 font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition-colors" 
-                    data-result-tab="statistics" aria-selected="false">
+            <button 
+              class="result-tab-btn px-4 py-2 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors" 
+              data-result-tab="statistics" 
+              role="tab"
+              aria-selected="false"
+              aria-controls="statistics-tab"
+              id="statistics-tab-button"
+              tabindex="-1"
+            >
               Statistics
             </button>
-            <button class="result-tab-btn px-4 py-2 font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition-colors" 
-                    data-result-tab="history" aria-selected="false">
+            <button 
+              class="result-tab-btn px-4 py-2 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors" 
+              data-result-tab="history" 
+              role="tab"
+              aria-selected="false"
+              aria-controls="history-tab"
+              id="history-tab-button"
+              tabindex="-1"
+            >
               History
             </button>
           </div>
@@ -138,109 +241,207 @@ export class CalculatorModal extends Modal {
           <!-- Results Tab Content -->
           <div class="result-tab-content">
             <!-- Overview Tab -->
-            <div id="overview-tab" class="result-tab-panel">
-              <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg transition-colors duration-300">
-                <p class="text-sm text-gray-600 dark:text-gray-300 mb-2 transition-colors duration-300">Average</p>
-                <div id="result-value" class="text-5xl font-bold text-blue-600 dark:text-blue-300 mb-4 transition-colors duration-300">0</div>
-                <div class="grid grid-cols-2 gap-4 mt-6 text-sm">
-                  <div class="text-center">
-                    <p class="text-gray-500 dark:text-gray-300 transition-colors duration-300">Sum</p>
-                    <p id="sum-value" class="font-semibold text-gray-700 dark:text-gray-200 transition-colors duration-300">0</p>
+            <div 
+              id="overview-tab" 
+              class="result-tab-panel" 
+              role="tabpanel" 
+              aria-labelledby="overview-tab-button"
+              aria-hidden="false"
+            >
+              <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg transition-colors duration-300" role="region" aria-labelledby="average-display">
+                <h5 id="average-display" class="text-sm text-gray-600 dark:text-gray-300 mb-2 transition-colors duration-300">Average</h5>
+                <div id="result-value" class="text-5xl font-bold text-blue-600 dark:text-blue-300 mb-4 transition-colors duration-300" aria-live="polite" aria-atomic="true">0</div>
+                <div class="grid grid-cols-2 gap-4 mt-6 text-sm" role="group" aria-label="Summary statistics">
+                  <div class="text-center" role="group" aria-labelledby="sum-label">
+                    <p id="sum-label" class="text-gray-500 dark:text-gray-300 transition-colors duration-300">Sum</p>
+                    <p id="sum-value" class="font-semibold text-gray-700 dark:text-gray-200 transition-colors duration-300" aria-describedby="sum-label">0</p>
                   </div>
-                  <div class="text-center">
-                    <p class="text-gray-500 dark:text-gray-300 transition-colors duration-300">Count</p>
-                    <p id="count-value" class="font-semibold text-gray-700 dark:text-gray-200 transition-colors duration-300">0</p>
+                  <div class="text-center" role="group" aria-labelledby="count-label">
+                    <p id="count-label" class="text-gray-500 dark:text-gray-300 transition-colors duration-300">Count</p>
+                    <p id="count-value" class="font-semibold text-gray-700 dark:text-gray-200 transition-colors duration-300" aria-describedby="count-label">0</p>
                   </div>
                 </div>
               </div>
               
               <!-- Chart Visualization -->
-              <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg transition-colors duration-300">
-                <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 text-center transition-colors duration-300">Data Visualization</h3>
-                <div id="chart-container" class="flex justify-center items-center min-h-[200px] text-gray-900 dark:text-gray-100 transition-colors duration-300">
+              <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg transition-colors duration-300" role="region" aria-labelledby="chart-heading">
+                <h5 id="chart-heading" class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 text-center transition-colors duration-300">Data Visualization</h5>
+                <div 
+                  id="chart-container" 
+                  class="flex justify-center items-center min-h-[200px] text-gray-900 dark:text-gray-100 transition-colors duration-300"
+                  role="img"
+                  aria-label="Bar chart showing input numbers with average line"
+                  aria-describedby="chart-description"
+                >
                   <!-- Chart will be rendered here -->
                 </div>
+                <p id="chart-description" class="sr-only">
+                  Interactive bar chart displaying all input numbers as bars with a horizontal line indicating the calculated average value.
+                </p>
               </div>
             </div>
 
             <!-- Statistics Tab -->
-            <div id="statistics-tab" class="result-tab-panel hidden">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="stat-card p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 rounded-lg transition-colors duration-300">
+            <div 
+              id="statistics-tab" 
+              class="result-tab-panel hidden" 
+              role="tabpanel" 
+              aria-labelledby="statistics-tab-button"
+              aria-hidden="true"
+            >
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4" role="list" aria-label="Detailed statistical measures">
+                <article class="stat-card p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 rounded-lg transition-colors duration-300" role="listitem" aria-labelledby="median-heading">
                   <div class="flex items-center justify-between mb-2">
-                    <h3 class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Median</h3>
-                    <span class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300" data-tooltip="The middle value when numbers are sorted">ⓘ</span>
+                    <h5 id="median-heading" class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Median</h5>
+                    <button 
+                      class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300 p-1 rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50" 
+                      data-tooltip="The middle value when numbers are sorted"
+                      aria-label="Information about median calculation"
+                      type="button"
+                    >ⓘ</button>
                   </div>
-                  <p id="median-value" class="text-2xl font-bold text-green-600 dark:text-green-400 transition-colors duration-300">0</p>
-                </div>
+                  <p id="median-value" class="text-2xl font-bold text-green-600 dark:text-green-400 transition-colors duration-300" aria-describedby="median-heading">0</p>
+                </article>
                 
-                <div class="stat-card p-4 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/30 dark:to-violet-900/30 rounded-lg transition-colors duration-300">
+                <article class="stat-card p-4 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/30 dark:to-violet-900/30 rounded-lg transition-colors duration-300" role="listitem" aria-labelledby="variance-heading">
                   <div class="flex items-center justify-between mb-2">
-                    <h3 class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Variance</h3>
-                    <span class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300" data-tooltip="Sample variance: average squared deviation from mean (s²)">ⓘ</span>
+                    <h5 id="variance-heading" class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Variance</h5>
+                    <button 
+                      class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300 p-1 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50" 
+                      data-tooltip="Sample variance: average squared deviation from mean (s²)"
+                      aria-label="Information about variance calculation"
+                      type="button"
+                    >ⓘ</button>
                   </div>
-                  <p id="variance-value" class="text-2xl font-bold text-purple-600 dark:text-purple-400 transition-colors duration-300">0</p>
-                </div>
+                  <p id="variance-value" class="text-2xl font-bold text-purple-600 dark:text-purple-400 transition-colors duration-300" aria-describedby="variance-heading">0</p>
+                </article>
                 
-                <div class="stat-card p-4 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/30 dark:to-amber-900/30 rounded-lg transition-colors duration-300">
+                <article class="stat-card p-4 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/30 dark:to-amber-900/30 rounded-lg transition-colors duration-300" role="listitem" aria-labelledby="range-heading">
                   <div class="flex items-center justify-between mb-2">
-                    <h3 class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Range</h3>
-                    <span class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300" data-tooltip="The difference between the highest and lowest values">ⓘ</span>
+                    <h5 id="range-heading" class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Range</h5>
+                    <button 
+                      class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300 p-1 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50" 
+                      data-tooltip="The difference between the highest and lowest values"
+                      aria-label="Information about range calculation"
+                      type="button"
+                    >ⓘ</button>
                   </div>
-                  <p id="range-value" class="text-2xl font-bold text-orange-600 dark:text-orange-400 transition-colors duration-300">0</p>
-                </div>
+                  <p id="range-value" class="text-2xl font-bold text-orange-600 dark:text-orange-400 transition-colors duration-300" aria-describedby="range-heading">0</p>
+                </article>
                 
-                <div class="stat-card p-4 bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/30 dark:to-rose-900/30 rounded-lg transition-colors duration-300">
+                <article class="stat-card p-4 bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/30 dark:to-rose-900/30 rounded-lg transition-colors duration-300" role="listitem" aria-labelledby="stddev-heading">
                   <div class="flex items-center justify-between mb-2">
-                    <h3 class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Std. Deviation</h3>
-                    <span class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300" data-tooltip="A measure of how spread out the numbers are">ⓘ</span>
+                    <h5 id="stddev-heading" class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Std. Deviation</h5>
+                    <button 
+                      class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300 p-1 rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" 
+                      data-tooltip="A measure of how spread out the numbers are"
+                      aria-label="Information about standard deviation calculation"
+                      type="button"
+                    >ⓘ</button>
                   </div>
-                  <p id="stddev-value" class="text-2xl font-bold text-red-600 dark:text-red-400 transition-colors duration-300">0</p>
-                </div>
+                  <p id="stddev-value" class="text-2xl font-bold text-red-600 dark:text-red-400 transition-colors duration-300" aria-describedby="stddev-heading">0</p>
+                </article>
               </div>
             </div>
 
             <!-- History Tab -->
-            <div id="history-tab" class="result-tab-panel hidden">
+            <div 
+              id="history-tab" 
+              class="result-tab-panel hidden" 
+              role="tabpanel" 
+              aria-labelledby="history-tab-button"
+              aria-hidden="true"
+            >
               <div class="flex items-center justify-between mb-4">
-                <h3 class="font-medium text-gray-700 dark:text-gray-300 transition-colors duration-300">Recent Calculations</h3>
-                <button id="clear-history" class="text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 focus:outline-none transition-colors duration-300">
+                <h5 id="history-heading" class="font-medium text-gray-700 dark:text-gray-300 transition-colors duration-300">Recent Calculations</h5>
+                <button 
+                  id="clear-history" 
+                  class="text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded transition-colors duration-300"
+                  aria-label="Clear all calculation history"
+                  type="button"
+                >
                   Clear History
                 </button>
               </div>
-              <div id="history-list" class="space-y-2 max-h-60 overflow-y-auto custom-scrollbar">
+              <div 
+                id="history-list" 
+                class="space-y-2 max-h-60 overflow-y-auto custom-scrollbar" 
+                role="list" 
+                aria-labelledby="history-heading"
+                aria-describedby="history-help"
+              >
                 <!-- History items will be populated here -->
               </div>
+              <p id="history-help" class="sr-only">
+                Click on any history item to reload those numbers and results. Use tab key to navigate through history items.
+              </p>
             </div>
           </div>
 
-          <!-- Action Buttons -->
-          <div class="flex gap-3 justify-center mt-6">
-            <button id="calculate-again" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors">
+          <!-- Result Action Buttons -->
+          <div class="flex gap-3 justify-center mt-6" role="group" aria-label="Result actions">
+            <button 
+              id="calculate-again" 
+              class="px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 transition-colors"
+              aria-label="Start a new calculation with fresh inputs"
+              type="button"
+            >
               Calculate Again
             </button>
-            <button id="copy-result" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+            <button 
+              id="copy-result" 
+              class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+              aria-label="Copy calculation results to clipboard"
+              aria-describedby="copy-help"
+              type="button"
+            >
               Copy Result
             </button>
           </div>
+          <p id="copy-help" class="sr-only">
+            Copies the current tab's content to clipboard. Switch tabs to copy different result formats.
+          </p>
 
           <!-- Tooltip -->
-          <div id="tooltip" class="hidden absolute bg-gray-800 dark:bg-gray-900 text-white text-xs rounded px-2 py-1 pointer-events-none z-50 shadow-lg"></div>
-        </div>
+          <div 
+            id="tooltip" 
+            class="hidden absolute bg-gray-800 dark:bg-gray-900 text-white text-xs rounded px-2 py-1 pointer-events-none z-50 shadow-lg"
+            role="tooltip"
+            aria-hidden="true"
+          ></div>
+        </section>
 
         <!-- Error Display -->
-        <div id="error-display" class="hidden mt-4 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 rounded-md transition-colors duration-300">
-          <p class="text-sm text-red-600 dark:text-red-400 transition-colors duration-300"></p>
+        <div 
+          id="error-display" 
+          class="hidden mt-4 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 rounded-md transition-colors duration-300"
+          role="alert"
+          aria-live="assertive"
+        >
+          <p class="text-sm text-red-600 dark:text-red-400 transition-colors duration-300" id="error-message"></p>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="mt-6 flex justify-end gap-3">
-          <button id="cancel-btn" class="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-200 dark:bg-gray-600 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 transition-colors duration-300">
+        <!-- Main Action Buttons -->
+        <div class="mt-6 flex justify-end gap-3" role="group" aria-label="Calculator actions">
+          <button 
+            id="cancel-btn" 
+            class="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-200 dark:bg-gray-600 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 transition-colors duration-300"
+            aria-label="Cancel and close calculator"
+            type="button"
+          >
             Cancel
           </button>
-          <button id="calculate-btn" class="px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-md hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors">
+          <button 
+            id="calculate-btn" 
+            class="px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-md hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
+            aria-describedby="calculate-help"
+            type="button"
+          >
             Calculate Average
           </button>
+          <p id="calculate-help" class="sr-only">
+            Processes entered numbers and displays comprehensive statistical results including average, median, variance, and more.
+          </p>
         </div>
       </div>
     `;
@@ -251,16 +452,27 @@ export class CalculatorModal extends Modal {
 
   createNumberInput(index) {
     return `
-      <div class="flex items-center gap-2 number-input-group">
-        <input type="number" 
-               class="number-input flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300" 
-               placeholder="Enter a number"
-               aria-label="Number ${index + 1}">
+      <div class="flex items-center gap-2 number-input-group" role="group" aria-label="Number input ${index + 1}">
+        <label for="number-input-${index}" class="sr-only">Number ${index + 1}</label>
+        <input 
+          type="number" 
+          id="number-input-${index}"
+          class="number-input flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300" 
+          placeholder="Enter a number"
+          aria-label="Number ${index + 1} input field"
+          aria-describedby="number-help-${index}"
+          step="any"
+        >
+        <span id="number-help-${index}" class="sr-only">Enter any numeric value for calculation</span>
         ${
           index > 1
             ? `
-          <button class="remove-input text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 focus:outline-none transition-colors duration-300" aria-label="Remove number">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button 
+            class="remove-input text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded transition-colors duration-300 p-1" 
+            aria-label="Remove number ${index + 1} input field"
+            type="button"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
             </svg>
           </button>
@@ -280,9 +492,10 @@ export class CalculatorModal extends Modal {
       .querySelector('#cancel-btn')
       .addEventListener('click', () => this.close());
 
-    // Tab switching
+    // Tab switching with keyboard navigation
     this.modal.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', e => this.switchTab(e.target.dataset.tab));
+      btn.addEventListener('keydown', e => this.handleTabKeyNavigation(e, 'tab-btn'));
     });
 
     // Custom numbers functionality
@@ -303,11 +516,12 @@ export class CalculatorModal extends Modal {
       countDisplay.textContent = e.target.value;
     });
 
-    // Result tabs
+    // Result tabs with keyboard navigation
     this.modal.querySelectorAll('.result-tab-btn').forEach(btn => {
       btn.addEventListener('click', e =>
         this.switchResultTab(e.target.dataset.resultTab)
       );
+      btn.addEventListener('keydown', e => this.handleTabKeyNavigation(e, 'result-tab-btn'));
     });
 
     // Result actions
@@ -372,6 +586,7 @@ export class CalculatorModal extends Modal {
         );
         btn.classList.remove('text-gray-500', 'dark:text-gray-400');
         btn.setAttribute('aria-selected', 'true');
+        btn.setAttribute('tabindex', '0');
       } else {
         btn.classList.remove(
           'text-gray-700',
@@ -382,6 +597,7 @@ export class CalculatorModal extends Modal {
         );
         btn.classList.add('text-gray-500', 'dark:text-gray-400');
         btn.setAttribute('aria-selected', 'false');
+        btn.setAttribute('tabindex', '-1');
       }
     });
 
@@ -397,11 +613,18 @@ export class CalculatorModal extends Modal {
 
     if (tab === 'custom') {
       customTab.classList.remove('hidden');
+      customTab.setAttribute('aria-hidden', 'false');
       randomTab.classList.add('hidden');
+      randomTab.setAttribute('aria-hidden', 'true');
     } else {
       customTab.classList.add('hidden');
+      customTab.setAttribute('aria-hidden', 'true');
       randomTab.classList.remove('hidden');
+      randomTab.setAttribute('aria-hidden', 'false');
     }
+
+    // Announce tab change for screen readers
+    this.announceToScreenReader(`Switched to ${tab === 'custom' ? 'custom' : 'random'} numbers input mode`);
 
     // Update button text and visibility based on tab
     const calculateBtn = this.modal.querySelector('#calculate-btn');
@@ -581,8 +804,8 @@ export class CalculatorModal extends Modal {
       const pillsContainer = this.modal.querySelector('#number-pills');
       pillsContainer.innerHTML = this.numbers
         .map(
-          num =>
-            `<span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">${formatNumber(num)}</span>`
+          (num, index) =>
+            `<span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/70 text-blue-700 dark:text-blue-200 rounded-full text-sm transition-colors duration-300" role="listitem" aria-label="Input number ${index + 1}: ${formatNumber(num)}">${formatNumber(num)}</span>`
         )
         .join('');
 
@@ -599,6 +822,9 @@ export class CalculatorModal extends Modal {
 
       // Load history for history tab
       this.loadHistory();
+
+      // Announce successful calculation to screen readers
+      this.announceToScreenReader(`Calculation completed. Average is ${formatNumber(stats.average)}. Results displayed with ${this.numbers.length} numbers processed.`);
     } catch (error) {
       this.showError(error.message);
     }
@@ -756,8 +982,12 @@ Count: ${this.allStats.count}`;
 
   showError(message) {
     const errorDisplay = this.modal.querySelector('#error-display');
-    errorDisplay.querySelector('p').textContent = message;
+    const errorMessage = this.modal.querySelector('#error-message');
+    errorMessage.textContent = message;
     errorDisplay.classList.remove('hidden');
+    
+    // Announce error to screen readers
+    this.announceToScreenReader(`Error: ${message}`);
   }
 
   hideError() {
@@ -781,6 +1011,7 @@ Count: ${this.allStats.count}`;
         );
         btn.classList.remove('text-gray-500', 'dark:text-gray-400');
         btn.setAttribute('aria-selected', 'true');
+        btn.setAttribute('tabindex', '0');
       } else {
         btn.classList.remove(
           'text-gray-700',
@@ -791,6 +1022,7 @@ Count: ${this.allStats.count}`;
         );
         btn.classList.add('text-gray-500', 'dark:text-gray-400');
         btn.setAttribute('aria-selected', 'false');
+        btn.setAttribute('tabindex', '-1');
       }
     });
 
@@ -798,10 +1030,15 @@ Count: ${this.allStats.count}`;
     this.modal.querySelectorAll('.result-tab-panel').forEach(panel => {
       if (panel.id === `${tab}-tab`) {
         panel.classList.remove('hidden');
+        panel.setAttribute('aria-hidden', 'false');
       } else {
         panel.classList.add('hidden');
+        panel.setAttribute('aria-hidden', 'true');
       }
     });
+
+    // Announce tab change for screen readers
+    this.announceToScreenReader(`Switched to ${tab} results view`);
   }
 
   populateResults(stats) {
@@ -1046,5 +1283,75 @@ Count: ${this.allStats.count}`;
     } catch (error) {
       console.error('Chart rendering error:', error);
     }
+  }
+
+  /**
+   * Handle keyboard navigation for tab interfaces
+   * @param {KeyboardEvent} e - Keyboard event
+   * @param {string} tabType - Type of tab navigation ('tab-btn' or 'result-tab-btn')
+   */
+  handleTabKeyNavigation(e, tabType) {
+    const tabs = Array.from(this.modal.querySelectorAll(`.${tabType}`));
+    const currentIndex = tabs.findIndex(tab => tab === e.target);
+    
+    let nextIndex;
+    
+    switch (e.key) {
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        e.preventDefault();
+        nextIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+        tabs[nextIndex].focus();
+        tabs[nextIndex].click();
+        break;
+      
+      case 'ArrowRight':
+      case 'ArrowDown':
+        e.preventDefault();
+        nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+        tabs[nextIndex].focus();
+        tabs[nextIndex].click();
+        break;
+      
+      case 'Home':
+        e.preventDefault();
+        tabs[0].focus();
+        tabs[0].click();
+        break;
+      
+      case 'End':
+        e.preventDefault();
+        tabs[tabs.length - 1].focus();
+        tabs[tabs.length - 1].click();
+        break;
+      
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        e.target.click();
+        break;
+    }
+  }
+
+  /**
+   * Announce message to screen readers using aria-live region
+   * @param {string} message - Message to announce
+   */
+  announceToScreenReader(message) {
+    let announcer = document.getElementById('screen-reader-announcer');
+    if (!announcer) {
+      announcer = document.createElement('div');
+      announcer.id = 'screen-reader-announcer';
+      announcer.setAttribute('aria-live', 'polite');
+      announcer.setAttribute('aria-atomic', 'true');
+      announcer.className = 'sr-only';
+      document.body.appendChild(announcer);
+    }
+    
+    // Clear and set new message
+    announcer.textContent = '';
+    setTimeout(() => {
+      announcer.textContent = message;
+    }, 100);
   }
 }

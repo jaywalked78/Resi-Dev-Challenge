@@ -148,7 +148,7 @@ export class AchievementSystem {
       const link = document.createElement('link');
       link.id = 'tier-themes-css';
       link.rel = 'stylesheet';
-      link.href = '/src/styles/tier-themes.css';
+      link.href = `/src/styles/tier-themes.css?v=${Date.now()}`;
       document.head.appendChild(link);
     }
   }
@@ -177,10 +177,14 @@ export class AchievementSystem {
     const tierDisplay = document.getElementById('tier-display');
     const tierIcon = document.getElementById('tier-icon');
     const tierName = document.getElementById('tier-name');
+    const totalScore = document.getElementById('total-score');
     
-    if (!tierDisplay || !tierIcon || !tierName) return;
+    if (!tierDisplay || !tierIcon || !tierName || !totalScore) return;
     
     const currentTier = this.userProgress.currentBadgeTier;
+    
+    // Always update the total score
+    totalScore.textContent = this.userProgress.totalPoints.toLocaleString();
     
     if (currentTier) {
       // Get badge info for current tier
@@ -270,6 +274,9 @@ export class AchievementSystem {
   awardPoints(points, reason) {
     this.userProgress.totalPoints += points;
     this.saveProgress();
+
+    // Update the tier display with new score
+    this.updateTierDisplay();
 
     // Show points notification
     this.showToast(`+${points} points`, reason, 'points');

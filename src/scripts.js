@@ -39,6 +39,9 @@ import { konamiDetector } from './utils/konami.js';
 import { achievementSystem } from './utils/achievements.js';
 import './utils/console-art.js'; // Auto-initializes
 
+// Expose achievementSystem globally for testing/debugging
+window.achievementSystem = achievementSystem;
+
 // Initialize calculator modal when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
   // Create error boundary for the main app

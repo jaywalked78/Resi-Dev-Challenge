@@ -29,7 +29,7 @@ export class GuessModal {
     this.modal = document.createElement('div');
     this.modal.className = 'guess-modal-overlay';
     this.modal.innerHTML = `
-      <div class="guess-modal modal-content">
+      <div class="guess-modal">
         <div class="guess-header">
           <h2>🎯 Test Your Math Skills!</h2>
           <p>Can you calculate these values in your head?</p>
@@ -60,9 +60,6 @@ export class GuessModal {
 
     // Add styles
     this.addStyles();
-    
-    // Apply dark mode styling after creation
-    this.applyDarkModeIfNeeded();
 
     // Add to document
     document.body.appendChild(this.modal);
@@ -125,7 +122,6 @@ export class GuessModal {
       }
       
       .guess-modal {
-        background: white;
         border-radius: 16px;
         padding: 32px;
         max-width: 600px;
@@ -133,11 +129,6 @@ export class GuessModal {
         max-height: 80vh;
         overflow-y: auto;
         animation: slideIn 0.3s ease-out;
-      }
-      
-      [data-theme="dark"] .guess-modal {
-        background: #374151 !important;
-        color: #f9fafb !important;
       }
       
       .guess-header {
@@ -357,18 +348,7 @@ export class GuessModal {
     this.styleElement = style;
   }
 
-  applyDarkModeIfNeeded() {
-    // Check if dark mode is active
-    const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
-    
-    if (isDarkMode) {
-      const guessModal = this.modal.querySelector('.guess-modal');
-      if (guessModal) {
-        guessModal.style.background = '#374151';
-        guessModal.style.color = '#f9fafb';
-      }
-    }
-  }
+  // Dark mode now handled automatically via CSS variables
 
   attachEventListeners() {
     // Skip button
@@ -435,7 +415,9 @@ export class GuessModal {
       if (!isNaN(value) && input.value !== '') {
         hasGuesses = true;
         const actual = this.actualValues[stat];
-        const accuracy = Math.abs(value - actual) / Math.abs(actual);
+        const accuracy = actual === 0 
+          ? (value === 0 ? 0 : 1) 
+          : Math.abs(value - actual) / Math.abs(actual);
 
         this.guesses[stat] = value;
         this.results.push({
@@ -455,7 +437,7 @@ export class GuessModal {
       // Delay close to show feedback
       setTimeout(() => {
         this.close(true);
-      }, 2000);
+      }, 5000);
     } else {
       this.close(false);
     }

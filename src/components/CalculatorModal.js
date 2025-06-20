@@ -826,7 +826,7 @@ export class CalculatorModal extends Modal {
           average: stats.average,
           median: stats.median,
           variance: stats.variance,
-          stdDev: stats.stdDev,
+          stdDev: stats.standardDeviation,
           range: stats.range,
         },
         guessResults => {
@@ -886,7 +886,7 @@ export class CalculatorModal extends Modal {
       pillsContainer.innerHTML = this.numbers
         .map(
           (num, index) =>
-            `<span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/70 text-blue-700 dark:text-blue-200 rounded-full text-sm transition-colors duration-300" role="listitem" aria-label="Input number ${index + 1}: ${formatNumber(num)}">${formatNumber(num)}</span>`
+            `<span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm transition-colors duration-300" role="listitem" aria-label="Input number ${index + 1}: ${formatNumber(num)}">${formatNumber(num)}</span>`
         )
         .join('');
 
@@ -1288,7 +1288,7 @@ Count: ${this.allStats.count}`;
     pillsContainer.innerHTML = this.numbers
       .map(
         num =>
-          `<span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">${formatNumber(num)}</span>`
+          `<span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm">${formatNumber(num)}</span>`
       )
       .join('');
 

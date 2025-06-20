@@ -42,10 +42,12 @@ export class ThemeManager {
 
     if (theme === 'dark') {
       root.classList.add('dark');
+      root.setAttribute('data-theme', 'dark');
       // Update favicon for dark mode
       this.updateFavicon('#1f2937'); // dark gray
     } else {
       root.classList.remove('dark');
+      root.setAttribute('data-theme', 'light');
       // Update favicon for light mode
       this.updateFavicon('#059669'); // green
     }

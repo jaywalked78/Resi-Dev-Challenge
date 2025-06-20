@@ -30,12 +30,11 @@ export class Chart {
     this.svg = this.createSVG();
     this.container.appendChild(this.svg);
 
-    // Calculate scales
+    // Calculate scales - always start from 0
     const maxValue = Math.max(...numbers, average);
-    const minValue = Math.min(...numbers, average);
-    const padding = (maxValue - minValue) * 0.1 || 1;
+    const padding = maxValue * 0.1 + 5;
     const yMax = maxValue + padding;
-    const yMin = Math.max(0, minValue - padding);
+    const yMin = 0;
 
     this.yScale = value => {
       const chartHeight =
@@ -72,31 +71,48 @@ export class Chart {
     svg.setAttribute('class', 'chart-svg');
     svg.style.overflow = 'visible';
 
-    // Add diamond gradient definition for tier styling
+    // Add multiple vertical gradients for diamond tier bars
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-    const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
-    gradient.setAttribute('id', 'diamondGradient');
-    gradient.setAttribute('x1', '0%');
-    gradient.setAttribute('y1', '0%');
-    gradient.setAttribute('x2', '100%');
-    gradient.setAttribute('y2', '0%');
     
-    const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-    stop1.setAttribute('offset', '0%');
-    stop1.setAttribute('stop-color', '#ff0080');
+    // Check if we're in diamond tier
+    const isDiamondTier = document.body.classList.contains('tier-diamond');
     
-    const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-    stop2.setAttribute('offset', '50%');
-    stop2.setAttribute('stop-color', '#00ffff');
+    if (isDiamondTier) {
+      const gradientConfigs = [
+        { id: 'diamond-gradient-1', colors: ['#8B0045', '#A0306E'] },
+        { id: 'diamond-gradient-2', colors: ['#006B7A', '#008B98'] },
+        { id: 'diamond-gradient-3', colors: ['#B8860B', '#D4A00D'] },
+        { id: 'diamond-gradient-4', colors: ['#CC5500', '#E66A00'] },
+        { id: 'diamond-gradient-5', colors: ['#4B0082', '#6A0DAD'] },
+        { id: 'diamond-gradient-6', colors: ['#006400', '#228B22'] },
+        { id: 'diamond-gradient-7', colors: ['#8B0000', '#B22222'] },
+        { id: 'diamond-gradient-8', colors: ['#191970', '#4169E1'] },
+        { id: 'diamond-gradient-9', colors: ['#556B2F', '#6B8E23'] },
+        { id: 'diamond-gradient-10', colors: ['#A0522D', '#CD853F'] }
+      ];
+      
+      gradientConfigs.forEach(config => {
+        const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        gradient.setAttribute('id', config.id);
+        gradient.setAttribute('x1', '0%');
+        gradient.setAttribute('y1', '0%');
+        gradient.setAttribute('x2', '0%');
+        gradient.setAttribute('y2', '100%'); // Vertical gradient
+        
+        const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop1.setAttribute('offset', '0%');
+        stop1.setAttribute('stop-color', config.colors[0]);
+        
+        const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop2.setAttribute('offset', '100%');
+        stop2.setAttribute('stop-color', config.colors[1]);
+        
+        gradient.appendChild(stop1);
+        gradient.appendChild(stop2);
+        defs.appendChild(gradient);
+      });
+    }
     
-    const stop3 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-    stop3.setAttribute('offset', '100%');
-    stop3.setAttribute('stop-color', '#ffff00');
-    
-    gradient.appendChild(stop1);
-    gradient.appendChild(stop2);
-    gradient.appendChild(stop3);
-    defs.appendChild(gradient);
     svg.appendChild(defs);
 
     return svg;
@@ -190,7 +206,14 @@ export class Chart {
       bar.setAttribute('y', this.options.height - this.options.margin.bottom); // Start from bottom
       bar.setAttribute('width', barWidth);
       bar.setAttribute('height', 0); // Start with 0 height
-      bar.setAttribute('fill', this.options.barColor);
+      // Use gradient fill for diamond tier, regular color for others
+      const isDiamondTier = document.body.classList.contains('tier-diamond');
+      if (isDiamondTier) {
+        const gradientId = `diamond-gradient-${(index % 10) + 1}`;
+        bar.setAttribute('fill', `url(#${gradientId})`);
+      } else {
+        bar.setAttribute('fill', this.options.barColor);
+      }
       bar.setAttribute('rx', '2');
       bar.setAttribute('class', 'bar chart-bar');
 

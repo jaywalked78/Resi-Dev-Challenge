@@ -8,17 +8,21 @@ export class ThemeManager {
   init() {
     // Check for saved theme preference or default to system preference
     const savedTheme = localStorage.getItem('meanmachine_theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+    const systemPrefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches;
+
     this.currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
     this.applyTheme(this.currentTheme);
-    
+
     // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('meanmachine_theme')) {
-        this.setTheme(e.matches ? 'dark' : 'light');
-      }
-    });
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', e => {
+        if (!localStorage.getItem('meanmachine_theme')) {
+          this.setTheme(e.matches ? 'dark' : 'light');
+        }
+      });
   }
 
   setTheme(theme) {
@@ -35,7 +39,7 @@ export class ThemeManager {
 
   applyTheme(theme) {
     const root = document.documentElement;
-    
+
     if (theme === 'dark') {
       root.classList.add('dark');
       // Update favicon for dark mode
@@ -53,14 +57,14 @@ export class ThemeManager {
     canvas.width = 32;
     canvas.height = 32;
     const ctx = canvas.getContext('2d');
-    
+
     // Draw a simple calculator-like icon
     ctx.fillStyle = color;
     ctx.fillRect(0, 0, 32, 32);
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(4, 4, 24, 24);
     ctx.fillStyle = color;
-    
+
     // Draw calculator buttons
     const buttonSize = 4;
     const spacing = 6;
@@ -71,9 +75,11 @@ export class ThemeManager {
         ctx.fillRect(x, y, buttonSize, buttonSize);
       }
     }
-    
+
     // Update favicon
-    const link = document.querySelector('link[rel="icon"]') || document.createElement('link');
+    const link =
+      document.querySelector('link[rel="icon"]') ||
+      document.createElement('link');
     link.rel = 'icon';
     link.href = canvas.toDataURL();
     if (!document.querySelector('link[rel="icon"]')) {

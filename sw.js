@@ -8,19 +8,16 @@ const STATIC_CACHE_NAME = 'meanmachine-static-v1.1.0';
 const DYNAMIC_CACHE_NAME = 'meanmachine-dynamic-v1.1.0';
 
 // Static assets to cache (don't include JS/CSS with hashes)
-const STATIC_ASSETS = [
-  '/',
-  '/manifest.json',
-  '/images/hero.jpg'
-];
+const STATIC_ASSETS = ['/', '/manifest.json', '/images/hero.jpg'];
 
 // Install event - cache static assets
-self.addEventListener('install', (event) => {
+self.addEventListener('install', event => {
   console.log('[SW] Installing service worker...');
-  
+
   event.waitUntil(
-    caches.open(STATIC_CACHE_NAME)
-      .then((cache) => {
+    caches
+      .open(STATIC_CACHE_NAME)
+      .then(cache => {
         console.log('[SW] Caching static assets');
         return cache.addAll(STATIC_ASSETS);
       })
@@ -28,27 +25,30 @@ self.addEventListener('install', (event) => {
         console.log('[SW] Static assets cached successfully');
         return self.skipWaiting();
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('[SW] Failed to cache static assets:', error);
       })
   );
 });
 
 // Activate event - clean up old caches
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', event => {
   console.log('[SW] Activating service worker...');
-  
+
   event.waitUntil(
-    caches.keys()
-      .then((cacheNames) => {
+    caches
+      .keys()
+      .then(cacheNames => {
         return Promise.all(
           cacheNames
-            .filter((cacheName) => {
-              return cacheName !== STATIC_CACHE_NAME && 
-                     cacheName !== DYNAMIC_CACHE_NAME &&
-                     cacheName.startsWith('meanmachine-');
+            .filter(cacheName => {
+              return (
+                cacheName !== STATIC_CACHE_NAME &&
+                cacheName !== DYNAMIC_CACHE_NAME &&
+                cacheName.startsWith('meanmachine-')
+              );
             })
-            .map((cacheName) => {
+            .map(cacheName => {
               console.log('[SW] Deleting old cache:', cacheName);
               return caches.delete(cacheName);
             })
@@ -62,20 +62,20 @@ self.addEventListener('activate', (event) => {
 });
 
 // Fetch event - serve from cache, fallback to network
-self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
-  
+
   // Skip cross-origin requests
   if (url.origin !== location.origin) {
     return;
   }
-  
+
   // Skip JS/CSS files entirely - let browser handle them normally
   if (isJSOrCSS(request)) {
     return;
   }
-  
+
   // Handle other types of requests
   if (isStaticAsset(request)) {
     event.respondWith(cacheFirst(request));
@@ -95,11 +95,11 @@ async function cacheFirst(request) {
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     const networkResponse = await fetch(request);
     const cache = await caches.open(STATIC_CACHE_NAME);
     cache.put(request, networkResponse.clone());
-    
+
     return networkResponse;
   } catch (error) {
     console.error('[SW] Cache first failed:', error);
@@ -115,14 +115,14 @@ async function networkFirst(request) {
     const networkResponse = await fetch(request);
     const cache = await caches.open(DYNAMIC_CACHE_NAME);
     cache.put(request, networkResponse.clone());
-    
+
     return networkResponse;
   } catch (error) {
     const cachedResponse = await caches.match(request);
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     console.error('[SW] Network first failed:', error);
     return createOfflineResponse(request);
   }
@@ -134,17 +134,17 @@ async function networkFirst(request) {
 async function staleWhileRevalidate(request) {
   const cache = await caches.open(DYNAMIC_CACHE_NAME);
   const cachedResponse = await cache.match(request);
-  
+
   const fetchPromise = fetch(request)
-    .then((networkResponse) => {
+    .then(networkResponse => {
       cache.put(request, networkResponse.clone());
       return networkResponse;
     })
-    .catch((error) => {
+    .catch(error => {
       console.error('[SW] Stale while revalidate fetch failed:', error);
       return cachedResponse;
     });
-  
+
   return cachedResponse || fetchPromise;
 }
 
@@ -154,9 +154,11 @@ async function staleWhileRevalidate(request) {
 function isStaticAsset(request) {
   const url = new URL(request.url);
   // Don't cache JS/CSS files with content hashes - let them be handled dynamically
-  return url.pathname.match(/\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico)$/) && 
-         !url.pathname.includes('main.') && 
-         !url.pathname.includes('common.');
+  return (
+    url.pathname.match(/\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico)$/) &&
+    !url.pathname.includes('main.') &&
+    !url.pathname.includes('common.')
+  );
 }
 
 /**
@@ -180,7 +182,8 @@ function isJSOrCSS(request) {
  */
 function createOfflineResponse(request) {
   if (request.destination === 'document') {
-    return new Response(`
+    return new Response(
+      `
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -240,33 +243,35 @@ function createOfflineResponse(request) {
         </script>
       </body>
       </html>
-    `, {
-      headers: {
-        'Content-Type': 'text/html',
-        'Cache-Control': 'no-cache'
+    `,
+      {
+        headers: {
+          'Content-Type': 'text/html',
+          'Cache-Control': 'no-cache',
+        },
       }
-    });
+    );
   }
-  
+
   return new Response('Offline', {
     status: 503,
-    statusText: 'Service Unavailable'
+    statusText: 'Service Unavailable',
   });
 }
 
 // Message handling for cache updates
-self.addEventListener('message', (event) => {
+self.addEventListener('message', event => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
-  
+
   if (event.data && event.data.type === 'GET_VERSION') {
     event.ports[0].postMessage({ version: CACHE_NAME });
   }
 });
 
 // Background sync for future enhancement
-self.addEventListener('sync', (event) => {
+self.addEventListener('sync', event => {
   if (event.tag === 'background-calculation') {
     console.log('[SW] Background sync triggered');
     // Future: Sync calculation history when back online

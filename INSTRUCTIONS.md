@@ -6,11 +6,13 @@ Welcome to your technical assessment. This project includes intentional technica
 
 ✅ Replace Tailwind CDN with compiled Tailwind via build tools  
 ✅ Create a custom `tailwind.config.js` with:
+
 - All spacing values redefined (based on 16px = 1 rem)
 - Support for a 15px base font size
 - Custom font-size, margin, and padding scale
 
 ✅ Fix the following issues:
+
 - JavaScript reference error
 - Parse error in PHP
 - Typo in CSS

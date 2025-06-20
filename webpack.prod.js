@@ -13,8 +13,8 @@ module.exports = merge(common, {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
           chunks: 'all',
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 });

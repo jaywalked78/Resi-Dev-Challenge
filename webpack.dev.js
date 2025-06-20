@@ -16,7 +16,7 @@ module.exports = merge(common, {
         context: ['**/*.php'],
         target: 'http://localhost:7654',
         changeOrigin: true,
-      }
-    ]
-  }
+      },
+    ],
+  },
 });

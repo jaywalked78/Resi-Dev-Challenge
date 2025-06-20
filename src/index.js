@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if ('serviceWorker' in navigator) {
     try {
       const registrations = await navigator.serviceWorker.getRegistrations();
-      for (let registration of registrations) {
+      for (const registration of registrations) {
         await registration.unregister();
         console.log('Service worker removed');
       }
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error('Failed to unregister service worker:', error);
     }
   }
-  
+
   console.log('App initialized - PWA disabled for demo stability');
 });
 

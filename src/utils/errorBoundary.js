@@ -10,9 +10,9 @@ export class ErrorBoundary {
       fallbackUI: options.fallbackUI || this.createDefaultFallback.bind(this),
       onError: options.onError || this.defaultErrorHandler.bind(this),
       enableLogging: options.enableLogging !== false,
-      ...options
+      ...options,
     };
-    
+
     this.originalContent = element.innerHTML;
     this.hasError = false;
     this.setupErrorHandling();
@@ -23,13 +23,13 @@ export class ErrorBoundary {
    */
   setupErrorHandling() {
     // Catch unhandled promise rejections
-    window.addEventListener('unhandledrejection', (event) => {
+    window.addEventListener('unhandledrejection', event => {
       this.handleError(event.reason, 'Promise rejection');
       event.preventDefault();
     });
 
     // Catch JavaScript errors
-    window.addEventListener('error', (event) => {
+    window.addEventListener('error', event => {
       this.handleError(event.error, 'JavaScript error');
     });
 
@@ -44,8 +44,8 @@ export class ErrorBoundary {
     const originalAddEventListener = this.element.addEventListener;
     const boundary = this;
 
-    this.element.addEventListener = function(type, listener, options) {
-      const wrappedListener = function(event) {
+    this.element.addEventListener = function (type, listener, options) {
+      const wrappedListener = function (event) {
         try {
           return listener.call(this, event);
         } catch (error) {
@@ -53,7 +53,12 @@ export class ErrorBoundary {
         }
       };
 
-      return originalAddEventListener.call(this, type, wrappedListener, options);
+      return originalAddEventListener.call(
+        this,
+        type,
+        wrappedListener,
+        options
+      );
     };
   }
 
@@ -94,7 +99,7 @@ export class ErrorBoundary {
    * @param {string} source - Source of the error
    * @returns {string} HTML for fallback UI
    */
-  createDefaultFallback(error, source) {
+  createDefaultFallback(error) {
     return `
       <div class="error-boundary-fallback bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 text-center transition-colors duration-300">
         <div class="mb-4">
@@ -125,14 +130,18 @@ export class ErrorBoundary {
           </button>
         </div>
         
-        ${this.options.enableLogging ? `
+        ${
+          this.options.enableLogging
+            ? `
           <details class="mt-4 text-left">
             <summary class="cursor-pointer text-sm text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-200 transition-colors duration-300">
               Technical Details
             </summary>
             <pre class="mt-2 text-xs bg-red-100 dark:bg-red-900/30 p-3 rounded border text-red-800 dark:text-red-200 overflow-auto transition-colors duration-300">${error.stack || error.message}</pre>
           </details>
-        ` : ''}
+        `
+            : ''
+        }
       </div>
     `;
   }
@@ -147,7 +156,7 @@ export class ErrorBoundary {
     if (window.gtag) {
       window.gtag('event', 'exception', {
         description: `${source}: ${error.message}`,
-        fatal: false
+        fatal: false,
       });
     }
 
@@ -156,8 +165,8 @@ export class ErrorBoundary {
       window.Sentry.captureException(error, {
         tags: {
           source: source,
-          component: 'ErrorBoundary'
-        }
+          component: 'ErrorBoundary',
+        },
       });
     }
   }
@@ -168,11 +177,13 @@ export class ErrorBoundary {
   retry() {
     this.hasError = false;
     this.element.innerHTML = this.originalContent;
-    
+
     // Trigger a re-initialization event
-    this.element.dispatchEvent(new CustomEvent('errorBoundaryRetry', {
-      detail: { boundary: this }
-    }));
+    this.element.dispatchEvent(
+      new CustomEvent('errorBoundaryRetry', {
+        detail: { boundary: this },
+      })
+    );
   }
 
   /**
@@ -190,7 +201,7 @@ export class ErrorBoundary {
    */
   wrapFunction(fn) {
     const boundary = this;
-    return function(...args) {
+    return function (...args) {
       try {
         return fn.apply(this, args);
       } catch (error) {
@@ -207,7 +218,7 @@ export class ErrorBoundary {
    */
   wrapAsyncFunction(fn) {
     const boundary = this;
-    return async function(...args) {
+    return async function (...args) {
       try {
         return await fn.apply(this, args);
       } catch (error) {
@@ -242,12 +253,12 @@ export class ErrorBoundary {
  */
 export function createErrorBoundary(element, options = {}) {
   const boundary = new ErrorBoundary(element, options);
-  
+
   // Make it globally accessible for fallback UI buttons
   if (!window.errorBoundary) {
     window.errorBoundary = boundary;
   }
-  
+
   return boundary;
 }
 
@@ -257,14 +268,14 @@ export function createErrorBoundary(element, options = {}) {
  * @returns {Function} Wrapped modal factory
  */
 export function withErrorBoundary(modalFactory) {
-  return function(...args) {
+  return function (...args) {
     try {
       const modal = modalFactory.apply(this, args);
-      
+
       // Wrap modal methods
       if (modal && typeof modal === 'object') {
         const boundary = createErrorBoundary(document.body, {
-          fallbackUI: (error) => `
+          fallbackUI: () => `
             <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
               <div class="bg-white dark:bg-gray-800 p-6 rounded-lg max-w-md mx-4">
                 <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">Calculator Error</h3>
@@ -274,7 +285,7 @@ export function withErrorBoundary(modalFactory) {
                 </button>
               </div>
             </div>
-          `
+          `,
         });
 
         Object.keys(modal).forEach(key => {
@@ -283,7 +294,7 @@ export function withErrorBoundary(modalFactory) {
           }
         });
       }
-      
+
       return modal;
     } catch (error) {
       console.error('[ErrorBoundary] Modal creation failed:', error);

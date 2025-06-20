@@ -29,39 +29,46 @@ try {
 
 // Import theme manager and error boundary
 import { ThemeManager } from './utils/theme.js';
-import { createErrorBoundary, withErrorBoundary } from './utils/errorBoundary.js';
+import {
+  createErrorBoundary,
+  withErrorBoundary,
+} from './utils/errorBoundary.js';
 
 // Initialize calculator modal when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
   // Create error boundary for the main app
   const appContainer = document.querySelector('main') || document.body;
-  const errorBoundary = createErrorBoundary(appContainer, {
+  createErrorBoundary(appContainer, {
     onError: (error, source) => {
       console.error(`[App Error] ${source}:`, error);
       // Send to analytics if available
       if (window.gtag) {
         window.gtag('event', 'exception', {
           description: error.message,
-          fatal: false
+          fatal: false,
         });
       }
-    }
+    },
   });
 
   // Initialize theme manager
   const themeManager = new ThemeManager();
-  
+
   // Lazy load calculator modal with error boundary
   let calculatorModal = null;
   const loadCalculatorModal = async () => {
     if (!calculatorModal) {
-      const { CalculatorModal } = await import('./components/CalculatorModal.js');
-      const ModalWithErrorBoundary = withErrorBoundary(() => new CalculatorModal(calculateAverage));
+      const { CalculatorModal } = await import(
+        './components/CalculatorModal.js'
+      );
+      const ModalWithErrorBoundary = withErrorBoundary(
+        () => new CalculatorModal(calculateAverage)
+      );
       calculatorModal = ModalWithErrorBoundary();
     }
     return calculatorModal;
   };
-  
+
   // Add event listener for the button
   const button = document.getElementById('calculate-btn');
   console.log('Button found:', button);
@@ -83,15 +90,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   } else {
     console.error('Calculate button not found!');
   }
-  
+
   // Theme toggle functionality
   const themeToggle = document.getElementById('theme-toggle');
   const lightIcon = document.querySelector('.theme-icon-light');
   const darkIcon = document.querySelector('.theme-icon-dark');
-  
+
   if (themeToggle) {
     // Update icons based on current theme
-    const updateIcons = (theme) => {
+    const updateIcons = theme => {
       if (theme === 'dark') {
         lightIcon.classList.add('hidden');
         darkIcon.classList.remove('hidden');
@@ -100,21 +107,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         darkIcon.classList.add('hidden');
       }
     };
-    
+
     // Set initial icon state
     updateIcons(themeManager.getTheme());
-    
+
     // Listen for theme changes
     themeManager.onThemeChange(updateIcons);
-    
+
     // Toggle theme on click
     themeToggle.addEventListener('click', () => {
       themeManager.toggleTheme();
     });
   }
-  
+
   // Add keyboard shortcut (Ctrl/Cmd + K)
-  document.addEventListener('keydown', async (e) => {
+  document.addEventListener('keydown', async e => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
       const modal = await loadCalculatorModal();

@@ -8,14 +8,14 @@ module.exports = {
     main: './src/index.js',
     calculator: {
       import: './src/components/CalculatorModal.js',
-      dependOn: 'main'
-    }
+      dependOn: 'main',
+    },
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].[contenthash].js',
-    clean: true
+    clean: true,
   },
   optimization: {
     splitChunks: {
@@ -30,13 +30,13 @@ module.exports = {
           name: 'common',
           minChunks: 2,
           chunks: 'all',
-          enforce: true
-        }
-      }
-    }
+          enforce: true,
+        },
+      },
+    },
   },
   resolve: {
-    extensions: ['.js', '.json']
+    extensions: ['.js', '.json'],
   },
   module: {
     rules: [
@@ -46,36 +46,32 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [['@babel/preset-env', { modules: 'auto' }]]
-          }
-        }
+            presets: [['@babel/preset-env', { modules: 'auto' }]],
+          },
+        },
       },
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader'
-        ]
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'images/[name][ext]'
-        }
-      }
-    ]
+          filename: 'images/[name][ext]',
+        },
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
+      filename: '[name].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
       template: './index.html',
       filename: 'index.html',
-      chunks: ['main']
-    })
-  ]
+      chunks: ['main'],
+    }),
+  ],
 };

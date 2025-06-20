@@ -9,15 +9,17 @@
 ### Prerequisites
 
 **Required:**
+
 - **Node.js** v14+ ([Download](https://nodejs.org))
 - **PHP** v7.4+ (for contact form)
 
 **Install PHP:**
+
 ```bash
 # Windows (with Chocolatey)
 choco install php
 
-# macOS (with Homebrew)  
+# macOS (with Homebrew)
 brew install php
 
 # Ubuntu/Debian
@@ -44,7 +46,7 @@ npm install
 # Terminal 1: PHP server (for contact form)
 php -S localhost:7654
 
-# Terminal 2: Webpack dev server  
+# Terminal 2: Webpack dev server
 npm run dev
 ```
 
@@ -73,16 +75,19 @@ npx serve dist
 ## 🏗️ Technical Architecture
 
 **Modern JavaScript:**
+
 - ES6 modules with Webpack 5
 - Code splitting & lazy loading
 - Error boundaries for production reliability
 
 **Performance:**
+
 - 75KB optimized bundle (gzipped ~20KB)
 - Lazy-loaded calculator modal
 - Vendor code separation for caching
 
 **Styling:**
+
 - Tailwind CSS with custom configuration
 - Dark mode with smooth transitions
 - 60fps animations with GPU acceleration
@@ -122,18 +127,21 @@ npm run start    # PHP + dev server together
 ## 🌐 Deployment Options
 
 ### Cloudflare Pages
+
 ```bash
 npm run build
 # Upload /dist folder to Cloudflare Pages
 ```
 
 ### Netlify
+
 ```bash
 npm run build
 # Deploy /dist folder
 ```
 
 ### GitHub Pages
+
 ```bash
 npm run build
 # Copy /dist contents to gh-pages branch
@@ -142,6 +150,7 @@ npm run build
 ## 📊 Assessment Completion
 
 ✅ **All Requirements Met:**
+
 - Modern build system (Webpack + Tailwind)
 - Fixed all technical issues (JS, PHP, CSS, JSON-LD)
 - SEO optimization with structured data
@@ -149,6 +158,7 @@ npm run build
 - Accessibility compliance (WCAG 2.1 AA)
 
 **Bonus Features Implemented:**
+
 - Advanced statistical calculations
 - Interactive data visualization
 - PWA-ready architecture (disabled for demo stability)

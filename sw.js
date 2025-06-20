@@ -7,10 +7,9 @@ const CACHE_NAME = 'meanmachine-v1.1.0';
 const STATIC_CACHE_NAME = 'meanmachine-static-v1.1.0';
 const DYNAMIC_CACHE_NAME = 'meanmachine-dynamic-v1.1.0';
 
-// Static assets to cache
+// Static assets to cache (don't include JS/CSS with hashes)
 const STATIC_ASSETS = [
   '/',
-  '/index.html',
   '/manifest.json',
   '/images/hero.jpg'
 ];
@@ -72,7 +71,12 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   
-  // Handle different types of requests
+  // Skip JS/CSS files entirely - let browser handle them normally
+  if (isJSOrCSS(request)) {
+    return;
+  }
+  
+  // Handle other types of requests
   if (isStaticAsset(request)) {
     event.respondWith(cacheFirst(request));
   } else if (isAPIRequest(request)) {
@@ -149,7 +153,10 @@ async function staleWhileRevalidate(request) {
  */
 function isStaticAsset(request) {
   const url = new URL(request.url);
-  return url.pathname.match(/\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico)$/);
+  // Don't cache JS/CSS files with content hashes - let them be handled dynamically
+  return url.pathname.match(/\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico)$/) && 
+         !url.pathname.includes('main.') && 
+         !url.pathname.includes('common.');
 }
 
 /**
@@ -158,6 +165,14 @@ function isStaticAsset(request) {
 function isAPIRequest(request) {
   const url = new URL(request.url);
   return url.pathname.startsWith('/api/') || url.pathname.endsWith('.php');
+}
+
+/**
+ * Check if request is for JS or CSS files (let them pass through)
+ */
+function isJSOrCSS(request) {
+  const url = new URL(request.url);
+  return url.pathname.match(/\.(js|css)$/);
 }
 
 /**

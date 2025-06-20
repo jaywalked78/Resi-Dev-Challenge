@@ -29,19 +29,21 @@ async function registerServiceWorker() {
       
       console.log('✅ Service Worker registered successfully:', registration.scope);
       
-      // Handle updates
+      // Handle updates (disabled for demo)
       registration.addEventListener('updatefound', () => {
         const newWorker = registration.installing;
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            showUpdateNotification();
+            console.log('PWA update available (notification disabled for demo)');
+            // showUpdateNotification(); // Disabled for cleaner demo
           }
         });
       });
       
-      // Check for updates
+      // Check for updates (disabled for demo)
       if (registration.waiting) {
-        showUpdateNotification();
+        console.log('PWA update waiting (notification disabled for demo)');
+        // showUpdateNotification(); // Disabled for cleaner demo
       }
       
     } catch (error) {

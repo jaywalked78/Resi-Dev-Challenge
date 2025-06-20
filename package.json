@@ -1,6 +1,6 @@
 {
   "name": "dev-challenge",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "description": "Welcome to your technical assessment. This project includes intentional technical SEO and development issues. Identify and fix them using best practices.",
   "main": "scripts.js",
   "scripts": {

@@ -73,10 +73,10 @@ export class Chart {
 
     // Add multiple vertical gradients for diamond tier bars
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-    
+
     // Check if we're in diamond tier
     const isDiamondTier = document.body.classList.contains('tier-diamond');
-    
+
     if (isDiamondTier) {
       const gradientConfigs = [
         { id: 'diamond-gradient-1', colors: ['#8B0045', '#A0306E'] },
@@ -88,31 +88,40 @@ export class Chart {
         { id: 'diamond-gradient-7', colors: ['#8B0000', '#B22222'] },
         { id: 'diamond-gradient-8', colors: ['#191970', '#4169E1'] },
         { id: 'diamond-gradient-9', colors: ['#556B2F', '#6B8E23'] },
-        { id: 'diamond-gradient-10', colors: ['#A0522D', '#CD853F'] }
+        { id: 'diamond-gradient-10', colors: ['#A0522D', '#CD853F'] },
       ];
-      
+
       gradientConfigs.forEach(config => {
-        const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        const gradient = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'linearGradient'
+        );
         gradient.setAttribute('id', config.id);
         gradient.setAttribute('x1', '0%');
         gradient.setAttribute('y1', '0%');
         gradient.setAttribute('x2', '0%');
         gradient.setAttribute('y2', '100%'); // Vertical gradient
-        
-        const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+
+        const stop1 = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'stop'
+        );
         stop1.setAttribute('offset', '0%');
         stop1.setAttribute('stop-color', config.colors[0]);
-        
-        const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+
+        const stop2 = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'stop'
+        );
         stop2.setAttribute('offset', '100%');
         stop2.setAttribute('stop-color', config.colors[1]);
-        
+
         gradient.appendChild(stop1);
         gradient.appendChild(stop2);
         defs.appendChild(gradient);
       });
     }
-    
+
     svg.appendChild(defs);
 
     return svg;

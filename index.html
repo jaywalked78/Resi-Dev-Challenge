@@ -245,6 +245,21 @@
       <header
         class="bg-gray-800/90 dark:bg-gray-900/95 backdrop-blur-sm text-white p-8 text-center relative transition-colors duration-300 animate-fadeInDown"
       >
+        <!-- Tier Display -->
+        <div
+          id="tier-display"
+          class="absolute top-6 left-6 px-3 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 hidden"
+          aria-label="Current achievement tier"
+        >
+          <div class="flex items-center gap-2">
+            <span id="tier-icon" class="text-lg" aria-hidden="true">🏆</span>
+            <div class="text-left">
+              <div class="text-xs text-white/80 font-medium">Tier</div>
+              <div id="tier-name" class="text-sm font-bold capitalize">Loading...</div>
+            </div>
+          </div>
+        </div>
+
         <!-- Theme Toggle -->
         <button
           id="theme-toggle"
@@ -290,7 +305,7 @@
       >
         <div class="max-w-4xl w-full">
           <article
-            class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-lg shadow-2xl p-8 text-center transition-colors duration-300 hover-lift"
+            class="main-content-section bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-lg shadow-2xl p-8 text-center transition-colors duration-300 hover-lift"
             role="main"
             aria-labelledby="main-heading"
           >
@@ -302,7 +317,7 @@
                 Calculate Averages in Seconds
               </h2>
               <p
-                class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto transition-colors duration-300"
+                class="text-gray-600 dark:text-gray-300 max-w-xl mx-auto transition-colors duration-300 text-sm sm:text-base"
                 aria-describedby="main-heading"
               >
                 Whether you're a student, teacher, or just someone who loves
@@ -314,7 +329,7 @@
               <h3 id="features-heading" class="sr-only">Calculator Features</h3>
               <div class="grid md:grid-cols-3 gap-4" role="list">
                 <article
-                  class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
+                  class="feature-card bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
                   role="listitem"
                   aria-labelledby="precision-heading"
                 >
@@ -339,7 +354,7 @@
                   </p>
                 </article>
                 <article
-                  class="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
+                  class="feature-card bg-green-50 dark:bg-green-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
                   role="listitem"
                   aria-labelledby="random-heading"
                 >
@@ -364,7 +379,7 @@
                   </p>
                 </article>
                 <article
-                  class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
+                  class="feature-card bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
                   role="listitem"
                   aria-labelledby="speed-heading"
                 >
@@ -393,7 +408,7 @@
 
             <button
               id="calculator-button"
-              class="px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 text-lg font-semibold shadow-lg focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-opacity-50"
+              class="primary-button px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 text-lg font-semibold shadow-lg focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-opacity-50"
               aria-label="Open average calculator modal"
               aria-describedby="calculator-tip"
             >

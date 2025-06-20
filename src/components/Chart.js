@@ -72,6 +72,33 @@ export class Chart {
     svg.setAttribute('class', 'chart-svg');
     svg.style.overflow = 'visible';
 
+    // Add diamond gradient definition for tier styling
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+    gradient.setAttribute('id', 'diamondGradient');
+    gradient.setAttribute('x1', '0%');
+    gradient.setAttribute('y1', '0%');
+    gradient.setAttribute('x2', '100%');
+    gradient.setAttribute('y2', '0%');
+    
+    const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+    stop1.setAttribute('offset', '0%');
+    stop1.setAttribute('stop-color', '#ff0080');
+    
+    const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+    stop2.setAttribute('offset', '50%');
+    stop2.setAttribute('stop-color', '#00ffff');
+    
+    const stop3 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+    stop3.setAttribute('offset', '100%');
+    stop3.setAttribute('stop-color', '#ffff00');
+    
+    gradient.appendChild(stop1);
+    gradient.appendChild(stop2);
+    gradient.appendChild(stop3);
+    defs.appendChild(gradient);
+    svg.appendChild(defs);
+
     return svg;
   }
 
@@ -165,7 +192,7 @@ export class Chart {
       bar.setAttribute('height', 0); // Start with 0 height
       bar.setAttribute('fill', this.options.barColor);
       bar.setAttribute('rx', '2');
-      bar.setAttribute('class', 'bar');
+      bar.setAttribute('class', 'bar chart-bar');
 
       // Add hover effect
       bar.addEventListener('mouseenter', () => {
@@ -222,7 +249,7 @@ export class Chart {
     line.setAttribute('stroke-width', '2');
     line.setAttribute('stroke-dasharray', '5,5');
     line.setAttribute('opacity', '0');
-    line.setAttribute('class', 'average-line');
+    line.setAttribute('class', 'average-line chart-line');
 
     this.svg.appendChild(line);
 

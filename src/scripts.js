@@ -34,6 +34,11 @@ import {
   withErrorBoundary,
 } from './utils/errorBoundary.js';
 
+// Import Phase 7 features
+import { konamiDetector } from './utils/konami.js';
+import { achievementSystem } from './utils/achievements.js';
+import './utils/console-art.js'; // Auto-initializes
+
 // Initialize calculator modal when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
   // Create error boundary for the main app
@@ -53,6 +58,29 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Initialize theme manager
   const themeManager = new ThemeManager();
+
+  // Check for night owl achievement
+  if (themeManager.getTheme() === 'dark') {
+    achievementSystem.unlockMilestone('night_owl');
+  }
+
+  // Listen for theme changes to award night owl achievement
+  themeManager.onThemeChange(theme => {
+    if (theme === 'dark') {
+      achievementSystem.unlockMilestone('night_owl');
+    }
+  });
+
+  // Initialize Konami code listener
+  konamiDetector.onActivate(() => {
+    // Award Konami achievement
+    achievementSystem.unlockMilestone('konami_master');
+  });
+
+  // Check for special features unlock
+  if (localStorage.getItem('meanMachineSpecialFeatures') === 'true') {
+    document.body.classList.add('rainbow-theme');
+  }
 
   // Lazy load calculator modal with error boundary
   let calculatorModal = null;

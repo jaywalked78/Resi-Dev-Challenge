@@ -1,5 +1,126 @@
 # CHANGELOG
 
+## [1.2.5] - 2025-06-29
+
+### Added - Comprehensive Tier Styling Expansion
+
+- **🎨 Expanded Tier Visual System**
+  - Enhanced tier styling to cover the entire application
+  - Main content cards now have 3px tier-themed borders
+  - All modal popups have tier-colored borders (3px solid)
+  - Launch MeanMachine button uses tier-themed colors
+  - Header and footer have 6px inset tier borders with proper spacing
+  - Feature cards have progressive hover effects by tier level
+
+- **📊 Tier-Themed Data Elements**
+  - Number pills in history section match tier colors with high contrast
+  - Data visualization charts use tier-specific colors
+  - Copy Result button matches current tier theme
+  - Form inputs have tier-themed focus states and borders
+
+- **🌙 Dark Mode Compatibility**
+  - All tier styling respects dark/light mode preferences
+  - Removed background overrides that broke dark mode
+  - Proper contrast ratios maintained across all tier levels
+  - Text overflow issues fixed with responsive sizing
+
+### Fixed
+- Header/footer tier borders now have proper spacing from content
+- Dark mode backgrounds properly display for main content
+- Number pills have solid tier backgrounds with white/dark text for readability
+- Text overflow in main content card resolved
+
+### Known Issues
+- GuessModal dark mode background still shows white in dark theme (needs investigation)
+
+## [1.2.4] - 2025-06-20
+
+### Added - Phase 7: Easter Eggs & Achievement System
+
+- **🎯 Complete Achievement System**
+  - Point-based scoring system with tier progression (Bronze → Silver → Gold → Platinum → Diamond)
+  - Custom calculations earn 10-30 points, random calculations earn 5-15 points
+  - Challenge Mode: Guess statistical values before calculation for bonus points
+  - Exact guesses: 100pts, Within 10%: 50pts, Within 20%: 25pts, Attempt: 5pts
+  - 7 milestone achievements with unique rewards and point values
+
+- **🏆 Visual Tier System**
+  - Progressive tier themes with increasingly elaborate styling
+  - Bronze: Simple accent borders and bronze colors
+  - Silver: Metallic gradient borders with shimmer effects
+  - Gold: Animated golden borders with sweep animations and glow
+  - Platinum: Premium metallic with rotating gradients and pulse effects
+  - Diamond: Ultimate rainbow luxury with spectrum animations and prism effects
+  - Tier display indicator in header showing current achievement level
+
+- **🎮 Konami Code Easter Egg (↑↑↓↓←→←→BA)**
+  - Matrix rain effect with mathematical symbols
+  - Developer Mode with real-time performance metrics
+  - Console commands: `help()`, `about()`, `stats()`, `achievements()`, `matrix()`
+  - Enhanced performance monitoring for calculations
+
+- **🎨 Console Enhancements**
+  - ASCII art MeanMachine logo on page load
+  - Colored console messages with developer tips
+  - Hidden commands: `console.rainbow()`, `console.calculate()`, `console.sysinfo()`, `console.funfact()`
+  - Performance metrics logging and system information display
+  - Developer contact information and credits
+
+- **✨ Signature Touches**
+  - Creator credit (Jay) appears every 3rd calculation
+  - Animated favicon during calculations with progress indicator
+  - Achievement progress bar at bottom of screen
+  - Easter egg hint for Konami code discovery
+  - 404 page template with calculator ASCII art
+
+- **🎯 Challenge Mode Integration**
+  - Toggle checkbox in calculator footer to enable/disable guessing
+  - Modal popup before calculations asking users to guess statistical values
+  - Real-time feedback on guess accuracy with color-coded results
+  - Consistent functionality across page refreshes and "Calculate Again" actions
+
+### Fixed - User Experience Issues
+
+- **Guessing Functionality**: Fixed inconsistent behavior where challenge mode only worked on first launch
+- **Challenge Control**: Added persistent toggle to enable/disable guessing functionality
+- **Creator Attribution**: Updated from "Your Name" to "Jay" in all credits and signatures
+- **Tier Persistence**: Achievement tiers now persist across browser sessions
+- **Theme Integration**: Tier themes properly apply on page load and tier upgrades
+
+### Enhanced - Achievement Milestones
+
+- **First Steps** (10pts): Complete your first calculation
+- **Night Owl** (20pts): Use dark mode theme
+- **Speed Demon** (30pts): Calculate in under 2 seconds
+- **Perfectionist** (50pts): Enter exactly 10 numbers
+- **Mind Reader** (100pts): Guess a statistical value exactly correct
+- **Close Call** (50pts): Guess within 10% of correct value
+- **Secret Keeper** (200pts): Discover the Konami code
+
+### Technical Implementation
+
+- **New Files Added**:
+  - `src/utils/konami.js`: Konami code detection and developer mode
+  - `src/utils/achievements.js`: Complete achievement system with persistence
+  - `src/utils/console-art.js`: ASCII art and console enhancements
+  - `src/components/GuessModal.js`: Statistical value guessing interface
+  - `src/utils/signature.js`: Creator signatures and special effects
+  - `src/styles/tier-themes.css`: Progressive tier styling system
+  - `src/styles/signature.css`: Signature touches and special features
+
+- **Integration Points**:
+  - Achievement system integrated with CalculatorModal calculations
+  - Tier themes automatically applied based on user progress
+  - Challenge mode respects user preferences via checkbox toggle
+  - All Easter eggs work seamlessly with existing Phase 1-6 features
+
+### Performance Impact
+
+- Bundle size increased by ~22KB for complete Easter egg system
+- All animations optimized for 60fps performance
+- Achievement data persisted in localStorage for instant loading
+- Tier themes cached and applied efficiently on page load
+
 ## [1.2.3] - 2025-06-19
 
 ### Added - Phase 6: SEO & Accessibility (WCAG 2.1 AA Compliance)

@@ -1,0 +1,261 @@
+/**
+ * Signature Touches and Special Features
+ * Including rainbow theme and creator credits
+ */
+
+/* Rainbow Theme for Grand Masters */
+.rainbow-theme {
+  position: relative;
+  overflow: hidden;
+}
+
+.rainbow-theme::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #9400d3,
+    #ff0000
+  );
+  animation: rainbowRotate 20s linear infinite;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes rainbowRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rainbow-theme .bg-blue-600,
+.rainbow-theme .bg-green-500 {
+  background: linear-gradient(
+    135deg,
+    #667eea 0%,
+    #764ba2 50%,
+    #f093fb 100%
+  ) !important;
+}
+
+/* Creator Signature */
+.creator-signature {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease-out;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.creator-signature.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.creator-signature a {
+  color: #3b82f6;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.creator-signature a:hover {
+  text-decoration: underline;
+}
+
+/* Animated Favicon */
+@keyframes faviconPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Achievement Progress Bar */
+.achievement-progress {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.achievement-progress.show {
+  opacity: 1;
+}
+
+.achievement-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #10b981 50%, #f59e0b 100%);
+  transition: width 0.5s ease-out;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+/* Special 404 Page Styles */
+.error-404 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.error-404 h1 {
+  font-size: 8rem;
+  font-weight: bold;
+  margin: 0;
+  animation: glitch 2s infinite;
+}
+
+.error-404 h2 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.error-404 p {
+  font-size: 1.2rem;
+  margin: 1rem 0 2rem;
+  opacity: 0.9;
+}
+
+.error-404 .calculator-ascii {
+  font-family: monospace;
+  font-size: 1rem;
+  line-height: 1.2;
+  margin: 2rem 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes glitch {
+  0%, 100% {
+    text-shadow: 
+      2px 2px 0 #ff0080,
+      -2px -2px 0 #00ffff;
+  }
+  25% {
+    text-shadow: 
+      -2px 2px 0 #ff0080,
+      2px -2px 0 #00ffff;
+  }
+  50% {
+    text-shadow: 
+      2px -2px 0 #ff0080,
+      -2px 2px 0 #00ffff;
+  }
+  75% {
+    text-shadow: 
+      -2px -2px 0 #ff0080,
+      2px 2px 0 #00ffff;
+  }
+}
+
+/* Easter Egg Hints */
+.easter-egg-hint {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  color: transparent;
+  user-select: none;
+  pointer-events: none;
+}
+
+.easter-egg-hint:hover {
+  color: rgba(156, 163, 175, 0.3);
+}
+
+/* Calculator Loading Animation */
+.calculator-loading {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.calculator-loading div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #3b82f6;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.calculator-loading div:nth-child(1) {
+  left: 8px;
+  animation: calculator-loading1 0.6s infinite;
+}
+
+.calculator-loading div:nth-child(2) {
+  left: 8px;
+  animation: calculator-loading2 0.6s infinite;
+}
+
+.calculator-loading div:nth-child(3) {
+  left: 32px;
+  animation: calculator-loading2 0.6s infinite;
+}
+
+.calculator-loading div:nth-child(4) {
+  left: 56px;
+  animation: calculator-loading3 0.6s infinite;
+}
+
+@keyframes calculator-loading1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes calculator-loading3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes calculator-loading2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}

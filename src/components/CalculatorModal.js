@@ -6,6 +6,9 @@ import {
   formatTimestamp,
 } from '../utils/storage.js';
 import { Chart } from './Chart.js';
+import { GuessModal } from './GuessModal.js';
+import { achievementSystem } from '../utils/achievements.js';
+import { signatureManager } from '../utils/signature.js';
 
 /**
  * Calculator Modal Component
@@ -390,7 +393,7 @@ export class CalculatorModal extends Modal {
             </button>
             <button 
               id="copy-result" 
-              class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+              class="copy-result-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
               aria-label="Copy calculation results to clipboard"
               aria-describedby="copy-help"
               type="button"
@@ -421,27 +424,47 @@ export class CalculatorModal extends Modal {
           <p class="text-sm text-red-600 dark:text-red-400 transition-colors duration-300" id="error-message"></p>
         </div>
 
-        <!-- Main Action Buttons -->
-        <div class="mt-6 flex justify-end gap-3" role="group" aria-label="Calculator actions">
-          <button 
-            id="cancel-btn" 
-            class="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-200 dark:bg-gray-600 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 transition-colors duration-300"
-            aria-label="Cancel and close calculator"
-            type="button"
-          >
-            Cancel
-          </button>
-          <button 
-            id="calculate-btn" 
-            class="px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-md hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
-            aria-describedby="calculate-help"
-            type="button"
-          >
-            Calculate Average
-          </button>
-          <p id="calculate-help" class="sr-only">
-            Processes entered numbers and displays comprehensive statistical results including average, median, variance, and more.
-          </p>
+        <!-- Footer with Challenge Toggle and Action Buttons -->
+        <div class="mt-6 flex items-center justify-between">
+          <!-- Challenge Mode Toggle -->
+          <div class="flex items-center">
+            <input 
+              type="checkbox" 
+              id="enable-guessing" 
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              checked
+            >
+            <label 
+              for="enable-guessing" 
+              class="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300 cursor-pointer"
+              title="Test your math skills by guessing statistical values before calculation"
+            >
+              Challenge Mode 🎯
+            </label>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div class="flex gap-3" role="group" aria-label="Calculator actions">
+            <button 
+              id="cancel-btn" 
+              class="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-200 dark:bg-gray-600 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 transition-colors duration-300"
+              aria-label="Cancel and close calculator"
+              type="button"
+            >
+              Cancel
+            </button>
+            <button 
+              id="calculate-btn" 
+              class="px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-md hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
+              aria-describedby="calculate-help"
+              type="button"
+            >
+              Calculate Average
+            </button>
+            <p id="calculate-help" class="sr-only">
+              Processes entered numbers and displays comprehensive statistical results including average, median, variance, and more.
+            </p>
+          </div>
         </div>
       </div>
     `;
@@ -495,7 +518,9 @@ export class CalculatorModal extends Modal {
     // Tab switching with keyboard navigation
     this.modal.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', e => this.switchTab(e.target.dataset.tab));
-      btn.addEventListener('keydown', e => this.handleTabKeyNavigation(e, 'tab-btn'));
+      btn.addEventListener('keydown', e =>
+        this.handleTabKeyNavigation(e, 'tab-btn')
+      );
     });
 
     // Custom numbers functionality
@@ -521,7 +546,9 @@ export class CalculatorModal extends Modal {
       btn.addEventListener('click', e =>
         this.switchResultTab(e.target.dataset.resultTab)
       );
-      btn.addEventListener('keydown', e => this.handleTabKeyNavigation(e, 'result-tab-btn'));
+      btn.addEventListener('keydown', e =>
+        this.handleTabKeyNavigation(e, 'result-tab-btn')
+      );
     });
 
     // Result actions
@@ -624,7 +651,9 @@ export class CalculatorModal extends Modal {
     }
 
     // Announce tab change for screen readers
-    this.announceToScreenReader(`Switched to ${tab === 'custom' ? 'custom' : 'random'} numbers input mode`);
+    this.announceToScreenReader(
+      `Switched to ${tab === 'custom' ? 'custom' : 'random'} numbers input mode`
+    );
 
     // Update button text and visibility based on tab
     const calculateBtn = this.modal.querySelector('#calculate-btn');
@@ -720,10 +749,13 @@ export class CalculatorModal extends Modal {
       this.numbers.push(Math.floor(Math.random() * (max - min + 1)) + min);
     }
 
-    this.displayResult();
+    // Don't call displayResult here anymore, let calculate() handle it
   }
 
   calculate() {
+    // Track calculation start time for speed achievement
+    this.calculationStartTime = window.performance.now();
+
     const calculateBtn = this.modal.querySelector('#calculate-btn');
 
     // Add button press animation
@@ -766,21 +798,70 @@ export class CalculatorModal extends Modal {
           return;
         }
       } else {
-        // Random mode - generate numbers first, then calculate
+        // Random mode - generate numbers first
         this.generateRandomNumbers();
-        return; // generateRandomNumbers() will call displayResult()
+        // Don't return here, continue to guess check
       }
 
-      this.displayResult();
+      // Check if user wants to guess (only for valid calculations)
+      if (this.numbers.length >= 2) {
+        this.checkForGuess();
+      }
     }, 500); // Brief delay for loading effect
+  }
+
+  checkForGuess() {
+    // Calculate stats first (for the guess modal)
+    const stats = calculateAllStats(this.numbers);
+
+    // Check if challenge mode is enabled
+    const challengeEnabled =
+      this.modal.querySelector('#enable-guessing').checked;
+
+    if (challengeEnabled) {
+      // Show guess modal
+      new GuessModal(
+        this.numbers,
+        {
+          average: stats.average,
+          median: stats.median,
+          variance: stats.variance,
+          stdDev: stats.stdDev,
+          range: stats.range,
+        },
+        guessResults => {
+          // Process results and continue with display
+          this.processGuessResults(guessResults, stats);
+        }
+      );
+    } else {
+      // No guess, proceed normally
+      this.processGuessResults(null, stats);
+    }
+  }
+
+  processGuessResults(guessResults, stats) {
+    // Record calculation with achievement system
+    const numberCount = this.numbers.length;
+    achievementSystem.recordCalculation(this.mode, numberCount, guessResults);
+
+    // Check for speed demon achievement (if calculation took < 2 seconds)
+    const calculationTime =
+      window.performance.now() - (this.calculationStartTime || 0);
+    if (calculationTime < 2000) {
+      achievementSystem.unlockMilestone('speed_demon');
+    }
+
+    // Store results and display
+    this.result = stats.average;
+    this.allStats = stats;
+    this.displayResult();
   }
 
   displayResult() {
     try {
-      // Calculate all statistics
-      const stats = calculateAllStats(this.numbers);
-      this.result = stats.average;
-      this.allStats = stats;
+      // Stats already calculated in processGuessResults
+      const stats = this.allStats;
 
       // Save to history
       saveCalculation({
@@ -824,7 +905,9 @@ export class CalculatorModal extends Modal {
       this.loadHistory();
 
       // Announce successful calculation to screen readers
-      this.announceToScreenReader(`Calculation completed. Average is ${formatNumber(stats.average)}. Results displayed with ${this.numbers.length} numbers processed.`);
+      this.announceToScreenReader(
+        `Calculation completed. Average is ${formatNumber(stats.average)}. Results displayed with ${this.numbers.length} numbers processed.`
+      );
     } catch (error) {
       this.showError(error.message);
     }
@@ -890,6 +973,18 @@ export class CalculatorModal extends Modal {
           confetti.parentNode.removeChild(confetti);
         }
       }, 4000);
+    }
+
+    // Show signature occasionally
+    signatureManager.showSignature();
+
+    // Animate favicon during celebration
+    signatureManager.animateFavicon();
+
+    // Update achievement progress
+    const nextBadge = achievementSystem.getNextBadge();
+    if (nextBadge) {
+      signatureManager.updateAchievementProgress(nextBadge.progress);
     }
   }
 
@@ -985,7 +1080,7 @@ Count: ${this.allStats.count}`;
     const errorMessage = this.modal.querySelector('#error-message');
     errorMessage.textContent = message;
     errorDisplay.classList.remove('hidden');
-    
+
     // Announce error to screen readers
     this.announceToScreenReader(`Error: ${message}`);
   }
@@ -1293,9 +1388,9 @@ Count: ${this.allStats.count}`;
   handleTabKeyNavigation(e, tabType) {
     const tabs = Array.from(this.modal.querySelectorAll(`.${tabType}`));
     const currentIndex = tabs.findIndex(tab => tab === e.target);
-    
+
     let nextIndex;
-    
+
     switch (e.key) {
       case 'ArrowLeft':
       case 'ArrowUp':
@@ -1304,7 +1399,7 @@ Count: ${this.allStats.count}`;
         tabs[nextIndex].focus();
         tabs[nextIndex].click();
         break;
-      
+
       case 'ArrowRight':
       case 'ArrowDown':
         e.preventDefault();
@@ -1312,19 +1407,19 @@ Count: ${this.allStats.count}`;
         tabs[nextIndex].focus();
         tabs[nextIndex].click();
         break;
-      
+
       case 'Home':
         e.preventDefault();
         tabs[0].focus();
         tabs[0].click();
         break;
-      
+
       case 'End':
         e.preventDefault();
         tabs[tabs.length - 1].focus();
         tabs[tabs.length - 1].click();
         break;
-      
+
       case 'Enter':
       case ' ':
         e.preventDefault();
@@ -1347,7 +1442,7 @@ Count: ${this.allStats.count}`;
       announcer.className = 'sr-only';
       document.body.appendChild(announcer);
     }
-    
+
     // Clear and set new message
     announcer.textContent = '';
     setTimeout(() => {

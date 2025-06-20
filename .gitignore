@@ -2,8 +2,16 @@
 node_modules
 PRD-ENHANCEMENTS.md
 
+# Build artifacts
+dist/
+
 # Handoff documents
 HANDOFF-*.md
 
 # Temporary/copy files
 src/styles/tier-themes copy.css
+
+# CSS optimization documentation
+CSS-OPTIMIZATION-PLAN.md
+PHASE1-ANALYSIS.md
+PHASE3-RESULTS.md

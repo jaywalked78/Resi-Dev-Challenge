@@ -49,6 +49,52 @@
     appearance: textfield;
   }
 
+  /* Number input placeholder styling for better legibility */
+  .number-input::placeholder {
+    color: rgb(31 41 55);
+    opacity: 0.7;
+  }
+
+  /* In dark mode, use white text for inputs when no tier is applied */
+  [data-theme="dark"] .modal .number-input,
+  [data-theme="dark"] .modal input[type="number"] {
+    color: white !important;
+  }
+
+  [data-theme="dark"] .modal .number-input::placeholder,
+  [data-theme="dark"] .modal input[type="number"]::placeholder {
+    color: white !important;
+    opacity: 0.7;
+  }
+
+  /* Override for when tier classes are applied - use dark text for better contrast */
+  [data-theme="dark"] .tier-bronze .modal .number-input,
+  [data-theme="dark"] .tier-silver .modal .number-input,
+  [data-theme="dark"] .tier-gold .modal .number-input,
+  [data-theme="dark"] .tier-platinum .modal .number-input,
+  [data-theme="dark"] .tier-diamond .modal .number-input,
+  [data-theme="dark"] .tier-bronze .modal input[type="number"],
+  [data-theme="dark"] .tier-silver .modal input[type="number"],
+  [data-theme="dark"] .tier-gold .modal input[type="number"],
+  [data-theme="dark"] .tier-platinum .modal input[type="number"],
+  [data-theme="dark"] .tier-diamond .modal input[type="number"] {
+    color: rgb(31 41 55) !important;
+  }
+
+  [data-theme="dark"] .tier-bronze .modal .number-input::placeholder,
+  [data-theme="dark"] .tier-silver .modal .number-input::placeholder,
+  [data-theme="dark"] .tier-gold .modal .number-input::placeholder,
+  [data-theme="dark"] .tier-platinum .modal .number-input::placeholder,
+  [data-theme="dark"] .tier-diamond .modal .number-input::placeholder,
+  [data-theme="dark"] .tier-bronze .modal input[type="number"]::placeholder,
+  [data-theme="dark"] .tier-silver .modal input[type="number"]::placeholder,
+  [data-theme="dark"] .tier-gold .modal input[type="number"]::placeholder,
+  [data-theme="dark"] .tier-platinum .modal input[type="number"]::placeholder,
+  [data-theme="dark"] .tier-diamond .modal input[type="number"]::placeholder {
+    color: rgb(31 41 55) !important;
+    opacity: 0.7;
+  }
+
   /* Range slider styling */
   input[type='range'] {
     -webkit-appearance: none;

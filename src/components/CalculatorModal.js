@@ -58,7 +58,7 @@ export class CalculatorModal extends Modal {
         <div class="flex border-b border-gray-200 dark:border-gray-600 mb-6 transition-colors duration-300" role="tablist" aria-labelledby="input-mode-label">
           <h3 id="input-mode-label" class="sr-only">Input Mode Selection</h3>
           <button 
-            class="tab-btn px-4 py-2 font-medium text-gray-700 dark:text-gray-200 border-b-2 border-blue-500 dark:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-300" 
+            class="tab-btn px-4 py-2 font-medium text-gray-700 dark:text-white border-b-2 border-blue-500 dark:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-300" 
             data-tab="custom" 
             role="tab"
             aria-selected="true"
@@ -163,7 +163,7 @@ export class CalculatorModal extends Modal {
                     type="number" 
                     id="random-min" 
                     value="1" 
-                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300"
+                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300"
                     aria-label="Minimum value for random number generation"
                     aria-describedby="random-range-help"
                   >
@@ -179,7 +179,7 @@ export class CalculatorModal extends Modal {
                     type="number" 
                     id="random-max" 
                     value="100" 
-                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300"
+                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300"
                     aria-label="Maximum value for random number generation"
                     aria-describedby="random-range-help"
                   >
@@ -207,7 +207,7 @@ export class CalculatorModal extends Modal {
           <div class="flex border-b border-gray-200 dark:border-gray-600 mb-4 transition-colors duration-300" role="tablist" aria-labelledby="results-tabs-label">
             <h4 id="results-tabs-label" class="sr-only">Results Display Options</h4>
             <button 
-              class="result-tab-btn px-4 py-2 font-medium text-gray-700 dark:text-gray-200 border-b-2 border-blue-500 dark:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors" 
+              class="result-tab-btn px-4 py-2 font-medium text-gray-700 dark:text-white border-b-2 border-blue-500 dark:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors" 
               data-result-tab="overview" 
               role="tab"
               aria-selected="true"
@@ -480,7 +480,7 @@ export class CalculatorModal extends Modal {
         <input 
           type="number" 
           id="number-input-${index}"
-          class="number-input flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300" 
+          class="number-input flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors duration-300" 
           placeholder="Enter a number"
           aria-label="Number ${index + 1} input field"
           aria-describedby="number-help-${index}"
@@ -606,7 +606,7 @@ export class CalculatorModal extends Modal {
       if (btn.dataset.tab === tab) {
         btn.classList.add(
           'text-gray-700',
-          'dark:text-gray-200',
+          'dark:text-white',
           'border-b-2',
           'border-blue-500',
           'dark:border-blue-400'
@@ -1099,7 +1099,7 @@ Count: ${this.allStats.count}`;
       if (btn.dataset.resultTab === tab) {
         btn.classList.add(
           'text-gray-700',
-          'dark:text-gray-200',
+          'dark:text-white',
           'border-b-2',
           'border-blue-500',
           'dark:border-blue-400'

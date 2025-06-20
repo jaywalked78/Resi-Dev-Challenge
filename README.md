@@ -2,7 +2,7 @@
 
 > **Where numbers meet their destiny** - Advanced statistical calculator with modern web architecture
 
-![Version](https://img.shields.io/badge/version-1.2.1-blue.svg) ![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
+![Version](https://img.shields.io/badge/version-1.2.8-blue.svg) ![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
 ## 🚀 Quick Start
 
@@ -116,6 +116,31 @@ src/
 4. **View Results:** Switch between Overview/Statistics/History tabs
 5. **Copy Results:** Context-aware copying based on active tab
 6. **Theme Toggle:** Click moon/sun icon in header
+
+## 🏆 Achievement & Tier System
+
+**Progressive Tier System:**
+- **🥉 Bronze Tier** (100+ points) - Simple accent borders with bronze colors
+- **🥈 Silver Tier** (500+ points) - Metallic gradient borders with shimmer effects  
+- **🥇 Gold Tier** (1000+ points) - Animated golden borders with sweep animations
+- **💎 Platinum Tier** (5000+ points) - Premium metallic with rotating gradients
+
+**Earning Points:**
+- **First Launch:** 100 points (automatically unlocks Bronze tier)
+- **Custom Calculations:** 10-30 points based on complexity
+- **Random Calculations:** 5-15 points based on dataset size
+- **Challenge Mode:** Guess statistical values for bonus points
+  - Exact guesses: 100 points
+  - Within 10%: 50 points  
+  - Within 20%: 25 points
+
+**Achievement Milestones:**
+- **First Steps** (10pts) - Complete your first calculation
+- **Sunshine Seeker** (20pts) - Use light mode
+- **Speed Demon** (30pts) - Calculate in under 2 seconds
+- **Perfectionist** (50pts) - Enter exactly 10 numbers
+- **Mind Reader** (100pts) - Guess a value exactly correct
+- **Close Call** (50pts) - Guess within 10% of correct value
 
 ## 🔧 Development Commands
 

@@ -1,3 +1,15 @@
+// Import theme manager and error boundary
+import { ThemeManager } from './utils/theme.js';
+import {
+  createErrorBoundary,
+  withErrorBoundary,
+} from './utils/errorBoundary.js';
+
+// Import Phase 7 features
+import { konamiDetector } from './utils/konami.js';
+import { achievementSystem } from './utils/achievements.js';
+import './utils/console-art.js'; // Auto-initializes
+
 /**
  * Calculates the average of an array of numbers, logs it, and returns the result.
  * @param {number[]} nums - Array of numbers to calculate average for
@@ -27,18 +39,6 @@ try {
   console.error('Test failed:', error.message);
 }
 
-// Import theme manager and error boundary
-import { ThemeManager } from './utils/theme.js';
-import {
-  createErrorBoundary,
-  withErrorBoundary,
-} from './utils/errorBoundary.js';
-
-// Import Phase 7 features
-import { konamiDetector } from './utils/konami.js';
-import { achievementSystem } from './utils/achievements.js';
-import './utils/console-art.js'; // Auto-initializes
-
 // Expose achievementSystem globally for testing/debugging
 window.achievementSystem = achievementSystem;
 
@@ -62,15 +62,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize theme manager
   const themeManager = new ThemeManager();
 
-  // Check for night owl achievement
-  if (themeManager.getTheme() === 'dark') {
-    achievementSystem.unlockMilestone('night_owl');
+  // Check for sunshine seeker achievement (light mode)
+  if (themeManager.getTheme() === 'light') {
+    achievementSystem.unlockMilestone('sunshine_seeker');
   }
 
-  // Listen for theme changes to award night owl achievement
+  // Listen for theme changes to award sunshine seeker achievement
   themeManager.onThemeChange(theme => {
-    if (theme === 'dark') {
-      achievementSystem.unlockMilestone('night_owl');
+    if (theme === 'light') {
+      achievementSystem.unlockMilestone('sunshine_seeker');
     }
   });
 
@@ -106,6 +106,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (button) {
     button.addEventListener('click', async () => {
       console.log('Button clicked - loading modal...');
+
+      // Check if this is the first time launching
+      const hasLaunchedBefore = localStorage.getItem('meanMachineFirstLaunch');
+      if (!hasLaunchedBefore) {
+        // Award 100 points for first launch
+        achievementSystem.awardPoints(100, 'First time launching MeanMachine!');
+        localStorage.setItem('meanMachineFirstLaunch', 'true');
+      }
+
       try {
         const modal = await loadCalculatorModal();
         console.log('Modal loaded:', modal);

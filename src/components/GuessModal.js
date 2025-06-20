@@ -415,9 +415,12 @@ export class GuessModal {
       if (!isNaN(value) && input.value !== '') {
         hasGuesses = true;
         const actual = this.actualValues[stat];
-        const accuracy = actual === 0 
-          ? (value === 0 ? 0 : 1) 
-          : Math.abs(value - actual) / Math.abs(actual);
+        const accuracy =
+          actual === 0
+            ? value === 0
+              ? 0
+              : 1
+            : Math.abs(value - actual) / Math.abs(actual);
 
         this.guesses[stat] = value;
         this.results.push({

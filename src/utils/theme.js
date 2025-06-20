@@ -1,18 +1,15 @@
 export class ThemeManager {
   constructor() {
-    this.currentTheme = 'light';
+    this.currentTheme = 'dark';
     this.listeners = [];
     this.init();
   }
 
   init() {
-    // Check for saved theme preference or default to system preference
+    // Check for saved theme preference or default to dark mode
     const savedTheme = localStorage.getItem('meanmachine_theme');
-    const systemPrefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)'
-    ).matches;
 
-    this.currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    this.currentTheme = savedTheme || 'dark';
     this.applyTheme(this.currentTheme);
 
     // Listen for system theme changes

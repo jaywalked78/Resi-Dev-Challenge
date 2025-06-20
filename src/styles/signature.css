@@ -86,7 +86,8 @@
 
 /* Animated Favicon */
 @keyframes faviconPulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -158,23 +159,24 @@
 }
 
 @keyframes glitch {
-  0%, 100% {
-    text-shadow: 
+  0%,
+  100% {
+    text-shadow:
       2px 2px 0 #ff0080,
       -2px -2px 0 #00ffff;
   }
   25% {
-    text-shadow: 
+    text-shadow:
       -2px 2px 0 #ff0080,
       2px -2px 0 #00ffff;
   }
   50% {
-    text-shadow: 
+    text-shadow:
       2px -2px 0 #ff0080,
       -2px 2px 0 #00ffff;
   }
   75% {
-    text-shadow: 
+    text-shadow:
       -2px -2px 0 #ff0080,
       2px 2px 0 #00ffff;
   }

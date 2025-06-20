@@ -68,9 +68,10 @@ npx serve dist
 - **Advanced Statistics** - Mean, median, variance, range, std deviation
 - **Data Visualization** - Animated SVG charts
 - **History & Persistence** - localStorage calculation history
-- **Dark/Light Mode** - System preference detection
+- **Dark/Light Mode** - Dark mode by default with light mode toggle
 - **Copy Functionality** - Context-aware clipboard integration
 - **Keyboard Shortcuts** - Ctrl/Cmd+K to open calculator
+- **Achievement System** - Progressive tier system with visual rewards
 
 ## 🏗️ Technical Architecture
 

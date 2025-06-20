@@ -61,11 +61,11 @@ export class AchievementSystem {
           description: 'Complete your first calculation',
         },
         {
-          id: 'night_owl',
-          name: 'Night Owl',
+          id: 'sunshine_seeker',
+          name: 'Sunshine Seeker',
           points: 20,
-          icon: '🦉',
-          description: 'Use dark mode',
+          icon: '☀️',
+          description: 'Use light mode',
         },
         {
           id: 'speed_demon',
@@ -168,35 +168,37 @@ export class AchievementSystem {
     if (currentTier) {
       document.body.classList.add(`tier-${currentTier}`);
     }
-    
+
     // Update tier display
     this.updateTierDisplay();
   }
-  
+
   updateTierDisplay() {
     const tierDisplay = document.getElementById('tier-display');
     const tierIcon = document.getElementById('tier-icon');
     const tierName = document.getElementById('tier-name');
     const totalScore = document.getElementById('total-score');
-    
+
     if (!tierDisplay || !tierIcon || !tierName || !totalScore) return;
-    
+
     const currentTier = this.userProgress.currentBadgeTier;
-    
+
     // Always update the total score
     totalScore.textContent = this.userProgress.totalPoints.toLocaleString();
-    
+
     if (currentTier) {
       // Get badge info for current tier
-      const currentBadge = this.achievements.badges.find(badge => badge.tier === currentTier);
-      
+      const currentBadge = this.achievements.badges.find(
+        badge => badge.tier === currentTier
+      );
+
       if (currentBadge) {
         tierIcon.textContent = currentBadge.icon;
         tierName.textContent = currentTier;
-        
+
         // Apply tier-specific styling to the display
         tierDisplay.className = `absolute top-6 left-6 px-3 py-2 rounded-lg backdrop-blur-sm border transition-all duration-300 tier-display-${currentTier}`;
-        
+
         // Show the display
         tierDisplay.classList.remove('hidden');
       }
@@ -408,7 +410,7 @@ export class AchievementSystem {
       'tier-diamond'
     );
     document.body.classList.add(`tier-${newTier}`);
-    
+
     // Update tier display
     this.updateTierDisplay();
 

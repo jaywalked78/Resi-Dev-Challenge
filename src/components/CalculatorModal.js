@@ -863,7 +863,7 @@ export class CalculatorModal extends Modal {
     // Focus new input and trigger any entrance animations
     const newInput = newInputGroup.querySelector('input');
     newInput.focus();
-    
+
     // For Diamond tier, ensure the new input gets the proper pulsating effect
     if (document.body.classList.contains('tier-diamond')) {
       newInput.classList.add('animate-[pulse-glow_2s_ease-in-out_infinite]');
@@ -1068,13 +1068,11 @@ export class CalculatorModal extends Modal {
       const pillsContainer = this.modal.querySelector('#number-pills');
       const tierColors = this.getTierColors();
       pillsContainer.innerHTML = this.numbers
-        .map(
-          (num, index) => {
-            const colorIndex = index % tierColors.length;
-            const tierColor = tierColors[colorIndex];
-            return `<span class="px-3 py-1 ${tierColor.light} ${tierColor.dark} ${tierColor.text} rounded-full text-sm font-bold transition-colors duration-300" role="listitem" aria-label="Input number ${index + 1}: ${formatNumber(num)}">${formatNumber(num)}</span>`
-          }
-        )
+        .map((num, index) => {
+          const colorIndex = index % tierColors.length;
+          const tierColor = tierColors[colorIndex];
+          return `<span class="px-3 py-1 ${tierColor.light} ${tierColor.dark} ${tierColor.text} rounded-full text-sm font-bold transition-colors duration-300" role="listitem" aria-label="Input number ${index + 1}: ${formatNumber(num)}">${formatNumber(num)}</span>`;
+        })
         .join('');
 
       // Populate all result values
@@ -1432,15 +1430,14 @@ Count: ${this.allStats.count}`;
             <div class="flex flex-wrap gap-1 mb-1">
               ${calc.numbers
                 .slice(0, 5)
-                .map(
-                  (num, index) => {
-                    const tierColors = this.getTierColors();
-                    const colorIndex = tierColors.length > 1 ? index % tierColors.length : 0;
-                    const tierColor = tierColors[colorIndex];
-                    const colorClass = `${tierColor.light} ${tierColor.dark} ${tierColor.text}`;
-                    return `<span class="text-xs px-2 py-0.5 ${colorClass} rounded font-bold transition-colors duration-300">${formatNumber(num)}</span>`
-                  }
-                )
+                .map((num, index) => {
+                  const tierColors = this.getTierColors();
+                  const colorIndex =
+                    tierColors.length > 1 ? index % tierColors.length : 0;
+                  const tierColor = tierColors[colorIndex];
+                  const colorClass = `${tierColor.light} ${tierColor.dark} ${tierColor.text}`;
+                  return `<span class="text-xs px-2 py-0.5 ${colorClass} rounded font-bold transition-colors duration-300">${formatNumber(num)}</span>`;
+                })
                 .join('')}
               ${calc.numbers.length > 5 ? `<span class="text-xs text-gray-500 dark:text-gray-300 transition-colors duration-300">+${calc.numbers.length - 5} more</span>` : ''}
             </div>
@@ -1485,13 +1482,11 @@ Count: ${this.allStats.count}`;
     const pillsContainer = this.modal.querySelector('#number-pills');
     const tierColors = this.getTierColors();
     pillsContainer.innerHTML = this.numbers
-      .map(
-        (num, index) => {
-          const colorIndex = index % tierColors.length;
-          const tierColor = tierColors[colorIndex];
-          return `<span class="px-3 py-1 ${tierColor.light} ${tierColor.dark} ${tierColor.text} rounded-full text-sm font-bold transition-colors duration-300">${formatNumber(num)}</span>`
-        }
-      )
+      .map((num, index) => {
+        const colorIndex = index % tierColors.length;
+        const tierColor = tierColors[colorIndex];
+        return `<span class="px-3 py-1 ${tierColor.light} ${tierColor.dark} ${tierColor.text} rounded-full text-sm font-bold transition-colors duration-300">${formatNumber(num)}</span>`;
+      })
       .join('');
 
     // Update main average display
@@ -1636,32 +1631,32 @@ Count: ${this.allStats.count}`;
   createStatisticsCards() {
     const tierColors = this.getTierColors();
     const currentTierColor = tierColors[0]; // Use first tier color for all stats
-    
+
     const cards = [
       {
         id: 'median',
         title: 'Median',
         tooltip: 'The middle value when numbers are sorted',
-        valueId: 'median-value'
+        valueId: 'median-value',
       },
       {
-        id: 'variance', 
+        id: 'variance',
         title: 'Variance',
         tooltip: 'Sample variance: average squared deviation from mean (s²)',
-        valueId: 'variance-value'
+        valueId: 'variance-value',
       },
       {
         id: 'range',
-        title: 'Range', 
+        title: 'Range',
         tooltip: 'The difference between the highest and lowest values',
-        valueId: 'range-value'
+        valueId: 'range-value',
       },
       {
         id: 'stddev',
         title: 'Std. Deviation',
-        tooltip: 'A measure of how spread out the numbers are', 
-        valueId: 'stddev-value'
-      }
+        tooltip: 'A measure of how spread out the numbers are',
+        valueId: 'stddev-value',
+      },
     ];
 
     // For Diamond tier, use unique colors for each card with glassmorphism
@@ -1671,31 +1666,36 @@ Count: ${this.allStats.count}`;
           light: 'bg-pink-500/70 dark:bg-pink-500/90',
           dark: 'dark:bg-pink-500/90',
           text: 'text-gray-700 dark:text-white',
-          glassStyle: 'backdrop-blur-lg border border-pink-300/30 dark:border-pink-500/40 shadow-lg shadow-pink-500/20'
+          glassStyle:
+            'backdrop-blur-lg border border-pink-300/30 dark:border-pink-500/40 shadow-lg shadow-pink-500/20',
         },
         {
           light: 'bg-cyan-500/70 dark:bg-cyan-500/90',
-          dark: 'dark:bg-cyan-500/90', 
+          dark: 'dark:bg-cyan-500/90',
           text: 'text-gray-700 dark:text-white',
-          glassStyle: 'backdrop-blur-lg border border-cyan-300/30 dark:border-cyan-500/40 shadow-lg shadow-cyan-500/20'
+          glassStyle:
+            'backdrop-blur-lg border border-cyan-300/30 dark:border-cyan-500/40 shadow-lg shadow-cyan-500/20',
         },
         {
           light: 'bg-yellow-500/70 dark:bg-yellow-500/90',
           dark: 'dark:bg-yellow-500/90',
           text: 'text-gray-700 dark:text-gray-800',
-          glassStyle: 'backdrop-blur-lg border border-yellow-300/30 dark:border-yellow-500/40 shadow-lg shadow-yellow-500/20'
+          glassStyle:
+            'backdrop-blur-lg border border-yellow-300/30 dark:border-yellow-500/40 shadow-lg shadow-yellow-500/20',
         },
         {
           light: 'bg-purple-500/70 dark:bg-purple-500/90',
           dark: 'dark:bg-purple-500/90',
           text: 'text-gray-700 dark:text-white',
-          glassStyle: 'backdrop-blur-lg border border-purple-300/30 dark:border-purple-500/40 shadow-lg shadow-purple-500/20'
-        }
+          glassStyle:
+            'backdrop-blur-lg border border-purple-300/30 dark:border-purple-500/40 shadow-lg shadow-purple-500/20',
+        },
       ];
 
-      return cards.map((card, index) => {
-        const color = diamondColors[index];
-        return `
+      return cards
+        .map((card, index) => {
+          const color = diamondColors[index];
+          return `
           <article class="stat-card p-4 rounded-lg transition-all duration-300 
                          ${color.light} ${color.dark} ${color.glassStyle}" role="listitem" aria-labelledby="${card.id}-heading">
             <div class="flex items-center justify-between mb-2">
@@ -1710,10 +1710,13 @@ Count: ${this.allStats.count}`;
             <p id="${card.valueId}" class="text-2xl font-bold ${color.text} transition-colors duration-300" aria-describedby="${card.id}-heading">0</p>
           </article>
         `;
-      }).join('');
+        })
+        .join('');
     }
 
-    return cards.map(card => `
+    return cards
+      .map(
+        card => `
       <article class="stat-card p-4 rounded-lg transition-colors duration-300 
                      ${currentTierColor.light} ${currentTierColor.dark}" role="listitem" aria-labelledby="${card.id}-heading">
         <div class="flex items-center justify-between mb-2">
@@ -1727,7 +1730,9 @@ Count: ${this.allStats.count}`;
         </div>
         <p id="${card.valueId}" class="text-2xl font-bold ${currentTierColor.text} transition-colors duration-300" aria-describedby="${card.id}-heading">0</p>
       </article>
-    `).join('');
+    `
+      )
+      .join('');
   }
 
   /**
@@ -1736,57 +1741,67 @@ Count: ${this.allStats.count}`;
    */
   getTierColors() {
     const body = document.body;
-    
+
     if (body.classList.contains('tier-bronze')) {
-      return [{
-        light: 'bg-tier-bronze/35 dark:bg-tier-bronze/85',
-        dark: 'dark:bg-tier-bronze/85',
-        text: 'text-gray-700 dark:text-gray-700'
-      }];
+      return [
+        {
+          light: 'bg-tier-bronze/35 dark:bg-tier-bronze/85',
+          dark: 'dark:bg-tier-bronze/85',
+          text: 'text-gray-700 dark:text-gray-700',
+        },
+      ];
     } else if (body.classList.contains('tier-silver')) {
-      return [{
-        light: 'bg-tier-silver/35 dark:bg-tier-silver/85',
-        dark: 'dark:bg-tier-silver/85',
-        text: 'text-gray-700 dark:text-gray-700'
-      }];
+      return [
+        {
+          light: 'bg-tier-silver/35 dark:bg-tier-silver/85',
+          dark: 'dark:bg-tier-silver/85',
+          text: 'text-gray-700 dark:text-gray-700',
+        },
+      ];
     } else if (body.classList.contains('tier-gold')) {
-      return [{
-        light: 'bg-tier-gold/35 dark:bg-tier-gold/85',
-        dark: 'dark:bg-tier-gold/85',
-        text: 'text-gray-700 dark:text-gray-700'
-      }];
+      return [
+        {
+          light: 'bg-tier-gold/35 dark:bg-tier-gold/85',
+          dark: 'dark:bg-tier-gold/85',
+          text: 'text-gray-700 dark:text-gray-700',
+        },
+      ];
     } else if (body.classList.contains('tier-platinum')) {
-      return [{
-        light: 'bg-tier-platinum/35 dark:bg-tier-platinum/85',
-        dark: 'dark:bg-tier-platinum/85',
-        text: 'text-gray-700 dark:text-gray-700'
-      }];
+      return [
+        {
+          light: 'bg-tier-platinum/35 dark:bg-tier-platinum/85',
+          dark: 'dark:bg-tier-platinum/85',
+          text: 'text-gray-700 dark:text-gray-700',
+        },
+      ];
     } else if (body.classList.contains('tier-diamond')) {
       // For diamond tier, cycle through diamond colors
       return [
         {
           light: 'bg-tier-diamond-pink/35 dark:bg-tier-diamond-pink/85',
           dark: 'dark:bg-tier-diamond-pink/85',
-          text: 'text-gray-700 dark:text-gray-700'
+          text: 'text-gray-700 dark:text-gray-700',
         },
         {
           light: 'bg-tier-diamond-cyan/35 dark:bg-tier-diamond-cyan/85',
           dark: 'dark:bg-tier-diamond-cyan/85',
-          text: 'text-gray-700 dark:text-gray-700'
+          text: 'text-gray-700 dark:text-gray-700',
         },
         {
           light: 'bg-tier-diamond-yellow/35 dark:bg-tier-diamond-yellow/85',
           dark: 'dark:bg-tier-diamond-yellow/85',
-          text: 'text-gray-700 dark:text-gray-700'
-        }
+          text: 'text-gray-700 dark:text-gray-700',
+        },
       ];
     } else {
       // Default blue for no tier
-      return [{
-        light: 'bg-blue-500/35 dark:bg-blue-500/85',
-        dark: 'dark:bg-blue-500/85',
-        text: 'text-gray-700 dark:text-gray-700'
-      }];
+      return [
+        {
+          light: 'bg-blue-500/35 dark:bg-blue-500/85',
+          dark: 'dark:bg-blue-500/85',
+          text: 'text-gray-700 dark:text-gray-700',
+        },
+      ];
     }
   }
 

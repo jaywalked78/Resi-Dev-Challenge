@@ -124,8 +124,10 @@ export class SignatureManager {
   setupAchievementProgress() {
     // Create progress bar container
     const progressBar = document.createElement('div');
-    progressBar.className = 'fixed bottom-0 left-0 right-0 h-2 bg-black/20 z-[9999] opacity-0 transition-opacity duration-300';
-    progressBar.innerHTML = '<div class="h-full bg-gradient-to-r from-blue-600 via-green-500 to-amber-500 transition-[width] duration-500 ease-out shadow-[0_0_10px_rgba(59,130,246,0.5)]" style="width: 0%;"></div>';
+    progressBar.className =
+      'fixed bottom-0 left-0 right-0 h-2 bg-black/20 z-[9999] opacity-0 transition-opacity duration-300';
+    progressBar.innerHTML =
+      '<div class="h-full bg-gradient-to-r from-blue-600 via-green-500 to-amber-500 transition-[width] duration-500 ease-out shadow-[0_0_10px_rgba(59,130,246,0.5)]" style="width: 0%;"></div>';
     document.body.appendChild(progressBar);
 
     this.progressBar = progressBar;

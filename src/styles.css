@@ -16,7 +16,6 @@
 }
 
 @layer components {
-
   /* 
    * CUSTOM CSS: Tier Display Dynamic Theming
    * Why CSS over Tailwind:
@@ -27,33 +26,54 @@
    * - Enterprise pattern: complex theming logic belongs in CSS, not HTML
    */
   .tier-bronze .tier-display-container {
-    background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(184, 134, 11, 0.3));
+    background: linear-gradient(
+      135deg,
+      rgba(205, 127, 50, 0.2),
+      rgba(184, 134, 11, 0.3)
+    );
     border-color: #cd7f32;
     color: #fbbf24;
   }
 
   .tier-silver .tier-display-container {
-    background: linear-gradient(135deg, rgba(192, 192, 192, 0.2), rgba(229, 231, 235, 0.3));
+    background: linear-gradient(
+      135deg,
+      rgba(192, 192, 192, 0.2),
+      rgba(229, 231, 235, 0.3)
+    );
     border-color: #c0c0c0;
     color: #e5e7eb;
   }
 
   .tier-gold .tier-display-container {
-    background: linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(255, 179, 71, 0.15));
+    background: linear-gradient(
+      135deg,
+      rgba(218, 165, 32, 0.1),
+      rgba(255, 179, 71, 0.15)
+    );
     border-color: #daa520;
     color: #fbbf24;
     box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
   }
 
   .tier-platinum .tier-display-container {
-    background: linear-gradient(135deg, rgba(229, 231, 235, 0.3), rgba(255, 255, 255, 0.4));
+    background: linear-gradient(
+      135deg,
+      rgba(229, 231, 235, 0.3),
+      rgba(255, 255, 255, 0.4)
+    );
     border-color: #e5e7eb;
     color: #f8fafc;
     box-shadow: 0 6px 16px rgba(229, 231, 235, 0.4);
   }
 
   .tier-diamond .tier-display-container {
-    background: linear-gradient(135deg, rgba(255, 0, 128, 0.2), rgba(0, 255, 255, 0.2), rgba(255, 255, 0, 0.2));
+    background: linear-gradient(
+      135deg,
+      rgba(255, 0, 128, 0.2),
+      rgba(0, 255, 255, 0.2),
+      rgba(255, 255, 0, 0.2)
+    );
     border: 2px solid transparent;
     color: white;
     width: fit-content;
@@ -164,41 +184,41 @@
    * - Cascade management for tier-specific contrast adjustments
    * - !important needed to override inline styles from JS
    */
-  [data-theme="dark"] .modal .number-input,
-  [data-theme="dark"] .modal input[type="number"] {
+  [data-theme='dark'] .modal .number-input,
+  [data-theme='dark'] .modal input[type='number'] {
     color: white !important;
   }
 
-  [data-theme="dark"] .modal .number-input::placeholder,
-  [data-theme="dark"] .modal input[type="number"]::placeholder {
+  [data-theme='dark'] .modal .number-input::placeholder,
+  [data-theme='dark'] .modal input[type='number']::placeholder {
     color: white !important;
     opacity: 0.7;
   }
 
   /* Override for when tier classes are applied - use dark text for better contrast */
-  [data-theme="dark"] .tier-bronze .modal .number-input,
-  [data-theme="dark"] .tier-silver .modal .number-input,
-  [data-theme="dark"] .tier-gold .modal .number-input,
-  [data-theme="dark"] .tier-platinum .modal .number-input,
-  [data-theme="dark"] .tier-diamond .modal .number-input,
-  [data-theme="dark"] .tier-bronze .modal input[type="number"],
-  [data-theme="dark"] .tier-silver .modal input[type="number"],
-  [data-theme="dark"] .tier-gold .modal input[type="number"],
-  [data-theme="dark"] .tier-platinum .modal input[type="number"],
-  [data-theme="dark"] .tier-diamond .modal input[type="number"] {
+  [data-theme='dark'] .tier-bronze .modal .number-input,
+  [data-theme='dark'] .tier-silver .modal .number-input,
+  [data-theme='dark'] .tier-gold .modal .number-input,
+  [data-theme='dark'] .tier-platinum .modal .number-input,
+  [data-theme='dark'] .tier-diamond .modal .number-input,
+  [data-theme='dark'] .tier-bronze .modal input[type='number'],
+  [data-theme='dark'] .tier-silver .modal input[type='number'],
+  [data-theme='dark'] .tier-gold .modal input[type='number'],
+  [data-theme='dark'] .tier-platinum .modal input[type='number'],
+  [data-theme='dark'] .tier-diamond .modal input[type='number'] {
     color: rgb(31 41 55) !important;
   }
 
-  [data-theme="dark"] .tier-bronze .modal .number-input::placeholder,
-  [data-theme="dark"] .tier-silver .modal .number-input::placeholder,
-  [data-theme="dark"] .tier-gold .modal .number-input::placeholder,
-  [data-theme="dark"] .tier-platinum .modal .number-input::placeholder,
-  [data-theme="dark"] .tier-diamond .modal .number-input::placeholder,
-  [data-theme="dark"] .tier-bronze .modal input[type="number"]::placeholder,
-  [data-theme="dark"] .tier-silver .modal input[type="number"]::placeholder,
-  [data-theme="dark"] .tier-gold .modal input[type="number"]::placeholder,
-  [data-theme="dark"] .tier-platinum .modal input[type="number"]::placeholder,
-  [data-theme="dark"] .tier-diamond .modal input[type="number"]::placeholder {
+  [data-theme='dark'] .tier-bronze .modal .number-input::placeholder,
+  [data-theme='dark'] .tier-silver .modal .number-input::placeholder,
+  [data-theme='dark'] .tier-gold .modal .number-input::placeholder,
+  [data-theme='dark'] .tier-platinum .modal .number-input::placeholder,
+  [data-theme='dark'] .tier-diamond .modal .number-input::placeholder,
+  [data-theme='dark'] .tier-bronze .modal input[type='number']::placeholder,
+  [data-theme='dark'] .tier-silver .modal input[type='number']::placeholder,
+  [data-theme='dark'] .tier-gold .modal input[type='number']::placeholder,
+  [data-theme='dark'] .tier-platinum .modal input[type='number']::placeholder,
+  [data-theme='dark'] .tier-diamond .modal input[type='number']::placeholder {
     color: rgb(31 41 55) !important;
     opacity: 0.7;
   }
@@ -215,68 +235,110 @@
    * - Gradient combinations: Complex multi-color gradients with tier-specific colors
    * - Border-color coordination: Synchronized gradient backgrounds with matching border colors
    */
-  
+
   /* Light mode tier-specific input backgrounds */
   .tier-bronze .modal .number-input,
-  .tier-bronze .modal input[type="number"] {
-    background: linear-gradient(135deg, rgba(205, 127, 50, 0.3), rgba(184, 134, 11, 0.4)) !important;
+  .tier-bronze .modal input[type='number'] {
+    background: linear-gradient(
+      135deg,
+      rgba(205, 127, 50, 0.3),
+      rgba(184, 134, 11, 0.4)
+    ) !important;
     border-color: rgba(205, 127, 50, 0.6) !important;
   }
 
   .tier-silver .modal .number-input,
-  .tier-silver .modal input[type="number"] {
-    background: linear-gradient(135deg, rgba(192, 192, 192, 0.3), rgba(229, 231, 235, 0.4)) !important;
+  .tier-silver .modal input[type='number'] {
+    background: linear-gradient(
+      135deg,
+      rgba(192, 192, 192, 0.3),
+      rgba(229, 231, 235, 0.4)
+    ) !important;
     border-color: rgba(192, 192, 192, 0.6) !important;
   }
 
   .tier-gold .modal .number-input,
-  .tier-gold .modal input[type="number"] {
-    background: linear-gradient(135deg, rgba(218, 165, 32, 0.3), rgba(255, 179, 71, 0.4)) !important;
+  .tier-gold .modal input[type='number'] {
+    background: linear-gradient(
+      135deg,
+      rgba(218, 165, 32, 0.3),
+      rgba(255, 179, 71, 0.4)
+    ) !important;
     border-color: rgba(218, 165, 32, 0.6) !important;
   }
 
   .tier-platinum .modal .number-input,
-  .tier-platinum .modal input[type="number"] {
-    background: linear-gradient(135deg, rgba(229, 231, 235, 0.3), rgba(255, 255, 255, 0.4)) !important;
+  .tier-platinum .modal input[type='number'] {
+    background: linear-gradient(
+      135deg,
+      rgba(229, 231, 235, 0.3),
+      rgba(255, 255, 255, 0.4)
+    ) !important;
     border-color: rgba(229, 231, 235, 0.6) !important;
   }
 
   .tier-diamond .modal .number-input,
-  .tier-diamond .modal input[type="number"] {
-    background: linear-gradient(135deg, rgba(255, 0, 128, 0.3), rgba(0, 255, 255, 0.3), rgba(255, 255, 0, 0.3)) !important;
+  .tier-diamond .modal input[type='number'] {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 0, 128, 0.3),
+      rgba(0, 255, 255, 0.3),
+      rgba(255, 255, 0, 0.3)
+    ) !important;
     border: 2px solid transparent !important;
     background-clip: padding-box !important;
     position: relative !important;
   }
 
   /* Dark mode tier-specific input backgrounds - higher opacity for better visibility */
-  [data-theme="dark"] .tier-bronze .modal .number-input,
-  [data-theme="dark"] .tier-bronze .modal input[type="number"] {
-    background: linear-gradient(135deg, rgba(205, 127, 50, 0.85), rgba(184, 134, 11, 0.85)) !important;
+  [data-theme='dark'] .tier-bronze .modal .number-input,
+  [data-theme='dark'] .tier-bronze .modal input[type='number'] {
+    background: linear-gradient(
+      135deg,
+      rgba(205, 127, 50, 0.85),
+      rgba(184, 134, 11, 0.85)
+    ) !important;
     border-color: rgba(205, 127, 50, 0.4) !important;
   }
 
-  [data-theme="dark"] .tier-silver .modal .number-input,
-  [data-theme="dark"] .tier-silver .modal input[type="number"] {
-    background: linear-gradient(135deg, rgba(192, 192, 192, 0.85), rgba(229, 231, 235, 0.85)) !important;
+  [data-theme='dark'] .tier-silver .modal .number-input,
+  [data-theme='dark'] .tier-silver .modal input[type='number'] {
+    background: linear-gradient(
+      135deg,
+      rgba(192, 192, 192, 0.85),
+      rgba(229, 231, 235, 0.85)
+    ) !important;
     border-color: rgba(192, 192, 192, 0.4) !important;
   }
 
-  [data-theme="dark"] .tier-gold .modal .number-input,
-  [data-theme="dark"] .tier-gold .modal input[type="number"] {
-    background: linear-gradient(135deg, rgba(218, 165, 32, 0.85), rgba(255, 179, 71, 0.85)) !important;
+  [data-theme='dark'] .tier-gold .modal .number-input,
+  [data-theme='dark'] .tier-gold .modal input[type='number'] {
+    background: linear-gradient(
+      135deg,
+      rgba(218, 165, 32, 0.85),
+      rgba(255, 179, 71, 0.85)
+    ) !important;
     border-color: rgba(218, 165, 32, 0.4) !important;
   }
 
-  [data-theme="dark"] .tier-platinum .modal .number-input,
-  [data-theme="dark"] .tier-platinum .modal input[type="number"] {
-    background: linear-gradient(135deg, rgba(229, 231, 235, 0.85), rgba(255, 255, 255, 0.85)) !important;
+  [data-theme='dark'] .tier-platinum .modal .number-input,
+  [data-theme='dark'] .tier-platinum .modal input[type='number'] {
+    background: linear-gradient(
+      135deg,
+      rgba(229, 231, 235, 0.85),
+      rgba(255, 255, 255, 0.85)
+    ) !important;
     border-color: rgba(229, 231, 235, 0.4) !important;
   }
 
-  [data-theme="dark"] .tier-diamond .modal .number-input,
-  [data-theme="dark"] .tier-diamond .modal input[type="number"] {
-    background: linear-gradient(135deg, rgba(255, 0, 128, 0.85), rgba(0, 255, 255, 0.85), rgba(255, 255, 0, 0.85)) !important;
+  [data-theme='dark'] .tier-diamond .modal .number-input,
+  [data-theme='dark'] .tier-diamond .modal input[type='number'] {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 0, 128, 0.85),
+      rgba(0, 255, 255, 0.85),
+      rgba(255, 255, 0, 0.85)
+    ) !important;
     border: 2px solid transparent !important;
     background-clip: padding-box !important;
     position: relative !important;
@@ -292,9 +354,9 @@
    * - Animation timing: Precise control over animation duration and easing functions
    */
   .tier-diamond .modal .number-input::before,
-  .tier-diamond .modal input[type="number"]::before,
-  [data-theme="dark"] .tier-diamond .modal .number-input::before,
-  [data-theme="dark"] .tier-diamond .modal input[type="number"]::before {
+  .tier-diamond .modal input[type='number']::before,
+  [data-theme='dark'] .tier-diamond .modal .number-input::before,
+  [data-theme='dark'] .tier-diamond .modal input[type='number']::before {
     content: '';
     position: absolute;
     top: -2px;
@@ -309,7 +371,8 @@
   }
 
   @keyframes diamondInputBorder {
-    0%, 100% {
+    0%,
+    100% {
       background-position: 0% 50%;
     }
     50% {
@@ -374,14 +437,14 @@
   }
 
   @keyframes diamondModalBorder {
-    0%, 100% {
+    0%,
+    100% {
       background-position: 0% 50%;
     }
     50% {
       background-position: 100% 50%;
     }
   }
-
 
   /* 
    * CUSTOM CSS: Range slider custom styling

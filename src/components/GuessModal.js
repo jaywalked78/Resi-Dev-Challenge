@@ -75,7 +75,10 @@ export class GuessModal {
 
   formatNumbers() {
     return this.numbers
-      .map(n => `<span class="number-pill inline-flex items-center px-3 py-1 rounded-full font-semibold text-sm">${n}</span>`)
+      .map(
+        n =>
+          `<span class="number-pill inline-flex items-center px-3 py-1 rounded-full font-semibold text-sm">${n}</span>`
+      )
       .join('');
   }
 

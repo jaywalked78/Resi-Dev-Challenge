@@ -214,24 +214,34 @@
 
 /* Keyframe animations */
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes platinumShimmer {
-  0%, 100% { 
+  0%,
+  100% {
     background-position: -300% -300%;
     opacity: 0.4;
   }
-  50% { 
+  50% {
     background-position: 300% 300%;
     opacity: 0.6;
   }
 }
 
 @keyframes diamondContentBorder {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 /* Diamond tier feature card gradient borders (only when complex borders are needed) */
@@ -262,10 +272,15 @@
    * - Enterprise Diamond tier requires sophisticated visual styling
    * - Light mode requires white overlay instead of dark overlay for better visibility
    */
-  background: rgba(255, 255, 255, 0.35) !important; /* Light mode: 35% white overlay */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.35
+  ) !important; /* Light mode: 35% white overlay */
   backdrop-filter: blur(20px) saturate(1.2) !important;
   border: 1px solid rgba(0, 0, 0, 0.18) !important; /* Dark border for light mode */
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(0, 0, 0, 0.1),
     0 0 0 1px rgba(0, 0, 0, 0.05) !important;
@@ -278,10 +293,15 @@
 }
 
 .dark .tier-diamond .modal {
-  background: rgba(55, 65, 81, 0.9) !important; /* Slightly more opaque in dark mode */
+  background: rgba(
+    55,
+    65,
+    81,
+    0.9
+  ) !important; /* Slightly more opaque in dark mode */
   backdrop-filter: blur(20px) saturate(1.2) !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 0 0 1px rgba(255, 255, 255, 0.03) !important;
@@ -308,11 +328,15 @@
   border: 2px solid rgba(255, 255, 255, 0.8);
   background: linear-gradient(45deg, #ff0080, #00ffff, #ffff00, #ff0080);
   background-size: 300% 300%;
-  animation: diamondContentBorder 4s ease-in-out infinite, pulse-glow 2s ease-in-out infinite;
+  animation:
+    diamondContentBorder 4s ease-in-out infinite,
+    pulse-glow 2s ease-in-out infinite;
   color: #1f2937 !important;
   font-weight: 600;
   backdrop-filter: blur(10px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .tier-diamond .number-input::placeholder {
@@ -325,14 +349,21 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
   pointer-events: none;
   border-radius: inherit;
   z-index: 1;
 }
 
 .tier-diamond .number-input:focus {
-  animation: diamondContentBorder 2s ease-in-out infinite, pulse-glow 1s ease-in-out infinite;
+  animation:
+    diamondContentBorder 2s ease-in-out infinite,
+    pulse-glow 1s ease-in-out infinite;
   box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
 }
 
@@ -340,7 +371,9 @@
 .dark .tier-diamond .number-input {
   color: #1f2937 !important;
   border: 2px solid rgba(0, 0, 0, 0.8);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Range input styling for diamond tier */
@@ -386,11 +419,15 @@
   border: 2px solid rgba(255, 255, 255, 0.8);
   background: linear-gradient(45deg, #ff0080, #00ffff, #ffff00, #ff0080);
   background-size: 300% 300%;
-  animation: diamondContentBorder 4s ease-in-out infinite, pulse-glow 2s ease-in-out infinite;
+  animation:
+    diamondContentBorder 4s ease-in-out infinite,
+    pulse-glow 2s ease-in-out infinite;
   color: #1f2937 !important;
   font-weight: 600;
   backdrop-filter: blur(10px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .tier-diamond #random-min::placeholder,
@@ -405,7 +442,12 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
   pointer-events: none;
   border-radius: inherit;
   z-index: 1;
@@ -415,5 +457,7 @@
 .dark .tier-diamond #random-max {
   color: #1f2937 !important;
   border: 2px solid rgba(0, 0, 0, 0.8);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.3);
 }

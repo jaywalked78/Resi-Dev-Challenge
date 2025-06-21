@@ -77,19 +77,31 @@ export class Chart {
     // Define tier gradient configurations based on current active tier
     const isDarkMode = document.documentElement.classList.contains('dark');
     const opacity = isDarkMode ? '0.85' : '0.35';
-    
+
     // Detect current tier from body classes
     const body = document.body;
     let currentTierColors;
-    
+
     if (body.classList.contains('tier-bronze')) {
-      currentTierColors = [`rgba(205, 127, 50, ${opacity})`, `rgba(184, 134, 11, ${opacity})`];
+      currentTierColors = [
+        `rgba(205, 127, 50, ${opacity})`,
+        `rgba(184, 134, 11, ${opacity})`,
+      ];
     } else if (body.classList.contains('tier-silver')) {
-      currentTierColors = [`rgba(192, 192, 192, ${opacity})`, `rgba(160, 160, 160, ${opacity})`];
+      currentTierColors = [
+        `rgba(192, 192, 192, ${opacity})`,
+        `rgba(160, 160, 160, ${opacity})`,
+      ];
     } else if (body.classList.contains('tier-gold')) {
-      currentTierColors = [`rgba(218, 165, 32, ${opacity})`, `rgba(255, 179, 71, ${opacity})`];
+      currentTierColors = [
+        `rgba(218, 165, 32, ${opacity})`,
+        `rgba(255, 179, 71, ${opacity})`,
+      ];
     } else if (body.classList.contains('tier-platinum')) {
-      currentTierColors = [`rgba(229, 231, 235, ${opacity})`, `rgba(255, 255, 255, ${opacity})`];
+      currentTierColors = [
+        `rgba(229, 231, 235, ${opacity})`,
+        `rgba(255, 255, 255, ${opacity})`,
+      ];
     } else if (body.classList.contains('tier-diamond')) {
       // For diamond tier, use multiple colors cycling through diamond theme
       const diamondColors = [
@@ -99,21 +111,30 @@ export class Chart {
         [`rgba(204, 85, 0, ${opacity})`, `rgba(230, 106, 0, ${opacity})`],
         [`rgba(75, 0, 130, ${opacity})`, `rgba(106, 13, 173, ${opacity})`],
       ];
-      
+
       // Create multiple diamond gradients
       diamondColors.forEach((colors, index) => {
-        const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        const gradient = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'linearGradient'
+        );
         gradient.setAttribute('id', `tier-gradient-${index + 1}`);
         gradient.setAttribute('x1', '0%');
         gradient.setAttribute('y1', '0%');
         gradient.setAttribute('x2', '0%');
         gradient.setAttribute('y2', '100%');
 
-        const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        const stop1 = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'stop'
+        );
         stop1.setAttribute('offset', '0%');
         stop1.setAttribute('stop-color', colors[0]);
 
-        const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        const stop2 = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'stop'
+        );
         stop2.setAttribute('offset', '100%');
         stop2.setAttribute('stop-color', colors[1]);
 
@@ -123,23 +144,35 @@ export class Chart {
       });
     } else {
       // Default to blue for no tier
-      currentTierColors = [`rgba(59, 130, 246, ${opacity})`, `rgba(37, 99, 235, ${opacity})`];
+      currentTierColors = [
+        `rgba(59, 130, 246, ${opacity})`,
+        `rgba(37, 99, 235, ${opacity})`,
+      ];
     }
-    
+
     // For non-diamond tiers, create a single gradient that all bars will use
     if (!body.classList.contains('tier-diamond')) {
-      const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+      const gradient = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'linearGradient'
+      );
       gradient.setAttribute('id', 'tier-gradient-single');
       gradient.setAttribute('x1', '0%');
       gradient.setAttribute('y1', '0%');
       gradient.setAttribute('x2', '0%');
       gradient.setAttribute('y2', '100%');
 
-      const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      const stop1 = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'stop'
+      );
       stop1.setAttribute('offset', '0%');
       stop1.setAttribute('stop-color', currentTierColors[0]);
 
-      const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      const stop2 = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'stop'
+      );
       stop2.setAttribute('offset', '100%');
       stop2.setAttribute('stop-color', currentTierColors[1]);
 
@@ -147,7 +180,6 @@ export class Chart {
       gradient.appendChild(stop2);
       defs.appendChild(gradient);
     }
-
 
     svg.appendChild(defs);
 
@@ -242,7 +274,7 @@ export class Chart {
       bar.setAttribute('y', this.options.height - this.options.margin.bottom); // Start from bottom
       bar.setAttribute('width', barWidth);
       bar.setAttribute('height', 0); // Start with 0 height
-      
+
       // Use appropriate gradient based on tier
       if (document.body.classList.contains('tier-diamond')) {
         // For diamond tier, cycle through the diamond gradients
@@ -252,7 +284,7 @@ export class Chart {
         // For all other tiers, use the single tier gradient
         bar.setAttribute('fill', `url(#tier-gradient-single)`);
       }
-      
+
       // Add dark gray text color as stroke for better definition
       bar.setAttribute('stroke', 'rgba(75, 85, 99, 0.3)'); // text-gray-600 with opacity
       bar.setAttribute('stroke-width', '0.5');

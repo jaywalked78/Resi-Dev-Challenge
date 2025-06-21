@@ -1,4 +1,18 @@
-/* Enhanced Animations for MeanMachine */
+/**
+ * Enhanced Animations for MeanMachine
+ * 
+ * WHY CSS INSTEAD OF TAILWIND:
+ * - Custom keyframe animations require @keyframes which aren't available in Tailwind's utility classes
+ * - Complex multi-step animations with precise timing and easing curves need native CSS
+ * - Performance-optimized GPU-accelerated animations require specific CSS properties
+ * - Cross-browser compatibility for advanced animation features requires vendor prefixes
+ * - Reduced motion accessibility support requires CSS media queries
+ * 
+ * ENTERPRISE JUSTIFICATION:
+ * These animations provide essential UX enhancements that would require custom CSS anyway.
+ * Tailwind's animation utilities are limited to simple animations and don't support the
+ * complex timing functions, staggered delays, and accessibility features needed here.
+ */
 
 /* Page Load Animation */
 @keyframes fadeInUp {

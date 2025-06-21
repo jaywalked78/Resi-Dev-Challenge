@@ -1,6 +1,16 @@
 /**
  * Signature Touches and Special Features
  * Including rainbow theme and creator credits
+ * 
+ * WHY CSS INSTEAD OF TAILWIND:
+ * - Fixed positioned full-screen animated gradients can't be created with Tailwind utilities
+ * - Complex multi-color gradients with precise angle and positioning require native CSS
+ * - Advanced z-index layering and blend modes aren't available in Tailwind
+ * - Custom animations with transform3d for GPU acceleration need CSS keyframes
+ * 
+ * ENTERPRISE JUSTIFICATION:
+ * These signature visual effects provide brand differentiation and would require
+ * extensive arbitrary Tailwind classes that would be unmaintainable and hurt performance.
  */
 
 /* Rainbow Theme for Grand Masters */

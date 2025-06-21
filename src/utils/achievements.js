@@ -143,12 +143,12 @@ export class AchievementSystem {
   }
 
   loadTierThemes() {
-    // Load tier themes CSS if not already loaded
-    if (!document.getElementById('tier-themes-css')) {
+    // Load tier animations CSS if not already loaded
+    if (!document.getElementById('tier-animations-css')) {
       const link = document.createElement('link');
-      link.id = 'tier-themes-css';
+      link.id = 'tier-animations-css';
       link.rel = 'stylesheet';
-      link.href = `/src/styles/tier-themes.css?v=${Date.now()}`;
+      link.href = `/src/styles/tier-animations.css?v=${Date.now()}`;
       document.head.appendChild(link);
     }
   }

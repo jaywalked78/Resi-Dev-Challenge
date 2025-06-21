@@ -106,7 +106,21 @@
   filter: brightness(1.35);
 }
 
-/* Platinum tier conic gradient overlay for main content */
+/* Platinum tier sophisticated glassmorphism overlay for main content */
+.tier-platinum .main-content-section {
+  /* 
+   * WHY CSS INSTEAD OF TAILWIND:
+   * - Complex glassmorphism requires multiple pseudo-elements with precise layering
+   * - backdrop-filter and advanced blur effects aren't efficiently achievable with Tailwind utilities
+   * - Sophisticated animation timing and easing requires CSS keyframes with multiple properties
+   * - Multiple overlapping gradients with different animation cycles need native CSS control
+   */
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(1px);
+}
+
+/* Primary rotating rectangle with gradient shimmer */
 .tier-platinum .main-content-section::before {
   content: '';
   position: absolute;
@@ -114,16 +128,53 @@
   background: conic-gradient(
     from 0deg,
     transparent,
-    rgba(229, 231, 235, 0.1),
+    rgba(173, 216, 230, 0.265),
+    rgba(255, 255, 255, 0.325),
+    rgba(72, 187, 187, 0.282),
     transparent
   );
   animation: rotate 8s linear infinite;
   pointer-events: none;
   border-radius: inherit;
   z-index: 1;
+  filter: blur(50px);
+}
+
+/* Secondary overlay - subtle shimmer sweep */
+.tier-platinum .main-content-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 20%,
+    rgba(173, 216, 230, 0.08) 40%,
+    rgba(72, 187, 187, 0.12) 50%,
+    rgba(173, 216, 230, 0.08) 60%,
+    transparent 80%,
+    transparent 100%
+  );
+  background-size: 300% 300%;
+  animation: platinumShimmer 8s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 2;
+  filter: blur(20px);
 }
 
 /* Diamond tier animated border for main content */
+.tier-diamond .main-content-section {
+  /* 
+   * WHY CSS INSTEAD OF TAILWIND:
+   * - overflow: hidden with position: relative creates proper containment for animated pseudo-elements
+   * - Complex stacking context management for ::before and ::after pseudo-elements
+   * - Prevents layout shifts from rotating/animated overlays extending beyond container bounds
+   */
+  position: relative;
+  overflow: hidden;
+}
+
 .tier-diamond .main-content-section::before {
   content: '';
   position: absolute;
@@ -165,6 +216,17 @@
 @keyframes rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@keyframes platinumShimmer {
+  0%, 100% { 
+    background-position: -300% -300%;
+    opacity: 0.4;
+  }
+  50% { 
+    background-position: 300% 300%;
+    opacity: 0.6;
+  }
 }
 
 @keyframes diamondContentBorder {

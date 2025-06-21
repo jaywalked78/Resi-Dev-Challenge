@@ -31,10 +31,10 @@ export class GuessModal {
     this.modal.innerHTML = `
       <div class="guess-modal">
         <div class="guess-header">
-          <h2>🎯 Test Your Math Skills!</h2>
-          <p>Can you calculate these values in your head?</p>
-          <div class="numbers-display">
-            Numbers: <span class="number-pills">${this.formatNumbers()}</span>
+          <h2 class="text-2xl font-bold mb-2"><span class="text-2xl mr-2">🎯</span><span class="heading-text">Test Your Math Skills!</span></h2>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Can you calculate these values in your head?</p>
+          <div class="text-base text-gray-700 dark:text-gray-300">
+            Numbers: <span class="number-pills inline-flex gap-2 ml-2">${this.formatNumbers()}</span>
           </div>
         </div>
         
@@ -43,17 +43,17 @@ export class GuessModal {
             ${this.createGuessInputs()}
           </div>
           
-          <div class="guess-tips">
-            <p class="tip">💡 Tip: Leave blank to skip any value</p>
-            <p class="points-info">
+          <div class="guess-tips rounded-lg p-4 mb-6">
+            <p class="tip-text mb-2">💡 Tip: Leave blank to skip any value</p>
+            <p class="points-text text-sm">
               🏆 Points: Exact = 100pts | Within 10% = 50pts | Within 20% = 25pts | Attempt = 5pts
             </p>
           </div>
         </div>
         
-        <div class="guess-footer">
-          <button class="skip-guess-btn">Skip Challenge</button>
-          <button class="submit-guess-btn primary-button">Submit Guesses</button>
+        <div class="guess-footer flex justify-between gap-4">
+          <button class="skip-guess-btn px-6 py-3 rounded-lg font-semibold transition-all duration-200">Skip Challenge</button>
+          <button class="submit-guess-btn px-6 py-3 rounded-lg font-semibold flex-1 transition-all duration-200">Submit Guesses</button>
         </div>
       </div>
     `;
@@ -75,7 +75,7 @@ export class GuessModal {
 
   formatNumbers() {
     return this.numbers
-      .map(n => `<span class="number-pill">${n}</span>`)
+      .map(n => `<span class="number-pill inline-flex items-center px-3 py-1 rounded-full font-semibold text-sm">${n}</span>`)
       .join('');
   }
 
@@ -122,6 +122,7 @@ export class GuessModal {
       }
       
       .guess-modal {
+        background: white;
         border-radius: 16px;
         padding: 32px;
         max-width: 600px;
@@ -131,55 +132,89 @@ export class GuessModal {
         animation: slideIn 0.3s ease-out;
       }
       
+      [data-theme="dark"] .guess-modal {
+        background: rgb(31 41 55);
+      }
+      
       .guess-header {
         text-align: center;
         margin-bottom: 24px;
       }
       
-      .guess-header h2 {
-        color: #3b82f6;
-        margin-bottom: 8px;
-        font-size: 28px;
+      /* 
+       * CUSTOM CSS: Heading text color styling
+       * Why CSS over Tailwind: Dynamic theming to match label colors for consistency
+       * requires CSS for proper cascade management
+       */
+      .heading-text {
+        color: rgb(55 65 81); /* gray-700 for light mode - same as labels */
       }
       
-      .guess-header p {
-        color: #6b7280;
-        margin-bottom: 16px;
+      [data-theme="dark"] .heading-text {
+        color: rgb(209 213 219); /* gray-300 for dark mode - same as labels */
       }
       
-      [data-theme="dark"] .guess-header p {
-        color: #9ca3af;
-      }
-      
-      .numbers-display {
-        font-size: 16px;
-        color: #374151;
-      }
-      
-      [data-theme="dark"] .numbers-display {
-        color: #d1d5db;
-      }
-      
-      .number-pills {
-        display: inline-flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-left: 8px;
-      }
-      
+      /* 
+       * CUSTOM CSS: Number pill tier-based backgrounds
+       * Why CSS over Tailwind: Complex tier-based theming system with dynamic gradients
+       * and consistent color treatment across light/dark modes
+       */
       .number-pill {
-        background: #e5e7eb;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-weight: 600;
-        color: #374151;
+        background: rgb(31 41 55); /* gray-800 */
+        color: white;
       }
       
       [data-theme="dark"] .number-pill {
-        background: #374151;
-        color: #e5e7eb;
+        background: rgb(31 41 55); /* gray-800 */
+        color: white;
       }
       
+      /* Tier-based number pill backgrounds - same as input fields */
+      .tier-bronze .number-pill {
+        background: linear-gradient(135deg, rgba(205, 127, 50, 0.3), rgba(184, 134, 11, 0.4)) !important;
+        color: rgb(31 41 55) !important;
+      }
+
+      .tier-silver .number-pill {
+        background: linear-gradient(135deg, rgba(192, 192, 192, 0.3), rgba(229, 231, 235, 0.4)) !important;
+        color: rgb(31 41 55) !important;
+      }
+
+      .tier-gold .number-pill {
+        background: linear-gradient(135deg, rgba(218, 165, 32, 0.3), rgba(255, 179, 71, 0.4)) !important;
+        color: rgb(31 41 55) !important;
+      }
+
+      .tier-platinum .number-pill {
+        background: linear-gradient(135deg, rgba(229, 231, 235, 0.3), rgba(255, 255, 255, 0.4)) !important;
+        color: rgb(31 41 55) !important;
+      }
+
+      /* Dark mode tier-specific pill backgrounds - higher opacity */
+      [data-theme="dark"] .tier-bronze .number-pill {
+        background: linear-gradient(135deg, rgba(205, 127, 50, 0.85), rgba(184, 134, 11, 0.85)) !important;
+      }
+
+      [data-theme="dark"] .tier-silver .number-pill {
+        background: linear-gradient(135deg, rgba(192, 192, 192, 0.85), rgba(229, 231, 235, 0.85)) !important;
+      }
+
+      [data-theme="dark"] .tier-gold .number-pill {
+        background: linear-gradient(135deg, rgba(218, 165, 32, 0.85), rgba(255, 179, 71, 0.85)) !important;
+      }
+
+      [data-theme="dark"] .tier-platinum .number-pill {
+        background: linear-gradient(135deg, rgba(229, 231, 235, 0.85), rgba(255, 255, 255, 0.85)) !important;
+      }
+      
+      /* 
+       * CUSTOM CSS: Component layout and responsive design
+       * Why CSS over Tailwind: Dynamic component structure requires CSS for:
+       * - Grid layouts with specific column sizing (200px 1fr) for responsive label/input pairs
+       * - Component-level styling that needs to work with dynamically generated content
+       * - Consistent spacing and alignment across programmatically created elements
+       * - Better maintainability for complex grid layouts in JavaScript-generated content
+       */
       .guess-grid {
         display: grid;
         gap: 20px;
@@ -198,6 +233,11 @@ export class GuessModal {
         align-items: center;
         gap: 8px;
         font-weight: 500;
+        color: rgb(55 65 81); /* gray-700 */
+      }
+      
+      [data-theme="dark"] .guess-item label {
+        color: rgb(209 213 219); /* gray-300 */
       }
       
       .stat-icon {
@@ -210,12 +250,14 @@ export class GuessModal {
         border-radius: 8px;
         font-size: 16px;
         transition: border-color 0.2s;
+        background: white;
+        color: rgb(31 41 55);
       }
       
       [data-theme="dark"] .guess-input {
         background: #374151;
         border-color: #4b5563;
-        color: #e5e7eb;
+        color: white !important;
       }
       
       .guess-input:focus {
@@ -223,11 +265,104 @@ export class GuessModal {
         border-color: #3b82f6;
       }
       
+      /* 
+       * ENTERPRISE CSS: Tier-based input field styling
+       * Why CSS over Tailwind: Complex tier-based theming system with dynamic gradients
+       * matching calculator modal treatment. Requires:
+       * - Multi-tier cascade inheritance (.tier-bronze, .tier-silver, etc.)
+       * - Complex gradient backgrounds with specific rgba opacity values
+       * - Synchronized border colors with gradient backgrounds
+       * - Light/dark mode variations with different opacity treatments
+       * - !important needed to override base input styles from component
+       */
+      .tier-bronze .guess-input {
+        background: linear-gradient(135deg, rgba(205, 127, 50, 0.3), rgba(184, 134, 11, 0.4)) !important;
+        border-color: rgba(205, 127, 50, 0.6) !important;
+      }
+
+      .tier-silver .guess-input {
+        background: linear-gradient(135deg, rgba(192, 192, 192, 0.3), rgba(229, 231, 235, 0.4)) !important;
+        border-color: rgba(192, 192, 192, 0.6) !important;
+      }
+
+      .tier-gold .guess-input {
+        background: linear-gradient(135deg, rgba(218, 165, 32, 0.3), rgba(255, 179, 71, 0.4)) !important;
+        border-color: rgba(218, 165, 32, 0.6) !important;
+      }
+
+      .tier-platinum .guess-input {
+        background: linear-gradient(135deg, rgba(229, 231, 235, 0.3), rgba(255, 255, 255, 0.4)) !important;
+        border-color: rgba(229, 231, 235, 0.6) !important;
+      }
+
+      /* Dark mode tier-specific input backgrounds - higher opacity */
+      [data-theme="dark"] .tier-bronze .guess-input {
+        background: linear-gradient(135deg, rgba(205, 127, 50, 0.85), rgba(184, 134, 11, 0.85)) !important;
+        border-color: rgba(205, 127, 50, 0.4) !important;
+        color: rgb(31 41 55) !important;
+      }
+
+      [data-theme="dark"] .tier-silver .guess-input {
+        background: linear-gradient(135deg, rgba(192, 192, 192, 0.85), rgba(229, 231, 235, 0.85)) !important;
+        border-color: rgba(192, 192, 192, 0.4) !important;
+        color: rgb(31 41 55) !important;
+      }
+
+      [data-theme="dark"] .tier-gold .guess-input {
+        background: linear-gradient(135deg, rgba(218, 165, 32, 0.85), rgba(255, 179, 71, 0.85)) !important;
+        border-color: rgba(218, 165, 32, 0.4) !important;
+        color: rgb(31 41 55) !important;
+      }
+
+      [data-theme="dark"] .tier-platinum .guess-input {
+        background: linear-gradient(135deg, rgba(229, 231, 235, 0.85), rgba(255, 255, 255, 0.85)) !important;
+        border-color: rgba(229, 231, 235, 0.4) !important;
+        color: rgb(31 41 55) !important;
+      }
+      
+      /* 
+       * CUSTOM CSS: Placeholder styling for tier-based inputs
+       * Why CSS over Tailwind: Complex pseudo-element styling (::placeholder) with
+       * theme-aware color coordination and opacity precision not efficiently
+       * handled by Tailwind utilities
+       */
+      .guess-input::placeholder {
+        color: rgb(31 41 55);
+        opacity: 0.7;
+      }
+      
+      [data-theme="dark"] .guess-input::placeholder {
+        color: white;
+        opacity: 0.7;
+      }
+      
+      /* Tier-based placeholder styling in dark mode */
+      [data-theme="dark"] .tier-bronze .guess-input::placeholder,
+      [data-theme="dark"] .tier-silver .guess-input::placeholder,
+      [data-theme="dark"] .tier-gold .guess-input::placeholder,
+      [data-theme="dark"] .tier-platinum .guess-input::placeholder {
+        color: rgb(31 41 55) !important;
+        opacity: 0.7;
+      }
+      
+      /* 
+       * CUSTOM CSS: Feedback and tips styling
+       * Why CSS over Tailwind: Complex state-dependent styling with:
+       * - Grid positioning (grid-column: 2) for layout within dynamic grid system
+       * - State-based color classes (.correct, .close, .far) for dynamic feedback
+       * - Theme-aware background coordination for consistent visual hierarchy
+       * - Component-specific height and spacing for proper feedback alignment
+       */
       .guess-feedback {
         grid-column: 2;
         font-size: 14px;
         margin-top: 4px;
         height: 20px;
+        color: rgb(55 65 81); /* gray-700 - consistent with label colors */
+      }
+      
+      [data-theme="dark"] .guess-feedback {
+        color: rgb(209 213 219); /* gray-300 - consistent with label colors */
       }
       
       .guess-feedback.correct {
@@ -244,73 +379,56 @@ export class GuessModal {
       }
       
       .guess-tips {
-        background: #f3f4f6;
-        border-radius: 8px;
-        padding: 16px;
-        margin-bottom: 24px;
+        background: rgb(243 244 246); /* gray-100 */
       }
       
       [data-theme="dark"] .guess-tips {
-        background: #374151;
+        background: rgb(55 65 81); /* gray-700 */
       }
       
-      .tip {
-        margin: 0 0 8px 0;
-        color: #6b7280;
-      }
-      
-      .points-info {
+      .tip-text, .points-text {
         margin: 0;
-        color: #374151;
-        font-size: 14px;
+        color: rgb(55 65 81); /* gray-700 */
       }
       
-      [data-theme="dark"] .points-info {
-        color: #d1d5db;
+      [data-theme="dark"] .tip-text,
+      [data-theme="dark"] .points-text {
+        color: rgb(209 213 219); /* gray-300 */
       }
       
-      .guess-footer {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-      }
-      
-      .skip-guess-btn, .submit-guess-btn {
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
+      /* 
+       * CUSTOM CSS: Button styling with tier-based backgrounds
+       * Why CSS over Tailwind: Complex hover states with transforms and tier-specific
+       * gradient backgrounds that match the Launch MeanMachine button
+       */
+      .skip-guess-btn {
+        background: rgb(229 231 235); /* gray-200 */
+        color: rgb(55 65 81); /* gray-700 */
         border: none;
       }
       
-      .skip-guess-btn {
-        background: #e5e7eb;
-        color: #374151;
-      }
-      
       .skip-guess-btn:hover {
-        background: #d1d5db;
+        background: rgb(209 213 219); /* gray-300 */
       }
       
       [data-theme="dark"] .skip-guess-btn {
-        background: #4b5563;
-        color: #e5e7eb;
+        background: rgb(75 85 99); /* gray-600 */
+        color: rgb(229 231 235); /* gray-200 */
       }
       
       [data-theme="dark"] .skip-guess-btn:hover {
-        background: #6b7280;
+        background: rgb(107 114 128); /* gray-500 */
       }
       
+      /* Default submit button styling */
       .submit-guess-btn {
-        background: #3b82f6;
+        background: rgb(59 130 246); /* blue-500 */
         color: white;
-        flex: 1;
+        border: none;
       }
       
       .submit-guess-btn:hover {
-        background: #2563eb;
+        background: rgb(37 99 235); /* blue-600 */
         transform: translateY(-1px);
       }
       
@@ -318,6 +436,43 @@ export class GuessModal {
         transform: translateY(0);
       }
       
+      /* Tier-based submit button backgrounds matching Launch MeanMachine */
+      .tier-bronze .submit-guess-btn {
+        background: linear-gradient(135deg, #CD7F32, #B8860B) !important;
+      }
+      
+      .tier-silver .submit-guess-btn {
+        background: linear-gradient(135deg, #C0C0C0, #E5E7EB) !important;
+        color: rgb(31 41 55) !important;
+      }
+      
+      .tier-gold .submit-guess-btn {
+        background: linear-gradient(135deg, #DAA520, #FFB347) !important;
+        color: rgb(31 41 55) !important;
+      }
+      
+      .tier-platinum .submit-guess-btn {
+        background: linear-gradient(135deg, #E5E7EB, #FFFFFF) !important;
+        color: rgb(31 41 55) !important;
+      }
+      
+      /* Dark mode tier button styling */
+      [data-theme="dark"] .tier-bronze .submit-guess-btn:hover,
+      [data-theme="dark"] .tier-silver .submit-guess-btn:hover,
+      [data-theme="dark"] .tier-gold .submit-guess-btn:hover,
+      [data-theme="dark"] .tier-platinum .submit-guess-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+      
+      /* 
+       * CUSTOM CSS: Animation keyframes and responsive design
+       * Why CSS over Tailwind: 
+       * - @keyframes animations not supported in Tailwind utilities
+       * - Complex transform and opacity combinations for smooth modal entrance
+       * - Media queries for responsive layout changes (grid-template-columns)
+       * - Component-specific breakpoint behavior for mobile optimization
+       */
       @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }

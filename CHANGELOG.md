@@ -2,13 +2,19 @@
 
 ## [1.3.0] - 2025-06-21
 
-### Added - Complete Tailwind CSS Migration & Pure CSS Architecture
+### Added - Main Content Tailwind CSS Migration & Major Image Optimization
 
-- **🎨 100% Tailwind CSS Conversion**
-  - Converted all remaining custom CSS sections to pure Tailwind CSS
-  - Eliminated all `!important` declarations from index.html sections
-  - Achieved complete CSS-to-Tailwind migration for header, footer, and achievement systems
-  - Enhanced maintainability through consistent Tailwind utility classes
+- **🎨 Main Content Section Tailwind Conversion**
+  - Converted header, footer, and main content sections to Tailwind CSS
+  - Eliminated most `!important` declarations for cleaner CSS architecture
+  - Enhanced tier display and separator styling with semantic CSS classes
+  - Documented all remaining custom CSS usage with rationale comments
+
+- **🚀 Major Image Optimization (97% Size Reduction)**
+  - Optimized hero.jpg from 10.7MB to 341KB while maintaining visual quality
+  - Achieved dramatic performance improvement with zero code changes
+  - Significantly improved Core Web Vitals and mobile user experience
+  - Maintained original aspect ratio (1920x1245) for design integrity
 
 - **✨ Header Section Enhancements**
   - Converted header title and navigation to pure Tailwind classes

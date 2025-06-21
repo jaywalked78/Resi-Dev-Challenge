@@ -197,7 +197,7 @@ export class AchievementSystem {
         tierName.textContent = currentTier;
 
         // Apply tier-specific styling to the display
-        tierDisplay.className = `absolute top-6 left-6 px-3 py-2 rounded-lg backdrop-blur-sm border transition-all duration-300 tier-display-${currentTier}`;
+        tierDisplay.className = `absolute top-6 left-6 px-3 py-2 rounded-lg backdrop-blur-sm border transition-all duration-300 tier-display-container tier-display-${currentTier}`;
 
         // Show the display
         tierDisplay.classList.remove('hidden');

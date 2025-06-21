@@ -9,6 +9,7 @@
 @import url('./styles/tier-animations.css');
 
 @layer base {
+  /* CUSTOM CSS: Base font size override - not available as Tailwind utility */
   html {
     font-size: 15px;
   }
@@ -16,12 +17,98 @@
 
 @layer components {
 
-  /* Modal animations */
+  /* 
+   * CUSTOM CSS: Tier Display Dynamic Theming
+   * Why CSS over Tailwind:
+   * - Complex multi-color gradients with custom opacity values
+   * - Dynamic theming based on parent body class (.tier-*)
+   * - Tailwind arbitrary selectors would create verbose, unmaintainable HTML
+   * - Component-level styling better suited for CSS modules approach
+   * - Enterprise pattern: complex theming logic belongs in CSS, not HTML
+   */
+  .tier-bronze .tier-display-container {
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(184, 134, 11, 0.3));
+    border-color: #cd7f32;
+    color: #fbbf24;
+  }
+
+  .tier-silver .tier-display-container {
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.2), rgba(229, 231, 235, 0.3));
+    border-color: #c0c0c0;
+    color: #e5e7eb;
+  }
+
+  .tier-gold .tier-display-container {
+    background: linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(255, 179, 71, 0.15));
+    border-color: #daa520;
+    color: #fbbf24;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  }
+
+  .tier-platinum .tier-display-container {
+    background: linear-gradient(135deg, rgba(229, 231, 235, 0.3), rgba(255, 255, 255, 0.4));
+    border-color: #e5e7eb;
+    color: #f8fafc;
+    box-shadow: 0 6px 16px rgba(229, 231, 235, 0.4);
+  }
+
+  .tier-diamond .tier-display-container {
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.2), rgba(0, 255, 255, 0.2), rgba(255, 255, 0, 0.2));
+    border: 2px solid transparent;
+    color: white;
+    width: fit-content;
+    max-width: fit-content;
+  }
+
+  /* 
+   * CUSTOM CSS: Tier-themed horizontal separator
+   * Why CSS over Tailwind:
+   * - Dynamic theming based on parent body class (.tier-*)
+   * - Custom height (4px) not available in Tailwind utilities
+   * - Diamond tier uses complex multi-color gradient
+   * - Cleaner to maintain as component CSS vs scattered HTML classes
+   */
+  .tier-separator {
+    width: 100%;
+    height: 4px;
+    background-color: #6b7280; /* gray-500 default */
+  }
+
+  .tier-bronze .tier-separator {
+    background-color: #cd7f32;
+  }
+
+  .tier-silver .tier-separator {
+    background-color: #c0c0c0;
+  }
+
+  .tier-gold .tier-separator {
+    background-color: #daa520;
+  }
+
+  .tier-platinum .tier-separator {
+    background-color: #e5e7eb;
+  }
+
+  .tier-diamond .tier-separator {
+    background: linear-gradient(90deg, #ff0080, #00ffff, #ffff00);
+  }
+
+  /* 
+   * CUSTOM CSS: Modal backdrop blur effect
+   * Why CSS over Tailwind: backdrop-filter not fully supported in all Tailwind versions
+   */
   .modal-backdrop {
     backdrop-filter: blur(4px);
   }
 
-  /* Custom scrollbar for modal */
+  /* 
+   * CUSTOM CSS: Custom scrollbar styling for modal
+   * Why CSS over Tailwind: 
+   * - Webkit pseudo-elements (::-webkit-scrollbar) not supported by Tailwind
+   * - Browser-specific styling requires vendor prefixes
+   * - Complex multi-part scrollbar styling (track, thumb, hover states)
+   */
   .modal::-webkit-scrollbar {
     width: 8px;
   }
@@ -40,7 +127,13 @@
     background-color: #6b7280;
   }
 
-  /* Number input styling */
+  /* 
+   * CUSTOM CSS: Number input spin button removal
+   * Why CSS over Tailwind:
+   * - Webkit pseudo-elements (::-webkit-inner-spin-button) not supported by Tailwind
+   * - Browser-specific appearance properties require vendor prefixes
+   * - Cross-browser input styling needs specific selectors and properties
+   */
   input[type='number']::-webkit-inner-spin-button,
   input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -53,13 +146,24 @@
     appearance: textfield;
   }
 
-  /* Number input placeholder styling for better legibility */
+  /* 
+   * CUSTOM CSS: Number input placeholder styling
+   * Why CSS over Tailwind: Complex pseudo-element styling with custom opacity values
+   */
   .number-input::placeholder {
     color: rgb(31 41 55);
     opacity: 0.7;
   }
 
-  /* In dark mode, use white text for inputs when no tier is applied */
+  /* 
+   * CUSTOM CSS: Dark mode input styling with tier overrides
+   * Why CSS over Tailwind:
+   * - Complex data-attribute selectors ([data-theme="dark"]) 
+   * - Multi-level selector combinations (theme + tier + component)
+   * - Tailwind dark: modifier doesn't support custom data attributes
+   * - Cascade management for tier-specific contrast adjustments
+   * - !important needed to override inline styles from JS
+   */
   [data-theme="dark"] .modal .number-input,
   [data-theme="dark"] .modal input[type="number"] {
     color: white !important;
@@ -99,7 +203,14 @@
     opacity: 0.7;
   }
 
-  /* Range slider styling */
+  /* 
+   * CUSTOM CSS: Range slider custom styling
+   * Why CSS over Tailwind:
+   * - Webkit/Mozilla pseudo-elements (::-webkit-slider-thumb, ::-moz-range-thumb)
+   * - Browser-specific appearance reset properties
+   * - Cross-browser slider customization requires vendor-specific selectors
+   * - Tailwind doesn't support range input pseudo-element styling
+   */
   input[type='range'] {
     -webkit-appearance: none;
     appearance: none;
@@ -123,7 +234,14 @@
     border: 0;
   }
 
-  /* Enhanced Focus visible for accessibility */
+  /* 
+   * CUSTOM CSS: Enhanced accessibility focus indicators
+   * Why CSS over Tailwind:
+   * - :focus-visible pseudo-class with complex multi-element selectors
+   * - Custom box-shadow with multiple layers
+   * - ARIA role selectors ([role='tab']) not supported by Tailwind
+   * - Accessibility-specific styling requires precise control
+   */
   .modal button:focus-visible,
   .modal input:focus-visible,
   .modal select:focus-visible,
@@ -136,7 +254,12 @@
       0 0 0 4px rgba(59, 130, 246, 0.2);
   }
 
-  /* High contrast focus indicators */
+  /* 
+   * CUSTOM CSS: High contrast accessibility mode
+   * Why CSS over Tailwind:
+   * - Media query @media (prefers-contrast: high) not supported by Tailwind
+   * - Accessibility override patterns require cascade control
+   */
   @media (prefers-contrast: high) {
     .modal button:focus-visible,
     .modal input:focus-visible,
@@ -150,7 +273,15 @@
     }
   }
 
-  /* Skip navigation links */
+  /* 
+   * CUSTOM CSS: Screen reader accessibility utilities
+   * Why CSS over Tailwind:
+   * - Complex accessibility pattern with multiple property resets
+   * - Legacy clip property not supported by Tailwind
+   * - Focus state requires precise property restoration
+   * - Standard accessibility implementation pattern
+   * Note: Tailwind has sr-only but this is more comprehensive
+   */
   .sr-only {
     position: absolute;
     width: 1px;
@@ -175,7 +306,14 @@
     white-space: normal;
   }
 
-  /* Keyboard navigation indicators */
+  /* 
+   * CUSTOM CSS: Keyboard navigation focus indicators
+   * Why CSS over Tailwind:
+   * - ::after pseudo-element with content property
+   * - Complex positioning with negative values
+   * - Custom border styling with pointer-events
+   * - Tailwind doesn't support ::after with content generation
+   */
   .tab-btn:focus,
   .result-tab-btn:focus {
     position: relative;
@@ -194,7 +332,14 @@
     pointer-events: none;
   }
 
-  /* Reduce motion for accessibility */
+  /* 
+   * CUSTOM CSS: Reduced motion accessibility
+   * Why CSS over Tailwind:
+   * - Media query @media (prefers-reduced-motion: reduce) not supported by Tailwind
+   * - Universal selector (*) with pseudo-element targeting
+   * - Accessibility requirement to override all animations/transitions
+   * - !important needed to override component-specific animations
+   */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -206,7 +351,14 @@
     }
   }
 
-  /* High contrast mode support */
+  /* 
+   * CUSTOM CSS: High contrast mode accessibility overrides
+   * Why CSS over Tailwind:
+   * - Media query @media (prefers-contrast: high) not supported by Tailwind
+   * - Overriding existing Tailwind classes with !important
+   * - Accessibility compliance requires specific contrast ratios
+   * - Systematic color override patterns for accessibility
+   */
   @media (prefers-contrast: high) {
     .bg-white {
       background-color: #fff !important;

@@ -150,6 +150,7 @@ module.exports = {
       },
       borderWidth: {
         '3': '3px',
+        '5': '5px',
       },
       textShadow: {
         'md': '0 2px 4px rgba(0, 0, 0, 0.5)'

@@ -266,20 +266,25 @@
     <!-- Content wrapper -->
     <div class="relative z-10 min-h-screen flex flex-col">
       <header
-        class="bg-gray-800/90 dark:bg-gray-900/95 backdrop-blur-sm text-white p-8 text-center relative transition-colors duration-300 animate-fadeInDown"
+        class="bg-gray-800/90 dark:bg-gray-900/95 backdrop-blur-sm text-white p-8 text-center relative transition-colors duration-300 animate-fadeInDown
+               [.tier-bronze_&]:shadow-[inset_0_-6px_0_#cd7f32]
+               [.tier-silver_&]:shadow-[inset_0_-6px_0_#c0c0c0]
+               [.tier-gold_&]:shadow-[inset_0_-6px_0_#daa520]
+               [.tier-platinum_&]:shadow-[inset_0_-6px_0_#e5e7eb]
+               [.tier-diamond_&]:shadow-[inset_0_-6px_0_transparent]"
       >
         <!-- Tier Display -->
         <div
           id="tier-display"
-          class="absolute top-6 left-6 px-3 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 hidden
-                 [.tier-bronze_&]:bg-tier-display-bronze [.tier-bronze_&]:border-tier-bronze [.tier-bronze_&]:text-tier-display-bronze-text
-                 [.tier-silver_&]:bg-tier-display-silver [.tier-silver_&]:border-tier-silver [.tier-silver_&]:text-tier-display-silver-text
-                 [.tier-gold_&]:bg-tier-display-gold [.tier-gold_&]:border-tier-gold [.tier-gold_&]:text-tier-display-gold-text [.tier-gold_&]:shadow-tier-display-gold
-                 [.tier-platinum_&]:bg-tier-display-platinum [.tier-platinum_&]:border-tier-platinum [.tier-platinum_&]:text-tier-display-platinum-text [.tier-platinum_&]:shadow-tier-display-platinum
-                 [.tier-diamond_&]:bg-tier-display-diamond [.tier-diamond_&]:border-transparent [.tier-diamond_&]:text-white [.tier-diamond_&]:w-fit [.tier-diamond_&]:max-w-fit"
+          class="absolute top-6 left-6 px-3 py-2 rounded-lg backdrop-blur-sm transition-all duration-300 hidden
+                 bg-white/10 border-white/20 border text-white tier-display-container"
           aria-label="Current achievement tier"
         >
-          <div class="flex items-center gap-2">
+          <!-- Diamond tier animated border overlay -->
+          <div class="[.tier-diamond_&]:absolute [.tier-diamond_&]:inset-0 [.tier-diamond_&]:rounded-lg [.tier-diamond_&]:bg-gradient-to-r [.tier-diamond_&]:from-pink-500 [.tier-diamond_&]:via-cyan-500 [.tier-diamond_&]:to-yellow-500 [.tier-diamond_&]:bg-[length:200%_200%] [.tier-diamond_&]:animate-diamondButtonShift [.tier-diamond_&]:p-0.5">
+            <div class="[.tier-diamond_&]:w-full [.tier-diamond_&]:h-full [.tier-diamond_&]:bg-gray-800/90 [.tier-diamond_&]:rounded-lg"></div>
+          </div>
+          <div class="flex items-center gap-2 relative z-10">
             <span id="tier-icon" class="text-lg" aria-hidden="true">🏆</span>
             <div class="text-left">
               <div class="text-xs text-white/80 font-medium">Tier</div>
@@ -352,7 +357,7 @@
               hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]
               dark:hover:shadow-[0_8px_25px_rgba(0,0,0,0.3)]
               
-              !border-[5px] border-transparent
+              border-[3px] border-transparent
               
               [.tier-bronze_&]:border-tier-bronze
               [.tier-bronze_&]:shadow-tier-bronze
@@ -392,6 +397,9 @@
                 numbers, MeanMachine makes finding averages ridiculously simple.
               </p>
             </header>
+
+            <!-- Tier-themed horizontal line -->
+            <div class="tier-separator mb-6 relative z-10"></div>
 
             <section 
               class="grid md:grid-cols-3 gap-6 mb-8 relative z-10"

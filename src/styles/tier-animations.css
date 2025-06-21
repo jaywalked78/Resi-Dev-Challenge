@@ -1,0 +1,89 @@
+/**
+ * Minimal CSS for Complex Tier Effects That Can't Be Done with Tailwind
+ * This file contains only the animations and effects that require complex selectors
+ * or pseudo-elements that Tailwind can't handle efficiently
+ */
+
+/* Platinum tier conic gradient overlay for main content */
+.tier-platinum .main-content-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(229, 231, 235, 0.1),
+    transparent
+  );
+  animation: rotate 8s linear infinite;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+/* Diamond tier animated border for main content */
+.tier-diamond .main-content-section::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #ff0080, #00ffff, #ffff00, #ff0080);
+  background-size: 300% 300%;
+  animation: diamondContentBorder 4s ease-in-out infinite;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+/* Diamond tier prism effect for main content */
+.tier-diamond .main-content-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(255, 0, 128, 0.05),
+    transparent,
+    rgba(0, 255, 255, 0.05),
+    transparent
+  );
+  animation: rotate 6s linear infinite;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+/* Ensure main content children are above overlays */
+.tier-platinum .main-content-section > *,
+.tier-diamond .main-content-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Keyframe animations */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes diamondContentBorder {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Diamond tier feature card gradient borders (only when complex borders are needed) */
+.tier-diamond .feature-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(45deg, #ff0080, #00ffff, #ffff00, #ff0080);
+  background-size: 300% 300%;
+  animation: diamondContentBorder 4s ease-in-out infinite;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tier-diamond .feature-card:hover::before {
+  opacity: 1;
+}

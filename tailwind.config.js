@@ -35,6 +35,76 @@ module.exports = {
       64: '16rem', // 256px
     },
     extend: {
+      colors: {
+        // Tier colors
+        'tier-bronze': '#cd7f32',
+        'tier-bronze-dark': '#b8860b',
+        'tier-silver': '#c0c0c0',
+        'tier-silver-dark': '#a0a0a0',
+        'tier-gold': '#daa520',
+        'tier-gold-light': '#ffb347',
+        'tier-platinum': '#e5e7eb',
+        'tier-platinum-light': '#ffffff',
+        'tier-diamond-pink': '#ff0080',
+        'tier-diamond-cyan': '#00ffff',
+        'tier-diamond-yellow': '#ffff00',
+      },
+      backgroundImage: {
+        // Tier gradients
+        'bronze-gradient': 'linear-gradient(135deg, #cd7f32 0%, #b8860b 100%)',
+        'silver-gradient': 'linear-gradient(135deg, #c0c0c0 0%, #a0a0a0 100%)',
+        'gold-gradient': 'linear-gradient(135deg, #daa520 0%, #ffb347 50%, #b8860b 100%)',
+        'platinum-gradient': 'linear-gradient(135deg, #e5e7eb 0%, #ffffff 50%, #d1d5db 100%)',
+        'diamond-gradient': 'linear-gradient(135deg, #ff0080 0%, #00ffff 50%, #ffff00 100%)',
+      },
+      boxShadow: {
+        'tier-bronze': '0 2px 8px rgba(205, 127, 50, 0.2)',
+        'tier-silver': '0 4px 16px rgba(192, 192, 192, 0.2)',
+        'tier-gold': '0 6px 20px rgba(255, 215, 0, 0.2)',
+        'tier-platinum': '0 8px 24px rgba(229, 231, 235, 0.2)',
+        'tier-diamond': '0 12px 36px rgba(255, 0, 128, 0.2)',
+      },
+      keyframes: {
+        fadeInUp: {
+          'from': {
+            opacity: '0',
+            transform: 'translateY(30px)'
+          },
+          'to': {
+            opacity: '1',
+            transform: 'translateY(0)'
+          }
+        },
+        goldContentSweep: {
+          '0%, 100%': { transform: 'translateX(-100%)' },
+          '50%': { transform: 'translateX(100%)' }
+        },
+        goldCardSweep: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' }
+        },
+        diamondButtonShift: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' }
+        },
+        'pulse-glow': {
+          '0%, 100%': { boxShadow: '0 0 5px rgba(59, 130, 246, 0.5)' },
+          '50%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.4)' }
+        }
+      },
+      animation: {
+        'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
+        'goldContentSweep': 'goldContentSweep 6s ease-in-out infinite',
+        'goldCardSweep': 'goldCardSweep 1s ease-out',
+        'diamondButtonShift': 'diamondButtonShift 3s ease-in-out infinite',
+        'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
+      },
+      borderWidth: {
+        '3': '3px',
+      },
+      textShadow: {
+        'md': '0 2px 4px rgba(0, 0, 0, 0.5)'
+      },
       margin: {
         1: '0.25rem',
         2: '0.5rem',
@@ -53,5 +123,16 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    },
+  ],
 };

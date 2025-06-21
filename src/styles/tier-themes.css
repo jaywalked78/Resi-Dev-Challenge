@@ -1218,12 +1218,12 @@
 
 /* Main Content Section Styling */
 .tier-bronze .main-content-section {
-  border: 3px solid #cd7f32;
+  border: 6px solid #cd7f32;
   box-shadow: 0 4px 12px rgba(205, 127, 50, 0.1);
 }
 
 [data-theme='dark'] .tier-bronze .main-content-section {
-  border: 3px solid #cd7f32;
+  border: 6px solid #cd7f32;
 }
 
 .tier-silver .main-content-section {

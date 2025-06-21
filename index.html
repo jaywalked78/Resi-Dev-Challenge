@@ -329,19 +329,53 @@
 
       <main
         id="main-content"
-        class="flex-grow flex items-center justify-center p-8 animate-fadeInUp"
+        class="flex-grow flex items-center justify-center p-8 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]"
         aria-labelledby="main-heading"
       >
         <div class="max-w-4xl w-full">
           <article
-            class="main-content-section bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-lg shadow-2xl p-8 text-center transition-colors duration-300 hover-lift"
+            class="
+              main-content-section 
+              relative
+              bg-white/95 dark:bg-gray-800/95 
+              backdrop-blur-sm 
+              rounded-lg 
+              shadow-2xl 
+              p-8 
+              text-center 
+              transition-all duration-300
+              hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]
+              dark:hover:shadow-[0_8px_25px_rgba(0,0,0,0.3)]
+              
+              !border-[5px] border-transparent
+              
+              [.tier-bronze_&]:border-tier-bronze
+              [.tier-bronze_&]:shadow-tier-bronze
+              
+              [.tier-silver_&]:border-tier-silver
+              [.tier-silver_&]:shadow-tier-silver
+              
+              [.tier-gold_&]:border-tier-gold
+              [.tier-gold_&]:shadow-tier-gold
+              [.tier-gold_&]:relative
+              
+              [.tier-platinum_&]:border-tier-platinum
+              [.tier-platinum_&]:shadow-tier-platinum
+              
+              [.tier-diamond_&]:border-transparent
+              [.tier-diamond_&]:shadow-tier-diamond
+            "
             role="main"
             aria-labelledby="main-heading"
           >
-            <header class="mb-8">
+            <!-- Gold tier sweep effect overlay -->
+            <div class="[.tier-gold_&]:absolute [.tier-gold_&]:inset-0 [.tier-gold_&]:pointer-events-none [.tier-gold_&]:rounded-lg [.tier-gold_&]:overflow-hidden">
+              <div class="[.tier-gold_&]:absolute [.tier-gold_&]:inset-0 [.tier-gold_&]:bg-gradient-to-r [.tier-gold_&]:from-transparent [.tier-gold_&]:via-tier-gold/5 [.tier-gold_&]:to-transparent [.tier-gold_&]:animate-[goldContentSweep_6s_ease-in-out_infinite]"></div>
+            </div>
+            <header class="mb-8 relative z-10">
               <h2
                 id="main-heading"
-                class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3 transition-colors duration-300"
+                class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3 transition-colors duration-300 [.tier-bronze_&]:pt-1.5 [.tier-silver_&]:pt-1.5 [.tier-gold_&]:pt-1.5 [.tier-platinum_&]:pt-1.5 [.tier-diamond_&]:pt-1.5"
               >
                 Calculate Averages in Seconds
               </h2>
@@ -354,92 +388,240 @@
               </p>
             </header>
 
-            <section class="mb-8" aria-labelledby="features-heading">
-              <h3 id="features-heading" class="sr-only">Calculator Features</h3>
-              <div class="grid md:grid-cols-3 gap-4" role="list">
-                <article
-                  class="feature-card bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
-                  role="listitem"
+            <section 
+              class="grid md:grid-cols-3 gap-6 mb-8 relative z-10"
+              aria-label="Key features of MeanMachine calculator"
+            >
+                <div
+                  class="
+                    feature-card 
+                    p-6 
+                    rounded-lg 
+                    transition-all 
+                    duration-300
+                    bg-blue-50 dark:bg-blue-900/30
+                    border border-transparent
+                    
+                    hover:-translate-y-0.5
+                    hover:shadow-md
+                    
+                    [.tier-bronze_&]:border-tier-bronze/20
+                    [.tier-bronze_&]:hover:border-tier-bronze/40
+                    [.tier-bronze_&]:hover:shadow-tier-bronze/15
+                    [.tier-bronze_&]:hover:-translate-y-0.5
+                    
+                    [.tier-silver_&]:border-tier-silver/30
+                    [.tier-silver_&]:hover:border-tier-silver/50
+                    [.tier-silver_&]:hover:shadow-tier-silver/20
+                    [.tier-silver_&]:hover:-translate-y-0.75
+                    
+                    [.tier-gold_&]:border-tier-gold/30
+                    [.tier-gold_&]:hover:border-tier-gold/50
+                    [.tier-gold_&]:hover:shadow-tier-gold/25
+                    [.tier-gold_&]:hover:-translate-y-1
+                    [.tier-gold_&]:relative
+                    
+                    [.tier-platinum_&]:border-tier-platinum/40
+                    [.tier-platinum_&]:hover:border-tier-platinum/60
+                    [.tier-platinum_&]:hover:shadow-tier-platinum/30
+                    [.tier-platinum_&]:hover:-translate-y-1.25
+                    
+                    [.tier-diamond_&]:border-2
+                    [.tier-diamond_&]:border-transparent
+                    [.tier-diamond_&]:hover:shadow-tier-diamond/30
+                    [.tier-diamond_&]:hover:-translate-y-1.5
+                  "
                   aria-labelledby="precision-heading"
                 >
-                  <div
-                    class="text-blue-600 dark:text-blue-400 text-3xl mb-2 transition-colors duration-300"
-                    role="img"
-                    aria-label="Target icon representing precision"
-                  >
-                    🎯
+                  <!-- Gold tier hover sweep -->
+                  <div class="[.tier-gold_.feature-card:hover_&]:absolute [.tier-gold_.feature-card:hover_&]:inset-0 [.tier-gold_.feature-card:hover_&]:pointer-events-none [.tier-gold_.feature-card:hover_&]:rounded-lg">
+                    <div class="[.tier-gold_.feature-card:hover_&]:absolute [.tier-gold_.feature-card:hover_&]:inset-0 [.tier-gold_.feature-card:hover_&]:bg-gradient-to-r [.tier-gold_.feature-card:hover_&]:from-transparent [.tier-gold_.feature-card:hover_&]:via-tier-gold/10 [.tier-gold_.feature-card:hover_&]:to-transparent [.tier-gold_.feature-card:hover_&]:animate-[goldCardSweep_1s_ease-out]"></div>
                   </div>
                   <h4
                     id="precision-heading"
-                    class="font-semibold text-gray-800 dark:text-gray-100 mb-1 transition-colors duration-300"
+                    class="flex items-center gap-3 font-semibold mb-2 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative z-10"
                   >
+                    <span class="text-2xl" role="img" aria-label="Target">🎯</span>
                     Precision Input
                   </h4>
-                  <p
-                    class="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300"
-                    aria-describedby="precision-heading"
-                  >
-                    Add 2-10 numbers with dynamic fields
+                  <p class="text-gray-600 dark:text-gray-300 text-sm transition-colors duration-300 relative z-10">
+                    Add 2-10 custom numbers with complete control over your dataset
                   </p>
-                </article>
-                <article
-                  class="feature-card bg-green-50 dark:bg-green-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
-                  role="listitem"
+                </div>
+                <div
+                  class="
+                    feature-card 
+                    p-6 
+                    rounded-lg 
+                    transition-all 
+                    duration-300
+                    bg-green-50 dark:bg-green-900/30
+                    border border-transparent
+                    
+                    hover:-translate-y-0.5
+                    hover:shadow-md
+                    
+                    [.tier-bronze_&]:border-tier-bronze/20
+                    [.tier-bronze_&]:hover:border-tier-bronze/40
+                    [.tier-bronze_&]:hover:shadow-tier-bronze/15
+                    [.tier-bronze_&]:hover:-translate-y-0.5
+                    
+                    [.tier-silver_&]:border-tier-silver/30
+                    [.tier-silver_&]:hover:border-tier-silver/50
+                    [.tier-silver_&]:hover:shadow-tier-silver/20
+                    [.tier-silver_&]:hover:-translate-y-0.75
+                    
+                    [.tier-gold_&]:border-tier-gold/30
+                    [.tier-gold_&]:hover:border-tier-gold/50
+                    [.tier-gold_&]:hover:shadow-tier-gold/25
+                    [.tier-gold_&]:hover:-translate-y-1
+                    [.tier-gold_&]:relative
+                    
+                    [.tier-platinum_&]:border-tier-platinum/40
+                    [.tier-platinum_&]:hover:border-tier-platinum/60
+                    [.tier-platinum_&]:hover:shadow-tier-platinum/30
+                    [.tier-platinum_&]:hover:-translate-y-1.25
+                    
+                    [.tier-diamond_&]:border-2
+                    [.tier-diamond_&]:border-transparent
+                    [.tier-diamond_&]:hover:shadow-tier-diamond/30
+                    [.tier-diamond_&]:hover:-translate-y-1.5
+                  "
                   aria-labelledby="random-heading"
                 >
-                  <div
-                    class="text-green-600 dark:text-green-400 text-3xl mb-2 transition-colors duration-300"
-                    role="img"
-                    aria-label="Dice icon representing random number generation"
-                  >
-                    🎲
-                  </div>
                   <h4
                     id="random-heading"
-                    class="font-semibold text-gray-800 dark:text-gray-100 mb-1 transition-colors duration-300"
+                    class="flex items-center gap-3 font-semibold mb-2 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative z-10"
                   >
+                    <span class="text-2xl" role="img" aria-label="Dice">🎲</span>
                     Random Mode
                   </h4>
-                  <p
-                    class="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300"
-                    aria-describedby="random-heading"
-                  >
-                    Generate test data instantly
+                  <p class="text-gray-600 dark:text-gray-300 text-sm transition-colors duration-300 relative z-10">
+                    Generate test data instantly with customizable ranges
                   </p>
-                </article>
-                <article
-                  class="feature-card bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg transition-colors duration-300 hover-lift stagger-item"
-                  role="listitem"
-                  aria-labelledby="speed-heading"
+                </div>
+                <div
+                  class="
+                    feature-card 
+                    p-6 
+                    rounded-lg 
+                    transition-all 
+                    duration-300
+                    bg-purple-50 dark:bg-purple-900/30
+                    border border-transparent
+                    
+                    hover:-translate-y-0.5
+                    hover:shadow-md
+                    
+                    [.tier-bronze_&]:border-tier-bronze/20
+                    [.tier-bronze_&]:hover:border-tier-bronze/40
+                    [.tier-bronze_&]:hover:shadow-tier-bronze/15
+                    [.tier-bronze_&]:hover:-translate-y-0.5
+                    
+                    [.tier-silver_&]:border-tier-silver/30
+                    [.tier-silver_&]:hover:border-tier-silver/50
+                    [.tier-silver_&]:hover:shadow-tier-silver/20
+                    [.tier-silver_&]:hover:-translate-y-0.75
+                    
+                    [.tier-gold_&]:border-tier-gold/30
+                    [.tier-gold_&]:hover:border-tier-gold/50
+                    [.tier-gold_&]:hover:shadow-tier-gold/25
+                    [.tier-gold_&]:hover:-translate-y-1
+                    [.tier-gold_&]:relative
+                    
+                    [.tier-platinum_&]:border-tier-platinum/40
+                    [.tier-platinum_&]:hover:border-tier-platinum/60
+                    [.tier-platinum_&]:hover:shadow-tier-platinum/30
+                    [.tier-platinum_&]:hover:-translate-y-1.25
+                    
+                    [.tier-diamond_&]:border-2
+                    [.tier-diamond_&]:border-transparent
+                    [.tier-diamond_&]:hover:shadow-tier-diamond/30
+                    [.tier-diamond_&]:hover:-translate-y-1.5
+                  "
+                  aria-labelledby="fast-heading"
                 >
-                  <div
-                    class="text-purple-600 dark:text-purple-400 text-3xl mb-2 transition-colors duration-300"
-                    role="img"
-                    aria-label="Lightning bolt icon representing speed"
-                  >
-                    ⚡
-                  </div>
                   <h4
-                    id="speed-heading"
-                    class="font-semibold text-gray-800 dark:text-gray-100 mb-1 transition-colors duration-300"
+                    id="fast-heading"
+                    class="flex items-center gap-3 font-semibold mb-2 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative z-10"
                   >
+                    <span class="text-2xl" role="img" aria-label="Lightning bolt">⚡</span>
                     Lightning Fast
                   </h4>
-                  <p
-                    class="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300"
-                    aria-describedby="speed-heading"
-                  >
-                    Results with animated feedback
+                  <p class="text-gray-600 dark:text-gray-300 text-sm transition-colors duration-300 relative z-10">
+                    Real-time calculations with beautiful visualizations
                   </p>
-                </article>
-              </div>
+                </div>
             </section>
 
             <button
               id="calculator-button"
-              class="primary-button px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 text-lg font-semibold shadow-lg focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-opacity-50"
+              class="
+                relative z-10
+                px-8 py-3 
+                text-lg font-semibold 
+                rounded-lg 
+                transition-all duration-300
+                animate-[pulse-glow_2s_ease-in-out_infinite]
+                
+                bg-blue-600 
+                text-white 
+                hover:bg-blue-700
+                hover:-translate-y-0.5
+                active:translate-y-0
+                
+                [.tier-bronze_&]:bg-gradient-to-r
+                [.tier-bronze_&]:from-tier-bronze
+                [.tier-bronze_&]:to-tier-bronze-dark
+                [.tier-bronze_&]:hover:bg-gray-800
+                [.tier-bronze_&]:hover:text-tier-bronze
+                [.tier-bronze_&]:hover:border-2
+                [.tier-bronze_&]:hover:border-tier-bronze
+                
+                [.tier-silver_&]:bg-gradient-to-r
+                [.tier-silver_&]:from-tier-silver
+                [.tier-silver_&]:to-tier-silver-dark
+                [.tier-silver_&]:text-gray-800
+                [.tier-silver_&]:hover:bg-gray-800
+                [.tier-silver_&]:hover:text-tier-silver
+                [.tier-silver_&]:hover:border-2
+                [.tier-silver_&]:hover:border-tier-silver
+                
+                [.tier-gold_&]:bg-gradient-to-r
+                [.tier-gold_&]:from-tier-gold
+                [.tier-gold_&]:via-tier-gold-light
+                [.tier-gold_&]:to-tier-bronze-dark
+                [.tier-gold_&]:text-gray-800
+                [.tier-gold_&]:shadow-tier-gold/40
+                [.tier-gold_&]:hover:bg-gray-800
+                [.tier-gold_&]:hover:text-tier-gold
+                [.tier-gold_&]:hover:border-2
+                [.tier-gold_&]:hover:border-tier-gold
+                
+                [.tier-platinum_&]:bg-gradient-to-r
+                [.tier-platinum_&]:from-tier-platinum
+                [.tier-platinum_&]:via-white
+                [.tier-platinum_&]:to-gray-300
+                [.tier-platinum_&]:text-gray-800
+                [.tier-platinum_&]:shadow-tier-platinum/50
+                [.tier-platinum_&]:hover:bg-gray-800
+                [.tier-platinum_&]:hover:text-tier-platinum
+                [.tier-platinum_&]:hover:border-2
+                [.tier-platinum_&]:hover:border-tier-platinum
+                
+                [.tier-diamond_&]:bg-gradient-to-r
+                [.tier-diamond_&]:from-tier-diamond-pink
+                [.tier-diamond_&]:via-tier-diamond-cyan
+                [.tier-diamond_&]:to-tier-diamond-yellow
+                [.tier-diamond_&]:bg-[length:200%_200%]
+                [.tier-diamond_&]:animate-[diamondButtonShift_3s_ease-in-out_infinite]
+                [.tier-diamond_&]:text-white
+                [.tier-diamond_&]:text-shadow-md
+                [.tier-diamond_&]:hover:bg-gray-800
+                [.tier-diamond_&]:hover:text-pink-400
+                [.tier-diamond_&]:hover:animate-none
+              "
               aria-label="Open average calculator modal"
-              aria-describedby="calculator-tip"
             >
               Launch MeanMachine
             </button>

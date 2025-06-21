@@ -5,6 +5,9 @@
 /* Import enhanced animations */
 @import url('./utils/animations.css');
 
+/* Import tier-specific animations for complex effects */
+@import url('./styles/tier-animations.css');
+
 @layer base {
   html {
     font-size: 15px;
@@ -12,6 +15,7 @@
 }
 
 @layer components {
+
   /* Modal animations */
   .modal-backdrop {
     backdrop-filter: blur(4px);

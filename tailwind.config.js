@@ -65,6 +65,18 @@ module.exports = {
         'tier-display-gold': 'linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(255, 179, 71, 0.15))',
         'tier-display-platinum': 'linear-gradient(135deg, rgba(229, 231, 235, 0.3), rgba(255, 255, 255, 0.4))',
         'tier-display-diamond': 'linear-gradient(135deg, rgba(255, 0, 128, 0.2), rgba(0, 255, 255, 0.2), rgba(255, 255, 0, 0.2))',
+        // Input field gradients for light mode
+        'input-bronze': 'linear-gradient(135deg, rgba(205, 127, 50, 0.3), rgba(184, 134, 11, 0.4))',
+        'input-silver': 'linear-gradient(135deg, rgba(192, 192, 192, 0.3), rgba(229, 231, 235, 0.4))',
+        'input-gold': 'linear-gradient(135deg, rgba(218, 165, 32, 0.3), rgba(255, 179, 71, 0.4))',
+        'input-platinum': 'linear-gradient(135deg, rgba(229, 231, 235, 0.3), rgba(255, 255, 255, 0.4))',
+        'input-diamond': 'linear-gradient(135deg, rgba(255, 0, 128, 0.3), rgba(0, 255, 255, 0.3), rgba(255, 255, 0, 0.3))',
+        // Input field gradients for dark mode
+        'input-bronze-dark': 'linear-gradient(135deg, rgba(205, 127, 50, 0.85), rgba(184, 134, 11, 0.85))',
+        'input-silver-dark': 'linear-gradient(135deg, rgba(192, 192, 192, 0.85), rgba(229, 231, 235, 0.85))',
+        'input-gold-dark': 'linear-gradient(135deg, rgba(218, 165, 32, 0.85), rgba(255, 179, 71, 0.85))',
+        'input-platinum-dark': 'linear-gradient(135deg, rgba(229, 231, 235, 0.85), rgba(255, 255, 255, 0.85))',
+        'input-diamond-dark': 'linear-gradient(135deg, rgba(255, 0, 128, 0.85), rgba(0, 255, 255, 0.85), rgba(255, 255, 0, 0.85))',
         'achievement-progress': 'linear-gradient(90deg, #3b82f6 0%, #10b981 50%, #f59e0b 100%)',
       },
       boxShadow: {
@@ -77,6 +89,11 @@ module.exports = {
         'footer-silver': 'inset 0 6px 0 #c0c0c0',
         'tier-display-gold': '0 4px 12px rgba(255, 215, 0, 0.3)',
         'tier-display-platinum': '0 6px 16px rgba(229, 231, 235, 0.4)',
+        'modal-bronze': '0 8px 24px rgba(205, 127, 50, 0.2)',
+        'modal-silver': '0 8px 24px rgba(192, 192, 192, 0.2)',
+        'modal-gold': '0 8px 24px rgba(218, 165, 32, 0.3)',
+        'modal-platinum': '0 8px 24px rgba(229, 231, 235, 0.3)',
+        'modal-diamond': '0 8px 24px rgba(255, 0, 128, 0.4)',
         'achievement-progress-glow': '0 0 10px rgba(59, 130, 246, 0.5)',
       },
       keyframes: {

@@ -204,6 +204,186 @@
   }
 
   /* 
+   * ENTERPRISE CSS: Tier-based input field theming system
+   * Why CSS over Tailwind:
+   * - Dynamic theming: Body class changes (.tier-bronze, .tier-silver, etc.) trigger cascading style updates
+   * - Maintainability: Single source of truth for tier colors and gradients across the application
+   * - Performance: CSS cascade is more efficient than JavaScript-based class manipulation for theme switching
+   * - Scalability: Adding new tiers requires only CSS changes, not component updates
+   * - Complex selectors: Multi-level selectors ([data-theme="dark"] .tier-bronze .modal .number-input) not practical in Tailwind
+   * - Color opacity precision: Requires exact rgba values (0.3, 0.85) for visual hierarchy
+   * - Gradient combinations: Complex multi-color gradients with tier-specific colors
+   * - Border-color coordination: Synchronized gradient backgrounds with matching border colors
+   */
+  
+  /* Light mode tier-specific input backgrounds */
+  .tier-bronze .modal .number-input,
+  .tier-bronze .modal input[type="number"] {
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.3), rgba(184, 134, 11, 0.4)) !important;
+    border-color: rgba(205, 127, 50, 0.6) !important;
+  }
+
+  .tier-silver .modal .number-input,
+  .tier-silver .modal input[type="number"] {
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.3), rgba(229, 231, 235, 0.4)) !important;
+    border-color: rgba(192, 192, 192, 0.6) !important;
+  }
+
+  .tier-gold .modal .number-input,
+  .tier-gold .modal input[type="number"] {
+    background: linear-gradient(135deg, rgba(218, 165, 32, 0.3), rgba(255, 179, 71, 0.4)) !important;
+    border-color: rgba(218, 165, 32, 0.6) !important;
+  }
+
+  .tier-platinum .modal .number-input,
+  .tier-platinum .modal input[type="number"] {
+    background: linear-gradient(135deg, rgba(229, 231, 235, 0.3), rgba(255, 255, 255, 0.4)) !important;
+    border-color: rgba(229, 231, 235, 0.6) !important;
+  }
+
+  .tier-diamond .modal .number-input,
+  .tier-diamond .modal input[type="number"] {
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.3), rgba(0, 255, 255, 0.3), rgba(255, 255, 0, 0.3)) !important;
+    border: 2px solid transparent !important;
+    background-clip: padding-box !important;
+    position: relative !important;
+  }
+
+  /* Dark mode tier-specific input backgrounds - higher opacity for better visibility */
+  [data-theme="dark"] .tier-bronze .modal .number-input,
+  [data-theme="dark"] .tier-bronze .modal input[type="number"] {
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.85), rgba(184, 134, 11, 0.85)) !important;
+    border-color: rgba(205, 127, 50, 0.4) !important;
+  }
+
+  [data-theme="dark"] .tier-silver .modal .number-input,
+  [data-theme="dark"] .tier-silver .modal input[type="number"] {
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.85), rgba(229, 231, 235, 0.85)) !important;
+    border-color: rgba(192, 192, 192, 0.4) !important;
+  }
+
+  [data-theme="dark"] .tier-gold .modal .number-input,
+  [data-theme="dark"] .tier-gold .modal input[type="number"] {
+    background: linear-gradient(135deg, rgba(218, 165, 32, 0.85), rgba(255, 179, 71, 0.85)) !important;
+    border-color: rgba(218, 165, 32, 0.4) !important;
+  }
+
+  [data-theme="dark"] .tier-platinum .modal .number-input,
+  [data-theme="dark"] .tier-platinum .modal input[type="number"] {
+    background: linear-gradient(135deg, rgba(229, 231, 235, 0.85), rgba(255, 255, 255, 0.85)) !important;
+    border-color: rgba(229, 231, 235, 0.4) !important;
+  }
+
+  [data-theme="dark"] .tier-diamond .modal .number-input,
+  [data-theme="dark"] .tier-diamond .modal input[type="number"] {
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.85), rgba(0, 255, 255, 0.85), rgba(255, 255, 0, 0.85)) !important;
+    border: 2px solid transparent !important;
+    background-clip: padding-box !important;
+    position: relative !important;
+  }
+
+  /* 
+   * ENTERPRISE CSS: Diamond tier animated gradient borders
+   * Why CSS over Tailwind:
+   * - CSS animations: @keyframes and complex animation properties not supported in Tailwind
+   * - Pseudo-elements: ::before selectors with absolute positioning for border effects
+   * - z-index layering: Complex stacking context management for border overlays
+   * - Background-clip: Advanced CSS properties for gradient border effects
+   * - Animation timing: Precise control over animation duration and easing functions
+   */
+  .tier-diamond .modal .number-input::before,
+  .tier-diamond .modal input[type="number"]::before,
+  [data-theme="dark"] .tier-diamond .modal .number-input::before,
+  [data-theme="dark"] .tier-diamond .modal input[type="number"]::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff0080, #00ffff, #ffff00);
+    background-size: 200% 200%;
+    animation: diamondInputBorder 3s ease-in-out infinite;
+    z-index: -1;
+    border-radius: inherit;
+  }
+
+  @keyframes diamondInputBorder {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* 
+   * ENTERPRISE CSS: Tier-based modal borders and shadows
+   * Why CSS over Tailwind:
+   * - Consistent theming: Matches input field tier colors with modal container styling
+   * - Box-shadow precision: Exact shadow blur, spread, and opacity values for visual hierarchy
+   * - Border thickness: Consistent 4px borders across all tiers for design system compliance
+   * - Color coordination: Border colors match input field border colors for cohesive design
+   * - Diamond tier animation: Complex animated gradient borders require CSS animations
+   */
+  .tier-bronze .modal,
+  .tier-bronze .modal-content {
+    border: 4px solid #cd7f32 !important;
+    box-shadow: 0 8px 24px rgba(205, 127, 50, 0.2) !important;
+  }
+
+  .tier-silver .modal,
+  .tier-silver .modal-content {
+    border: 4px solid #c0c0c0 !important;
+    box-shadow: 0 8px 24px rgba(192, 192, 192, 0.2) !important;
+  }
+
+  .tier-gold .modal,
+  .tier-gold .modal-content {
+    border: 4px solid #daa520 !important;
+    box-shadow: 0 8px 24px rgba(218, 165, 32, 0.3) !important;
+  }
+
+  .tier-platinum .modal,
+  .tier-platinum .modal-content {
+    border: 4px solid #e5e7eb !important;
+    box-shadow: 0 8px 24px rgba(229, 231, 235, 0.3) !important;
+  }
+
+  .tier-diamond .modal,
+  .tier-diamond .modal-content {
+    border: 4px solid transparent !important;
+    position: relative !important;
+    box-shadow: 0 8px 24px rgba(255, 0, 128, 0.4) !important;
+  }
+
+  /* Diamond tier modal animated border effect */
+  .tier-diamond .modal::before,
+  .tier-diamond .modal-content::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(45deg, #ff0080, #00ffff, #ffff00, #ff0080);
+    background-size: 300% 300%;
+    animation: diamondModalBorder 4s ease-in-out infinite;
+    z-index: -1;
+    border-radius: inherit;
+  }
+
+  @keyframes diamondModalBorder {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+
+  /* 
    * CUSTOM CSS: Range slider custom styling
    * Why CSS over Tailwind:
    * - Webkit/Mozilla pseudo-elements (::-webkit-slider-thumb, ::-moz-range-thumb)

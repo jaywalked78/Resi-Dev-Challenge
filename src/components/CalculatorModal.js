@@ -455,7 +455,95 @@ export class CalculatorModal extends Modal {
             </button>
             <button 
               id="calculate-btn" 
-              class="px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-md hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
+              class="px-4 py-2 rounded-md focus:outline-none focus:ring-2 transition-colors text-white font-medium shadow-lg
+                bg-gradient-to-r from-green-500 to-green-600
+                hover:from-green-600 hover:to-green-700
+                focus:ring-green-500
+                
+                [.tier-bronze_&]:bg-gradient-to-r
+                [.tier-bronze_&]:from-tier-bronze
+                [.tier-bronze_&]:to-tier-bronze-dark
+                [.tier-bronze_&]:text-gray-800
+                [.tier-bronze_&]:dark:text-gray-800
+                [.tier-bronze_&]:hover:bg-gradient-to-r
+                [.tier-bronze_&]:hover:from-white
+                [.tier-bronze_&]:hover:to-white
+                [.tier-bronze_&]:hover:dark:from-gray-800
+                [.tier-bronze_&]:hover:dark:to-gray-800
+                [.tier-bronze_&]:hover:text-tier-bronze
+                [.tier-bronze_&]:hover:dark:text-tier-bronze
+                [.tier-bronze_&]:hover:border-2
+                [.tier-bronze_&]:hover:border-tier-bronze
+                [.tier-bronze_&]:focus:ring-tier-bronze
+                
+                [.tier-silver_&]:bg-gradient-to-r
+                [.tier-silver_&]:from-tier-silver
+                [.tier-silver_&]:to-tier-silver-dark
+                [.tier-silver_&]:text-gray-800
+                [.tier-silver_&]:hover:bg-gradient-to-r
+                [.tier-silver_&]:hover:from-white
+                [.tier-silver_&]:hover:to-white
+                [.tier-silver_&]:hover:dark:from-gray-800
+                [.tier-silver_&]:hover:dark:to-gray-800
+                [.tier-silver_&]:hover:text-tier-silver
+                [.tier-silver_&]:hover:dark:text-tier-silver
+                [.tier-silver_&]:hover:border-2
+                [.tier-silver_&]:hover:border-tier-silver
+                [.tier-silver_&]:focus:ring-tier-silver
+                
+                [.tier-gold_&]:bg-gradient-to-r
+                [.tier-gold_&]:from-tier-gold
+                [.tier-gold_&]:via-tier-gold-light
+                [.tier-gold_&]:to-tier-bronze-dark
+                [.tier-gold_&]:text-gray-800
+                [.tier-gold_&]:shadow-tier-gold/40
+                [.tier-gold_&]:hover:bg-gradient-to-r
+                [.tier-gold_&]:hover:from-white
+                [.tier-gold_&]:hover:to-white
+                [.tier-gold_&]:hover:dark:from-gray-800
+                [.tier-gold_&]:hover:dark:to-gray-800
+                [.tier-gold_&]:hover:text-tier-gold
+                [.tier-gold_&]:hover:dark:text-tier-gold
+                [.tier-gold_&]:hover:border-2
+                [.tier-gold_&]:hover:border-tier-gold
+                [.tier-gold_&]:focus:ring-tier-gold
+                
+                [.tier-platinum_&]:bg-gradient-to-r
+                [.tier-platinum_&]:from-tier-platinum
+                [.tier-platinum_&]:via-white
+                [.tier-platinum_&]:to-gray-300
+                [.tier-platinum_&]:text-gray-800
+                [.tier-platinum_&]:shadow-tier-platinum/50
+                [.tier-platinum_&]:hover:bg-gradient-to-r
+                [.tier-platinum_&]:hover:from-white
+                [.tier-platinum_&]:hover:to-white
+                [.tier-platinum_&]:hover:dark:from-gray-800
+                [.tier-platinum_&]:hover:dark:to-gray-800
+                [.tier-platinum_&]:hover:text-tier-platinum
+                [.tier-platinum_&]:hover:dark:text-tier-platinum
+                [.tier-platinum_&]:hover:border-2
+                [.tier-platinum_&]:hover:border-tier-platinum
+                [.tier-platinum_&]:focus:ring-tier-platinum
+                
+                [.tier-diamond_&]:bg-white
+                [.tier-diamond_&]:dark:bg-gray-800
+                [.tier-diamond_&]:text-gray-800
+                [.tier-diamond_&]:dark:text-gray-200
+                [.tier-diamond_&]:text-shadow-md
+                [.tier-diamond_&]:dark:[text-shadow:none]
+                [.tier-diamond_&]:border-2
+                [.tier-diamond_&]:border-gray-300
+                [.tier-diamond_&]:dark:border-gray-800
+                [.tier-diamond_&]:hover:bg-gradient-to-r
+                [.tier-diamond_&]:hover:from-tier-diamond-pink
+                [.tier-diamond_&]:hover:via-tier-diamond-cyan
+                [.tier-diamond_&]:hover:to-tier-diamond-yellow
+                [.tier-diamond_&]:hover:bg-[length:200%_200%]
+                [.tier-diamond_&]:hover:animate-[diamondButtonShift_3s_ease-in-out_infinite]
+                [.tier-diamond_&]:hover:text-white
+                [.tier-diamond_&]:hover:dark:text-gray-800
+                [.tier-diamond_&]:focus:ring-tier-diamond-pink
+              "
               aria-describedby="calculate-help"
               type="button"
             >

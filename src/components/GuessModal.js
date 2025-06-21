@@ -106,6 +106,14 @@ export class GuessModal {
   addStyles() {
     const style = document.createElement('style');
     style.textContent = `
+      /* 
+       * CUSTOM CSS: Modal overlay positioning and backdrop
+       * WHY CSS INSTEAD OF TAILWIND: Complex modal overlay requires:
+       * - Fixed viewport positioning (position: fixed with inset: 0)
+       * - Custom backdrop-filter effects not available in Tailwind utilities
+       * - High z-index stacking (10000) for modal layering
+       * - Custom animation timing with keyframes
+       */
       .guess-modal-overlay {
         position: fixed;
         top: 0;
@@ -121,6 +129,14 @@ export class GuessModal {
         animation: fadeIn 0.3s ease-out;
       }
       
+      /* 
+       * CUSTOM CSS: Modal container styling
+       * WHY CSS INSTEAD OF TAILWIND: Modal container requires:
+       * - Precise viewport-based sizing (80vh, 90% width)
+       * - Custom animation with slideIn keyframes
+       * - Overflow control for scrollable content
+       * - Complex responsive behavior not efficiently achievable with Tailwind
+       */
       .guess-modal {
         background: white;
         border-radius: 16px;
@@ -136,7 +152,15 @@ export class GuessModal {
         background: rgb(31 41 55);
       }
 
-      /* Diamond tier radial gradient background with glassmorphism and overlays */
+      /* 
+       * ENTERPRISE CSS: Diamond tier glassmorphism modal styling
+       * WHY CSS INSTEAD OF TAILWIND: Complex glassmorphism effects require:
+       * - Multi-layered backgrounds with radial gradients and overlay systems
+       * - Advanced backdrop-filter effects (blur, saturate) for premium glass appearance
+       * - Complex box-shadow combinations for depth and inset lighting effects
+       * - Background-attachment: fixed for scroll-independent gradient positioning
+       * - Precise opacity layering for light/dark mode overlay treatments
+       */
       .tier-diamond .guess-modal {
         position: relative;
         background: 
@@ -197,7 +221,15 @@ export class GuessModal {
         color: white;
       }
       
-      /* Tier-based number pill backgrounds - same as input fields */
+      /* 
+       * ENTERPRISE CSS: Tier-based number pill styling system
+       * WHY CSS INSTEAD OF TAILWIND: Complex tier-based theming requires:
+       * - Dynamic gradient backgrounds with specific opacity values per tier
+       * - nth-child selectors for Diamond tier color cycling
+       * - Coordinated color schemes matching input field treatments
+       * - Light/dark mode variations with different opacity levels
+       * - !important declarations to override base component styles
+       */
       .tier-bronze .number-pill {
         background: linear-gradient(135deg, rgba(205, 127, 50, 0.3), rgba(184, 134, 11, 0.4)) !important;
         color: rgb(31 41 55) !important;

@@ -656,7 +656,12 @@ export class CalculatorModal extends Modal {
           aria-label="Number ${index + 1} input field"
           aria-describedby="number-help-${index}"
           step="any"
-          style="animation-delay: ${staggerDelay}s;"
+          style="animation-delay: ${staggerDelay}s;" 
+          /* CUSTOM CSS: Inline animation delay for staggered input animations
+           * WHY CSS INSTEAD OF TAILWIND: Dynamic stagger timing requires JavaScript-calculated
+           * values that can't be predetermined in Tailwind classes. Each input needs a unique
+           * delay value based on its index position for sequential animation effects.
+           */
         >
         <span id="number-help-${index}" class="sr-only">Enter any numeric value for calculation</span>
         ${

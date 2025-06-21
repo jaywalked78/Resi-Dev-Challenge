@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [1.4.0] - 2025-06-21
+## [1.3.1] - 2025-06-21
 
 ### Added - Diamond Tier Premium Experience & Visual Harmony
 

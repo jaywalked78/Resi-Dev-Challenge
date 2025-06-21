@@ -385,12 +385,12 @@
             <header class="mb-8 relative z-10">
               <h2
                 id="main-heading"
-                class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3 transition-colors duration-300 [.tier-bronze_&]:pt-1.5 [.tier-silver_&]:pt-1.5 [.tier-gold_&]:pt-1.5 [.tier-platinum_&]:pt-1.5 [.tier-diamond_&]:pt-1.5 [.tier-bronze_&]:dark:text-gray-50 [.tier-silver_&]:dark:text-gray-50 [.tier-gold_&]:dark:text-gray-50 [.tier-platinum_&]:dark:text-gray-50 [.tier-diamond_&]:dark:text-gray-50"
+                class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3 transition-colors duration-300 [.tier-bronze_&]:pt-1.5 [.tier-silver_&]:pt-1.5 [.tier-gold_&]:pt-1.5 [.tier-platinum_&]:pt-1.5 [.tier-diamond_&]:pt-1.5 [.tier-bronze_&]:dark:text-gray-50 [.tier-silver_&]:dark:text-gray-50 [.tier-gold_&]:dark:text-gray-50 [.tier-platinum_&]:dark:text-gray-50 [.tier-diamond_&]:text-gray-800 [.tier-diamond_&]:dark:text-gray-800"
               >
                 Calculate Averages in Seconds
               </h2>
               <p
-                class="text-gray-600 dark:text-gray-300 max-w-xl mx-auto transition-colors duration-300 text-sm sm:text-base"
+                class="text-gray-600 dark:text-gray-300 max-w-xl mx-auto transition-colors duration-300 text-sm sm:text-base [.tier-diamond_&]:text-gray-800 [.tier-diamond_&]:dark:text-gray-800"
                 aria-describedby="main-heading"
               >
                 Whether you're a student, teacher, or just someone who loves
@@ -441,6 +441,17 @@
                     
                     [.tier-diamond_&]:border-2
                     [.tier-diamond_&]:border-transparent
+                    [.tier-diamond_&]:bg-gradient-to-br
+                    [.tier-diamond_&]:from-pink-100/60
+                    [.tier-diamond_&]:via-cyan-100/60
+                    [.tier-diamond_&]:to-yellow-100/60
+                    [.tier-diamond_&]:mix-blend-soft-light
+                    [.tier-diamond_&]:animate-[pulse-glow_2s_ease-in-out_infinite]
+                    [.tier-diamond_&]:animation-delay-0
+                    [.tier-diamond_&]:dark:from-pink-900/40
+                    [.tier-diamond_&]:dark:via-cyan-900/40
+                    [.tier-diamond_&]:dark:to-yellow-900/40
+                    [.tier-diamond_&]:dark:mix-blend-normal
                     [.tier-diamond_&]:hover:shadow-tier-diamond/30
                     [.tier-diamond_&]:hover:-translate-y-1.5
                   "
@@ -497,6 +508,17 @@
                     
                     [.tier-diamond_&]:border-2
                     [.tier-diamond_&]:border-transparent
+                    [.tier-diamond_&]:bg-gradient-to-br
+                    [.tier-diamond_&]:from-pink-100/60
+                    [.tier-diamond_&]:via-cyan-100/60
+                    [.tier-diamond_&]:to-yellow-100/60
+                    [.tier-diamond_&]:mix-blend-soft-light
+                    [.tier-diamond_&]:animate-[pulse-glow_2s_ease-in-out_infinite]
+                    [.tier-diamond_&]:[animation-delay:0.5s]
+                    [.tier-diamond_&]:dark:from-pink-900/40
+                    [.tier-diamond_&]:dark:via-cyan-900/40
+                    [.tier-diamond_&]:dark:to-yellow-900/40
+                    [.tier-diamond_&]:dark:mix-blend-normal
                     [.tier-diamond_&]:hover:shadow-tier-diamond/30
                     [.tier-diamond_&]:hover:-translate-y-1.5
                   "
@@ -549,6 +571,17 @@
                     
                     [.tier-diamond_&]:border-2
                     [.tier-diamond_&]:border-transparent
+                    [.tier-diamond_&]:bg-gradient-to-br
+                    [.tier-diamond_&]:from-pink-100/60
+                    [.tier-diamond_&]:via-cyan-100/60
+                    [.tier-diamond_&]:to-yellow-100/60
+                    [.tier-diamond_&]:mix-blend-soft-light
+                    [.tier-diamond_&]:animate-[pulse-glow_2s_ease-in-out_infinite]
+                    [.tier-diamond_&]:[animation-delay:1s]
+                    [.tier-diamond_&]:dark:from-pink-900/40
+                    [.tier-diamond_&]:dark:via-cyan-900/40
+                    [.tier-diamond_&]:dark:to-yellow-900/40
+                    [.tier-diamond_&]:dark:mix-blend-normal
                     [.tier-diamond_&]:hover:shadow-tier-diamond/30
                     [.tier-diamond_&]:hover:-translate-y-1.5
                   "
@@ -576,6 +609,7 @@
                 rounded-lg 
                 transition-all duration-300
                 animate-[pulse-glow_2s_ease-in-out_infinite]
+                [.tier-diamond_&]:[animation-delay:1.5s]
                 
                 bg-blue-600 
                 text-white 
@@ -586,8 +620,13 @@
                 [.tier-bronze_&]:bg-gradient-to-r
                 [.tier-bronze_&]:from-tier-bronze
                 [.tier-bronze_&]:to-tier-bronze-dark
-                [.tier-bronze_&]:hover:bg-gray-800
-                [.tier-bronze_&]:hover:text-tier-bronze
+                [.tier-bronze_&]:hover:bg-gradient-to-r
+                [.tier-bronze_&]:hover:from-white
+                [.tier-bronze_&]:hover:to-white
+                [.tier-bronze_&]:hover:dark:from-gray-800
+                [.tier-bronze_&]:hover:dark:to-gray-800
+                [.tier-bronze_&]:hover:text-gray-800
+                [.tier-bronze_&]:hover:dark:text-gray-300
                 [.tier-bronze_&]:hover:border-2
                 [.tier-bronze_&]:hover:border-tier-bronze
                 
@@ -595,8 +634,13 @@
                 [.tier-silver_&]:from-tier-silver
                 [.tier-silver_&]:to-tier-silver-dark
                 [.tier-silver_&]:text-gray-800
-                [.tier-silver_&]:hover:bg-gray-800
-                [.tier-silver_&]:hover:text-tier-silver
+                [.tier-silver_&]:hover:bg-gradient-to-r
+                [.tier-silver_&]:hover:from-white
+                [.tier-silver_&]:hover:to-white
+                [.tier-silver_&]:hover:dark:from-gray-800
+                [.tier-silver_&]:hover:dark:to-gray-800
+                [.tier-silver_&]:hover:text-gray-800
+                [.tier-silver_&]:hover:dark:text-gray-300
                 [.tier-silver_&]:hover:border-2
                 [.tier-silver_&]:hover:border-tier-silver
                 
@@ -606,8 +650,13 @@
                 [.tier-gold_&]:to-tier-bronze-dark
                 [.tier-gold_&]:text-gray-800
                 [.tier-gold_&]:shadow-tier-gold/40
-                [.tier-gold_&]:hover:bg-gray-800
-                [.tier-gold_&]:hover:text-tier-gold
+                [.tier-gold_&]:hover:bg-gradient-to-r
+                [.tier-gold_&]:hover:from-white
+                [.tier-gold_&]:hover:to-white
+                [.tier-gold_&]:hover:dark:from-gray-800
+                [.tier-gold_&]:hover:dark:to-gray-800
+                [.tier-gold_&]:hover:text-gray-800
+                [.tier-gold_&]:hover:dark:text-gray-300
                 [.tier-gold_&]:hover:border-2
                 [.tier-gold_&]:hover:border-tier-gold
                 
@@ -617,22 +666,33 @@
                 [.tier-platinum_&]:to-gray-300
                 [.tier-platinum_&]:text-gray-800
                 [.tier-platinum_&]:shadow-tier-platinum/50
-                [.tier-platinum_&]:hover:bg-gray-800
-                [.tier-platinum_&]:hover:text-tier-platinum
+                [.tier-platinum_&]:hover:bg-gradient-to-r
+                [.tier-platinum_&]:hover:from-white
+                [.tier-platinum_&]:hover:to-white
+                [.tier-platinum_&]:hover:dark:from-gray-800
+                [.tier-platinum_&]:hover:dark:to-gray-800
+                [.tier-platinum_&]:hover:text-gray-800
+                [.tier-platinum_&]:hover:dark:text-gray-300
                 [.tier-platinum_&]:hover:border-2
                 [.tier-platinum_&]:hover:border-tier-platinum
                 
-                [.tier-diamond_&]:bg-gradient-to-r
-                [.tier-diamond_&]:from-tier-diamond-pink
-                [.tier-diamond_&]:via-tier-diamond-cyan
-                [.tier-diamond_&]:to-tier-diamond-yellow
-                [.tier-diamond_&]:bg-[length:200%_200%]
-                [.tier-diamond_&]:animate-[diamondButtonShift_3s_ease-in-out_infinite]
-                [.tier-diamond_&]:text-white
+                [.tier-diamond_&]:bg-white
+                [.tier-diamond_&]:dark:bg-gray-800
+                [.tier-diamond_&]:text-gray-800
+                [.tier-diamond_&]:dark:text-gray-200
                 [.tier-diamond_&]:text-shadow-md
-                [.tier-diamond_&]:hover:bg-gray-800
-                [.tier-diamond_&]:hover:text-pink-400
-                [.tier-diamond_&]:hover:animate-none
+                [.tier-diamond_&]:dark:[text-shadow:none]
+                [.tier-diamond_&]:border-2
+                [.tier-diamond_&]:border-gray-300
+                [.tier-diamond_&]:dark:border-gray-800
+                [.tier-diamond_&]:hover:bg-gradient-to-r
+                [.tier-diamond_&]:hover:from-tier-diamond-pink
+                [.tier-diamond_&]:hover:via-tier-diamond-cyan
+                [.tier-diamond_&]:hover:to-tier-diamond-yellow
+                [.tier-diamond_&]:hover:bg-[length:200%_200%]
+                [.tier-diamond_&]:hover:animate-[diamondButtonShift_3s_ease-in-out_infinite]
+                [.tier-diamond_&]:hover:text-white
+                [.tier-diamond_&]:hover:dark:text-gray-800
               "
               aria-label="Open average calculator modal"
             >
@@ -640,7 +700,7 @@
             </button>
             <p
               id="calculator-tip"
-              class="mt-3 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300"
+              class="mt-3 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300 [.tier-diamond_&]:text-gray-800 [.tier-diamond_&]:dark:text-gray-800"
             >
               Pro tip: Press
               <kbd

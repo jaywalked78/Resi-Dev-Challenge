@@ -1,5 +1,47 @@
 # CHANGELOG
 
+## [1.4.0] - 2025-06-21
+
+### Added - Diamond Tier Premium Experience & Visual Harmony
+
+- **💎 Complete Diamond Tier Visual Overhaul**
+  - Enhanced feature cards with subtle rainbow gradient backgrounds (pink→cyan→yellow)
+  - Implemented `mix-blend-soft-light` for seamless integration with rainbow backdrop
+  - Added staggered pulsating animations across all elements (0s, 0.5s, 1s, 1.5s delays)
+  - Created cascading wave effect that flows naturally from left to right
+
+- **🎨 Launch MeanMachine Button Redesign**
+  - Inverted behavior: solid background default → rainbow gradient on hover
+  - Enhanced text contrast with theme-aware colors (dark gray in dark mode)
+  - Removed text shadows in dark mode for cleaner appearance
+  - Added proper theme-responsive border colors (light gray in light mode, dark gray in dark mode)
+
+- **✨ Typography & Readability Improvements**
+  - Enhanced main heading and description text with dark gray color for optimal contrast
+  - Improved "Pro tip" text visibility in both light and dark modes
+  - Maintained Ctrl+K keyboard shortcut styling for consistency
+  - Ensured WCAG accessibility compliance across all text elements
+
+- **🌈 Advanced Visual Effects**
+  - Individual rainbow gradient tints for each feature card
+  - Sophisticated blend modes for premium aesthetic
+  - Synchronized pulsating effects that create dynamic, living interface
+  - Perfect visual fidelity between all diamond tier elements
+
+### Enhanced - Feature Card Optimization
+
+- **Dark Mode**: Increased opacity from 60% to 80% for better text contrast
+- **Light Mode**: Reduced opacity to 70% with soft-light blending for subtle appearance
+- **Animation**: Added pulse-glow effect with carefully timed delays
+- **Theming**: Rainbow gradients perfectly complement diamond tier aesthetic
+
+### Technical Implementation
+
+- **Pure Tailwind CSS**: All enhancements use enterprise-grade Tailwind utilities
+- **Theme Responsive**: Proper light/dark mode support with `dark:` modifiers
+- **Performance Optimized**: Efficient animations with staggered timing
+- **Accessibility Focused**: Excellent contrast ratios and reduced motion support
+
 ## [1.3.0] - 2025-06-21
 
 ### Added - Main Content Tailwind CSS Migration & Major Image Optimization

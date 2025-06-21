@@ -283,7 +283,7 @@
         >
           <!-- Diamond tier animated border overlay -->
           <div class="[.tier-diamond_&]:absolute [.tier-diamond_&]:inset-0 [.tier-diamond_&]:rounded-lg [.tier-diamond_&]:bg-gradient-to-r [.tier-diamond_&]:from-pink-500 [.tier-diamond_&]:via-cyan-500 [.tier-diamond_&]:to-yellow-500 [.tier-diamond_&]:bg-[length:200%_200%] [.tier-diamond_&]:animate-diamondButtonShift [.tier-diamond_&]:p-0.5">
-            <div class="[.tier-diamond_&]:w-full [.tier-diamond_&]:h-full [.tier-diamond_&]:bg-gray-800/90 [.tier-diamond_&]:rounded-lg"></div>
+            <div class="[.tier-diamond_&]:w-full [.tier-diamond_&]:h-full [.tier-diamond_&]:bg-white/10 [.tier-diamond_&]:dark:bg-gray-800/90 [.tier-diamond_&]:rounded-lg"></div>
           </div>
           <div class="flex items-center gap-2 relative z-10">
             <span id="tier-icon" class="text-lg" aria-hidden="true">🏆</span>
@@ -717,11 +717,11 @@
                 [.tier-platinum_&]:hover:border-2
                 [.tier-platinum_&]:hover:border-tier-platinum
                 
-                [.tier-diamond_&]:bg-white
-                [.tier-diamond_&]:dark:bg-gray-800
+                [.tier-diamond_&]:bg-white/85
+                [.tier-diamond_&]:dark:bg-gray-800/85
                 [.tier-diamond_&]:text-gray-800
                 [.tier-diamond_&]:dark:text-gray-200
-                [.tier-diamond_&]:text-shadow-md
+                [.tier-diamond_&]:[text-shadow:none]
                 [.tier-diamond_&]:dark:[text-shadow:none]
                 [.tier-diamond_&]:border-2
                 [.tier-diamond_&]:border-gray-300
@@ -733,7 +733,9 @@
                 [.tier-diamond_&]:hover:bg-[length:200%_200%]
                 [.tier-diamond_&]:hover:animate-[diamondButtonShift_3s_ease-in-out_infinite]
                 [.tier-diamond_&]:hover:text-white
+                [.tier-diamond_&]:hover:[text-shadow:0_4px_8px_rgba(0,0,0,0.3)]
                 [.tier-diamond_&]:hover:dark:text-gray-800
+                [.tier-diamond_&]:hover:dark:[text-shadow:0_4px_8px_rgba(255,255,255,0.3)]
               "
               aria-label="Open average calculator modal"
             >

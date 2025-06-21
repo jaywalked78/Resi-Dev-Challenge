@@ -135,6 +135,34 @@ export class GuessModal {
       [data-theme="dark"] .guess-modal {
         background: rgb(31 41 55);
       }
+
+      /* Diamond tier radial gradient background with glassmorphism and overlays */
+      .tier-diamond .guess-modal {
+        position: relative;
+        background: 
+          linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
+          radial-gradient(circle at center, #ff0080, #00ffff, #ffff00, #ff0080) !important;
+        background-size: 200% 200% !important;
+        background-attachment: fixed !important;
+        backdrop-filter: blur(20px) saturate(1.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.18) !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 0, 0, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+      }
+
+      [data-theme="dark"] .tier-diamond .guess-modal {
+        background: 
+          linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+          radial-gradient(circle at center, #ff0080, #00ffff, #ffff00, #ff0080) !important;
+        background-size: 200% 200% !important;
+        background-attachment: fixed !important;
+        backdrop-filter: blur(20px) saturate(1.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+      }
       
       .guess-header {
         text-align: center;
@@ -190,6 +218,34 @@ export class GuessModal {
         color: rgb(31 41 55) !important;
       }
 
+      .tier-diamond .number-pill {
+        color: rgb(31 41 55) !important;
+      }
+
+      .tier-diamond .number-pill:nth-child(1) {
+        background: rgba(255, 0, 128, 0.7) !important; /* Pink */
+      }
+
+      .tier-diamond .number-pill:nth-child(2) {
+        background: rgba(0, 255, 255, 0.7) !important; /* Cyan */
+      }
+
+      .tier-diamond .number-pill:nth-child(3) {
+        background: rgba(255, 255, 0, 0.7) !important; /* Yellow */
+      }
+
+      .tier-diamond .number-pill:nth-child(4) {
+        background: rgba(128, 0, 255, 0.7) !important; /* Purple */
+      }
+
+      .tier-diamond .number-pill:nth-child(5) {
+        background: rgba(255, 128, 0, 0.7) !important; /* Orange */
+      }
+
+      .tier-diamond .number-pill:nth-child(n+6) {
+        background: rgba(0, 255, 128, 0.7) !important; /* Green */
+      }
+
       /* Dark mode tier-specific pill backgrounds - higher opacity */
       [data-theme="dark"] .tier-bronze .number-pill {
         background: linear-gradient(135deg, rgba(205, 127, 50, 0.85), rgba(184, 134, 11, 0.85)) !important;
@@ -205,6 +261,35 @@ export class GuessModal {
 
       [data-theme="dark"] .tier-platinum .number-pill {
         background: linear-gradient(135deg, rgba(229, 231, 235, 0.85), rgba(255, 255, 255, 0.85)) !important;
+      }
+
+      [data-theme="dark"] .tier-diamond .number-pill {
+        color: rgb(255, 255, 255) !important;
+      }
+
+      [data-theme="dark"] .tier-diamond .number-pill:nth-child(1) {
+        background: rgba(255, 0, 128, 0.9) !important; /* Pink */
+      }
+
+      [data-theme="dark"] .tier-diamond .number-pill:nth-child(2) {
+        background: rgba(0, 255, 255, 0.9) !important; /* Cyan */
+      }
+
+      [data-theme="dark"] .tier-diamond .number-pill:nth-child(3) {
+        background: rgba(255, 255, 0, 0.9) !important; /* Yellow */
+        color: rgb(31 41 55) !important;
+      }
+
+      [data-theme="dark"] .tier-diamond .number-pill:nth-child(4) {
+        background: rgba(128, 0, 255, 0.9) !important; /* Purple */
+      }
+
+      [data-theme="dark"] .tier-diamond .number-pill:nth-child(5) {
+        background: rgba(255, 128, 0, 0.9) !important; /* Orange */
+      }
+
+      [data-theme="dark"] .tier-diamond .number-pill:nth-child(n+6) {
+        background: rgba(0, 255, 128, 0.9) !important; /* Green */
       }
       
       /* 
@@ -295,6 +380,37 @@ export class GuessModal {
         border-color: rgba(229, 231, 235, 0.6) !important;
       }
 
+      .tier-diamond .guess-input {
+        background: linear-gradient(135deg, rgba(255, 0, 128, 0.3), rgba(0, 255, 255, 0.3), rgba(255, 255, 0, 0.4)) !important;
+        border-color: rgba(255, 0, 128, 0.6) !important;
+        color: rgb(31 41 55) !important;
+      }
+
+      .tier-diamond .guess-input:nth-of-type(1) {
+        animation: diamondPulse 2s ease-in-out infinite !important;
+        animation-delay: 0s !important;
+      }
+
+      .tier-diamond .guess-input:nth-of-type(2) {
+        animation: diamondPulse 2s ease-in-out infinite !important;
+        animation-delay: 0.3s !important;
+      }
+
+      .tier-diamond .guess-input:nth-of-type(3) {
+        animation: diamondPulse 2s ease-in-out infinite !important;
+        animation-delay: 0.6s !important;
+      }
+
+      .tier-diamond .guess-input:nth-of-type(4) {
+        animation: diamondPulse 2s ease-in-out infinite !important;
+        animation-delay: 0.9s !important;
+      }
+
+      .tier-diamond .guess-input:nth-of-type(5) {
+        animation: diamondPulse 2s ease-in-out infinite !important;
+        animation-delay: 1.2s !important;
+      }
+
       /* Dark mode tier-specific input backgrounds - higher opacity */
       [data-theme="dark"] .tier-bronze .guess-input {
         background: linear-gradient(135deg, rgba(205, 127, 50, 0.85), rgba(184, 134, 11, 0.85)) !important;
@@ -319,6 +435,12 @@ export class GuessModal {
         border-color: rgba(229, 231, 235, 0.4) !important;
         color: rgb(31 41 55) !important;
       }
+
+      [data-theme="dark"] .tier-diamond .guess-input {
+        background: linear-gradient(135deg, rgba(255, 0, 128, 0.85), rgba(0, 255, 255, 0.85), rgba(255, 255, 0, 0.85)) !important;
+        border-color: rgba(255, 0, 128, 0.4) !important;
+        color: rgb(31 41 55) !important;
+      }
       
       /* 
        * CUSTOM CSS: Placeholder styling for tier-based inputs
@@ -340,7 +462,13 @@ export class GuessModal {
       [data-theme="dark"] .tier-bronze .guess-input::placeholder,
       [data-theme="dark"] .tier-silver .guess-input::placeholder,
       [data-theme="dark"] .tier-gold .guess-input::placeholder,
-      [data-theme="dark"] .tier-platinum .guess-input::placeholder {
+      [data-theme="dark"] .tier-platinum .guess-input::placeholder,
+      [data-theme="dark"] .tier-diamond .guess-input::placeholder {
+        color: rgb(31 41 55) !important;
+        opacity: 0.7;
+      }
+
+      .tier-diamond .guess-input::placeholder {
         color: rgb(31 41 55) !important;
         opacity: 0.7;
       }
@@ -456,6 +584,52 @@ export class GuessModal {
         color: rgb(31 41 55) !important;
       }
       
+      .tier-diamond .submit-guess-btn {
+        background: rgba(255, 255, 255, 0.85) !important;
+        color: rgb(31, 41, 55) !important;
+        animation: diamondPulse 2s ease-in-out infinite !important;
+        animation-delay: 0.5s !important;
+        border: 2px solid rgba(255, 255, 255, 0.18) !important;
+        backdrop-filter: blur(20px) saturate(1.2) !important;
+        box-shadow: 
+          0 4px 16px rgba(0, 0, 0, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+      }
+
+      .tier-diamond .submit-guess-btn:hover {
+        background: 
+          linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+          linear-gradient(135deg, #ff0080, #00ffff, #ffff00) !important;
+        color: white !important;
+        backdrop-filter: blur(25px) saturate(1.4) !important;
+        border: 2px solid rgba(0, 0, 0, 0.4) !important;
+        box-shadow: 
+          0 6px 20px rgba(255, 0, 128, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+      }
+
+      [data-theme="dark"] .tier-diamond .submit-guess-btn {
+        background: rgba(0, 0, 0, 0.85) !important;
+        color: rgb(255, 255, 255) !important;
+        border: 2px solid rgba(255, 255, 255, 0.12) !important;
+        backdrop-filter: blur(20px) saturate(1.2) !important;
+        box-shadow: 
+          0 4px 16px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+      }
+
+      [data-theme="dark"] .tier-diamond .submit-guess-btn:hover {
+        background: 
+          linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)),
+          linear-gradient(135deg, #ff0080, #00ffff, #ffff00) !important;
+        color: rgb(31, 41, 55) !important;
+        backdrop-filter: blur(25px) saturate(1.4) !important;
+        border: 2px solid rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 
+          0 6px 20px rgba(255, 0, 128, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+      }
+      
       /* Dark mode tier button styling */
       [data-theme="dark"] .tier-bronze .submit-guess-btn:hover,
       [data-theme="dark"] .tier-silver .submit-guess-btn:hover,
@@ -486,6 +660,17 @@ export class GuessModal {
         to {
           transform: translateY(0);
           opacity: 1;
+        }
+      }
+
+      @keyframes diamondPulse {
+        0%, 100% {
+          box-shadow: 0 0 0 0 rgba(255, 0, 128, 0.4);
+          transform: scale(1);
+        }
+        50% {
+          box-shadow: 0 0 0 10px rgba(255, 0, 128, 0);
+          transform: scale(1.02);
         }
       }
       

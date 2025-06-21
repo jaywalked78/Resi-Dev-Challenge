@@ -58,7 +58,8 @@ export class CalculatorModal extends Modal {
         <div class="flex border-b border-gray-200 dark:border-gray-600 mb-6 transition-colors duration-300" role="tablist" aria-labelledby="input-mode-label">
           <h3 id="input-mode-label" class="sr-only">Input Mode Selection</h3>
           <button 
-            class="tab-btn px-4 py-2 font-medium text-gray-700 dark:text-white border-b-2 border-blue-500 dark:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-300" 
+            class="tab-btn px-4 py-2 font-medium text-gray-700 dark:text-white border-b-2 border-blue-500 dark:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-300
+                   [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white" 
             data-tab="custom" 
             role="tab"
             aria-selected="true"
@@ -69,7 +70,8 @@ export class CalculatorModal extends Modal {
             Custom Numbers
           </button>
           <button 
-            class="tab-btn px-4 py-2 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-300" 
+            class="tab-btn px-4 py-2 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-300
+                   [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white [.tier-diamond_&]:hover:text-gray-900 [.tier-diamond_&]:dark:hover:text-gray-200" 
             data-tab="random" 
             role="tab"
             aria-selected="false"
@@ -92,7 +94,7 @@ export class CalculatorModal extends Modal {
             aria-hidden="false"
           >
             <div class="mb-4">
-              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 transition-colors duration-300">Enter numbers to calculate their average (2-10 numbers)</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 transition-colors duration-300 [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white [.tier-diamond_&]:font-medium [.tier-diamond_&]:text-shadow-sm">Enter numbers to calculate their average (2-10 numbers)</p>
               <div id="number-inputs" class="space-y-3" role="group" aria-label="Number input fields">
                 ${this.createNumberInput(0)}
                 ${this.createNumberInput(1)}
@@ -100,7 +102,8 @@ export class CalculatorModal extends Modal {
               <div class="mt-3 flex items-center gap-4" role="group" aria-label="Input controls">
                 <button 
                   id="add-input" 
-                  class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded transition-colors duration-300"
+                  class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded transition-colors duration-300
+                         [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white [.tier-diamond_&]:hover:text-gray-900 [.tier-diamond_&]:dark:hover:text-gray-200 [.tier-diamond_&]:font-semibold [.tier-diamond_&]:text-shadow-sm"
                   aria-label="Add another number input field"
                   type="button"
                 >
@@ -108,7 +111,8 @@ export class CalculatorModal extends Modal {
                 </button>
                 <button 
                   id="clear-inputs" 
-                  class="text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded transition-colors duration-300"
+                  class="text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded transition-colors duration-300 font-bold
+                         [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white [.tier-diamond_&]:hover:text-gray-900 [.tier-diamond_&]:dark:hover:text-gray-200 [.tier-diamond_&]:text-shadow-sm"
                   aria-label="Clear all number inputs"
                   type="button"
                 >
@@ -130,7 +134,8 @@ export class CalculatorModal extends Modal {
               <div>
                 <label 
                   for="random-count"
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300
+                         [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white [.tier-diamond_&]:font-semibold [.tier-diamond_&]:text-shadow-sm"
                 >
                   How many numbers?
                 </label>
@@ -143,9 +148,9 @@ export class CalculatorModal extends Modal {
                   class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                   aria-describedby="count-display count-range"
                 >
-                <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1 transition-colors duration-300" id="count-range">
+                <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1 transition-colors duration-300 [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white" id="count-range">
                   <span>2</span>
-                  <span id="count-display" class="font-medium text-gray-700 dark:text-gray-300 transition-colors duration-300" aria-live="polite">5</span>
+                  <span id="count-display" class="font-medium text-gray-700 dark:text-gray-300 transition-colors duration-300 [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white [.tier-diamond_&]:font-semibold" aria-live="polite">5</span>
                   <span>10</span>
                 </div>
               </div>
@@ -155,7 +160,8 @@ export class CalculatorModal extends Modal {
                 <div>
                   <label 
                     for="random-min"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300
+                           [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white [.tier-diamond_&]:font-semibold [.tier-diamond_&]:text-shadow-sm"
                   >
                     Min Value
                   </label>
@@ -171,7 +177,8 @@ export class CalculatorModal extends Modal {
                 <div>
                   <label 
                     for="random-max"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300
+                           [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white [.tier-diamond_&]:font-semibold [.tier-diamond_&]:text-shadow-sm"
                   >
                     Max Value
                   </label>
@@ -207,7 +214,8 @@ export class CalculatorModal extends Modal {
           <div class="flex border-b border-gray-200 dark:border-gray-600 mb-4 transition-colors duration-300" role="tablist" aria-labelledby="results-tabs-label">
             <h4 id="results-tabs-label" class="sr-only">Results Display Options</h4>
             <button 
-              class="result-tab-btn px-4 py-2 font-medium text-gray-700 dark:text-white border-b-2 border-blue-500 dark:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors" 
+              class="result-tab-btn px-4 py-2 font-medium text-gray-700 dark:text-white border-b-2 border-blue-500 dark:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors
+                     [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white" 
               data-result-tab="overview" 
               role="tab"
               aria-selected="true"
@@ -218,7 +226,8 @@ export class CalculatorModal extends Modal {
               Overview
             </button>
             <button 
-              class="result-tab-btn px-4 py-2 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors" 
+              class="result-tab-btn px-4 py-2 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors
+                     [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white [.tier-diamond_&]:hover:text-gray-900 [.tier-diamond_&]:dark:hover:text-gray-200" 
               data-result-tab="statistics" 
               role="tab"
               aria-selected="false"
@@ -229,7 +238,8 @@ export class CalculatorModal extends Modal {
               Statistics
             </button>
             <button 
-              class="result-tab-btn px-4 py-2 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors" 
+              class="result-tab-btn px-4 py-2 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors
+                     [.tier-diamond_&]:text-gray-700 [.tier-diamond_&]:dark:text-white [.tier-diamond_&]:hover:text-gray-900 [.tier-diamond_&]:dark:hover:text-gray-200" 
               data-result-tab="history" 
               role="tab"
               aria-selected="false"
@@ -445,11 +455,11 @@ export class CalculatorModal extends Modal {
                      [.tier-platinum_&]:hover:border-2
                      [.tier-platinum_&]:hover:border-tier-platinum
                      
-                     [.tier-diamond_&]:bg-white
+                     [.tier-diamond_&]:bg-white/85
                      [.tier-diamond_&]:dark:bg-gray-800
                      [.tier-diamond_&]:text-gray-800
                      [.tier-diamond_&]:dark:text-gray-200
-                     [.tier-diamond_&]:text-shadow-md
+                     [.tier-diamond_&]:[text-shadow:none]
                      [.tier-diamond_&]:dark:[text-shadow:none]
                      [.tier-diamond_&]:border-2
                      [.tier-diamond_&]:border-gray-300
@@ -525,10 +535,12 @@ export class CalculatorModal extends Modal {
             </button>
             <button 
               id="calculate-btn" 
-              class="px-4 py-2 rounded-md focus:outline-none focus:ring-2 transition-colors text-white font-medium shadow-lg
-                bg-gradient-to-r from-green-500 to-green-600
-                hover:from-green-600 hover:to-green-700
+              class="px-4 py-2 rounded-md focus:outline-none focus:ring-2 transition-colors font-medium shadow-lg
+                bg-gray-700 dark:bg-gray-600 text-gray-100 dark:text-gray-200
+                hover:bg-green-600 hover:text-white
+                dark:hover:bg-green-600 dark:hover:text-white
                 focus:ring-green-500
+                [.tier-diamond_&]:animate-[pulse-glow_2s_ease-in-out_infinite] [.tier-diamond_&]:[animation-delay:0.75s]
                 
                 [.tier-bronze_&]:bg-gradient-to-r
                 [.tier-bronze_&]:from-tier-bronze
@@ -599,7 +611,7 @@ export class CalculatorModal extends Modal {
                 [.tier-diamond_&]:dark:bg-gray-800
                 [.tier-diamond_&]:text-gray-800
                 [.tier-diamond_&]:dark:text-gray-200
-                [.tier-diamond_&]:text-shadow-md
+                [.tier-diamond_&]:[text-shadow:none]
                 [.tier-diamond_&]:dark:[text-shadow:none]
                 [.tier-diamond_&]:border-2
                 [.tier-diamond_&]:border-gray-300
@@ -632,6 +644,7 @@ export class CalculatorModal extends Modal {
   }
 
   createNumberInput(index) {
+    const staggerDelay = index * 0.5; // 0.5 second intervals
     return `
       <div class="flex items-center gap-2 number-input-group" role="group" aria-label="Number input ${index + 1}">
         <label for="number-input-${index}" class="sr-only">Number ${index + 1}</label>
@@ -643,6 +656,7 @@ export class CalculatorModal extends Modal {
           aria-label="Number ${index + 1} input field"
           aria-describedby="number-help-${index}"
           step="any"
+          style="animation-delay: ${staggerDelay}s;"
         >
         <span id="number-help-${index}" class="sr-only">Enter any numeric value for calculation</span>
         ${
@@ -838,11 +852,17 @@ export class CalculatorModal extends Modal {
 
     const div = document.createElement('div');
     div.innerHTML = this.createNumberInput(inputCount);
-    container.appendChild(div.firstElementChild);
+    const newInputGroup = div.firstElementChild;
+    container.appendChild(newInputGroup);
 
-    // Focus new input
-    const newInput = container.lastElementChild.querySelector('input');
+    // Focus new input and trigger any entrance animations
+    const newInput = newInputGroup.querySelector('input');
     newInput.focus();
+    
+    // For Diamond tier, ensure the new input gets the proper pulsating effect
+    if (document.body.classList.contains('tier-diamond')) {
+      newInput.classList.add('animate-[pulse-glow_2s_ease-in-out_infinite]');
+    }
   }
 
   removeNumberInput(inputGroup) {
@@ -1638,6 +1658,55 @@ Count: ${this.allStats.count}`;
         valueId: 'stddev-value'
       }
     ];
+
+    // For Diamond tier, use unique colors for each card with glassmorphism
+    if (document.body.classList.contains('tier-diamond')) {
+      const diamondColors = [
+        {
+          light: 'bg-pink-500/70 dark:bg-pink-500/90',
+          dark: 'dark:bg-pink-500/90',
+          text: 'text-gray-700 dark:text-white',
+          glassStyle: 'backdrop-blur-lg border border-pink-300/30 dark:border-pink-500/40 shadow-lg shadow-pink-500/20'
+        },
+        {
+          light: 'bg-cyan-500/70 dark:bg-cyan-500/90',
+          dark: 'dark:bg-cyan-500/90', 
+          text: 'text-gray-700 dark:text-white',
+          glassStyle: 'backdrop-blur-lg border border-cyan-300/30 dark:border-cyan-500/40 shadow-lg shadow-cyan-500/20'
+        },
+        {
+          light: 'bg-yellow-500/70 dark:bg-yellow-500/90',
+          dark: 'dark:bg-yellow-500/90',
+          text: 'text-gray-700 dark:text-gray-800',
+          glassStyle: 'backdrop-blur-lg border border-yellow-300/30 dark:border-yellow-500/40 shadow-lg shadow-yellow-500/20'
+        },
+        {
+          light: 'bg-purple-500/70 dark:bg-purple-500/90',
+          dark: 'dark:bg-purple-500/90',
+          text: 'text-gray-700 dark:text-white',
+          glassStyle: 'backdrop-blur-lg border border-purple-300/30 dark:border-purple-500/40 shadow-lg shadow-purple-500/20'
+        }
+      ];
+
+      return cards.map((card, index) => {
+        const color = diamondColors[index];
+        return `
+          <article class="stat-card p-4 rounded-lg transition-all duration-300 
+                         ${color.light} ${color.dark} ${color.glassStyle}" role="listitem" aria-labelledby="${card.id}-heading">
+            <div class="flex items-center justify-between mb-2">
+              <h5 id="${card.id}-heading" class="font-medium ${color.text} transition-colors duration-300">${card.title}</h5>
+              <button 
+                class="tooltip-trigger text-gray-600 dark:text-gray-300 cursor-help transition-colors duration-300 p-1 rounded focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-opacity-50" 
+                data-tooltip="${card.tooltip}"
+                aria-label="Information about ${card.title.toLowerCase()} calculation"
+                type="button"
+              >ⓘ</button>
+            </div>
+            <p id="${card.valueId}" class="text-2xl font-bold ${color.text} transition-colors duration-300" aria-describedby="${card.id}-heading">0</p>
+          </article>
+        `;
+      }).join('');
+    }
 
     return cards.map(card => `
       <article class="stat-card p-4 rounded-lg transition-colors duration-300 

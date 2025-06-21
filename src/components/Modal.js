@@ -39,7 +39,7 @@ export class Modal {
     // Create modal structure
     this.backdrop = document.createElement('div');
     this.backdrop.className =
-      'modal-backdrop fixed inset-0 bg-black bg-opacity-0 hidden z-40 transition-opacity duration-300';
+      'modal-backdrop fixed inset-0 bg-black bg-opacity-0 hidden z-40 transition-opacity duration-300 [.tier-diamond_&]:bg-black [.tier-diamond_&]:bg-opacity-50';
 
     this.container = document.createElement('div');
     this.container.className =
@@ -47,7 +47,7 @@ export class Modal {
 
     this.modal = document.createElement('div');
     this.modal.className =
-      'modal bg-white dark:bg-gray-800 rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-auto transform scale-95 opacity-0 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50';
+      'modal bg-white dark:bg-gray-800 rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50 [.tier-diamond_&]:relative';
     this.modal.setAttribute('role', 'dialog');
     this.modal.setAttribute('aria-modal', 'true');
     this.modal.setAttribute('aria-labelledby', 'modal-title');

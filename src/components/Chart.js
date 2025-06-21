@@ -71,56 +71,83 @@ export class Chart {
     svg.setAttribute('class', 'chart-svg');
     svg.style.overflow = 'visible';
 
-    // Add multiple vertical gradients for diamond tier bars
+    // Add vertical gradients for all tier bars
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
 
-    // Check if we're in diamond tier
-    const isDiamondTier = document.body.classList.contains('tier-diamond');
-
-    if (isDiamondTier) {
-      const gradientConfigs = [
-        { id: 'diamond-gradient-1', colors: ['#8B0045', '#A0306E'] },
-        { id: 'diamond-gradient-2', colors: ['#006B7A', '#008B98'] },
-        { id: 'diamond-gradient-3', colors: ['#B8860B', '#D4A00D'] },
-        { id: 'diamond-gradient-4', colors: ['#CC5500', '#E66A00'] },
-        { id: 'diamond-gradient-5', colors: ['#4B0082', '#6A0DAD'] },
-        { id: 'diamond-gradient-6', colors: ['#006400', '#228B22'] },
-        { id: 'diamond-gradient-7', colors: ['#8B0000', '#B22222'] },
-        { id: 'diamond-gradient-8', colors: ['#191970', '#4169E1'] },
-        { id: 'diamond-gradient-9', colors: ['#556B2F', '#6B8E23'] },
-        { id: 'diamond-gradient-10', colors: ['#A0522D', '#CD853F'] },
+    // Define tier gradient configurations based on current active tier
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    const opacity = isDarkMode ? '0.85' : '0.35';
+    
+    // Detect current tier from body classes
+    const body = document.body;
+    let currentTierColors;
+    
+    if (body.classList.contains('tier-bronze')) {
+      currentTierColors = [`rgba(205, 127, 50, ${opacity})`, `rgba(184, 134, 11, ${opacity})`];
+    } else if (body.classList.contains('tier-silver')) {
+      currentTierColors = [`rgba(192, 192, 192, ${opacity})`, `rgba(160, 160, 160, ${opacity})`];
+    } else if (body.classList.contains('tier-gold')) {
+      currentTierColors = [`rgba(218, 165, 32, ${opacity})`, `rgba(255, 179, 71, ${opacity})`];
+    } else if (body.classList.contains('tier-platinum')) {
+      currentTierColors = [`rgba(229, 231, 235, ${opacity})`, `rgba(255, 255, 255, ${opacity})`];
+    } else if (body.classList.contains('tier-diamond')) {
+      // For diamond tier, use multiple colors cycling through diamond theme
+      const diamondColors = [
+        [`rgba(255, 0, 128, ${opacity})`, `rgba(160, 48, 110, ${opacity})`],
+        [`rgba(0, 255, 255, ${opacity})`, `rgba(0, 139, 152, ${opacity})`],
+        [`rgba(255, 255, 0, ${opacity})`, `rgba(212, 160, 13, ${opacity})`],
+        [`rgba(204, 85, 0, ${opacity})`, `rgba(230, 106, 0, ${opacity})`],
+        [`rgba(75, 0, 130, ${opacity})`, `rgba(106, 13, 173, ${opacity})`],
       ];
-
-      gradientConfigs.forEach(config => {
-        const gradient = document.createElementNS(
-          'http://www.w3.org/2000/svg',
-          'linearGradient'
-        );
-        gradient.setAttribute('id', config.id);
+      
+      // Create multiple diamond gradients
+      diamondColors.forEach((colors, index) => {
+        const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        gradient.setAttribute('id', `tier-gradient-${index + 1}`);
         gradient.setAttribute('x1', '0%');
         gradient.setAttribute('y1', '0%');
         gradient.setAttribute('x2', '0%');
-        gradient.setAttribute('y2', '100%'); // Vertical gradient
+        gradient.setAttribute('y2', '100%');
 
-        const stop1 = document.createElementNS(
-          'http://www.w3.org/2000/svg',
-          'stop'
-        );
+        const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
         stop1.setAttribute('offset', '0%');
-        stop1.setAttribute('stop-color', config.colors[0]);
+        stop1.setAttribute('stop-color', colors[0]);
 
-        const stop2 = document.createElementNS(
-          'http://www.w3.org/2000/svg',
-          'stop'
-        );
+        const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
         stop2.setAttribute('offset', '100%');
-        stop2.setAttribute('stop-color', config.colors[1]);
+        stop2.setAttribute('stop-color', colors[1]);
 
         gradient.appendChild(stop1);
         gradient.appendChild(stop2);
         defs.appendChild(gradient);
       });
+    } else {
+      // Default to blue for no tier
+      currentTierColors = [`rgba(59, 130, 246, ${opacity})`, `rgba(37, 99, 235, ${opacity})`];
     }
+    
+    // For non-diamond tiers, create a single gradient that all bars will use
+    if (!body.classList.contains('tier-diamond')) {
+      const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+      gradient.setAttribute('id', 'tier-gradient-single');
+      gradient.setAttribute('x1', '0%');
+      gradient.setAttribute('y1', '0%');
+      gradient.setAttribute('x2', '0%');
+      gradient.setAttribute('y2', '100%');
+
+      const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop1.setAttribute('offset', '0%');
+      stop1.setAttribute('stop-color', currentTierColors[0]);
+
+      const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop2.setAttribute('offset', '100%');
+      stop2.setAttribute('stop-color', currentTierColors[1]);
+
+      gradient.appendChild(stop1);
+      gradient.appendChild(stop2);
+      defs.appendChild(gradient);
+    }
+
 
     svg.appendChild(defs);
 
@@ -215,14 +242,20 @@ export class Chart {
       bar.setAttribute('y', this.options.height - this.options.margin.bottom); // Start from bottom
       bar.setAttribute('width', barWidth);
       bar.setAttribute('height', 0); // Start with 0 height
-      // Use gradient fill for diamond tier, regular color for others
-      const isDiamondTier = document.body.classList.contains('tier-diamond');
-      if (isDiamondTier) {
-        const gradientId = `diamond-gradient-${(index % 10) + 1}`;
+      
+      // Use appropriate gradient based on tier
+      if (document.body.classList.contains('tier-diamond')) {
+        // For diamond tier, cycle through the diamond gradients
+        const gradientId = `tier-gradient-${(index % 5) + 1}`;
         bar.setAttribute('fill', `url(#${gradientId})`);
       } else {
-        bar.setAttribute('fill', this.options.barColor);
+        // For all other tiers, use the single tier gradient
+        bar.setAttribute('fill', `url(#tier-gradient-single)`);
       }
+      
+      // Add dark gray text color as stroke for better definition
+      bar.setAttribute('stroke', 'rgba(75, 85, 99, 0.3)'); // text-gray-600 with opacity
+      bar.setAttribute('stroke-width', '0.5');
       bar.setAttribute('rx', '2');
       bar.setAttribute('class', 'bar chart-bar');
 

@@ -253,14 +253,14 @@ export class CalculatorModal extends Modal {
             >
               <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg transition-colors duration-300" role="region" aria-labelledby="average-display">
                 <h5 id="average-display" class="text-sm text-gray-600 dark:text-gray-300 mb-2 transition-colors duration-300">Average</h5>
-                <div id="result-value" class="text-5xl font-bold text-blue-600 dark:text-blue-300 mb-4 transition-colors duration-300" aria-live="polite" aria-atomic="true">0</div>
+                <div id="result-value" class="text-5xl font-bold mb-4 transition-colors duration-300 tier-average-text" aria-live="polite" aria-atomic="true">0</div>
                 <div class="grid grid-cols-2 gap-4 mt-6 text-sm" role="group" aria-label="Summary statistics">
                   <div class="text-center" role="group" aria-labelledby="sum-label">
-                    <p id="sum-label" class="text-gray-500 dark:text-gray-300 transition-colors duration-300">Sum</p>
+                    <p id="sum-label" class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Sum</p>
                     <p id="sum-value" class="font-semibold text-gray-700 dark:text-gray-200 transition-colors duration-300" aria-describedby="sum-label">0</p>
                   </div>
                   <div class="text-center" role="group" aria-labelledby="count-label">
-                    <p id="count-label" class="text-gray-500 dark:text-gray-300 transition-colors duration-300">Count</p>
+                    <p id="count-label" class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Count</p>
                     <p id="count-value" class="font-semibold text-gray-700 dark:text-gray-200 transition-colors duration-300" aria-describedby="count-label">0</p>
                   </div>
                 </div>
@@ -292,58 +292,8 @@ export class CalculatorModal extends Modal {
               aria-labelledby="statistics-tab-button"
               aria-hidden="true"
             >
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4" role="list" aria-label="Detailed statistical measures">
-                <article class="stat-card p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 rounded-lg transition-colors duration-300" role="listitem" aria-labelledby="median-heading">
-                  <div class="flex items-center justify-between mb-2">
-                    <h5 id="median-heading" class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Median</h5>
-                    <button 
-                      class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300 p-1 rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50" 
-                      data-tooltip="The middle value when numbers are sorted"
-                      aria-label="Information about median calculation"
-                      type="button"
-                    >ⓘ</button>
-                  </div>
-                  <p id="median-value" class="text-2xl font-bold text-green-600 dark:text-green-400 transition-colors duration-300" aria-describedby="median-heading">0</p>
-                </article>
-                
-                <article class="stat-card p-4 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/30 dark:to-violet-900/30 rounded-lg transition-colors duration-300" role="listitem" aria-labelledby="variance-heading">
-                  <div class="flex items-center justify-between mb-2">
-                    <h5 id="variance-heading" class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Variance</h5>
-                    <button 
-                      class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300 p-1 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50" 
-                      data-tooltip="Sample variance: average squared deviation from mean (s²)"
-                      aria-label="Information about variance calculation"
-                      type="button"
-                    >ⓘ</button>
-                  </div>
-                  <p id="variance-value" class="text-2xl font-bold text-purple-600 dark:text-purple-400 transition-colors duration-300" aria-describedby="variance-heading">0</p>
-                </article>
-                
-                <article class="stat-card p-4 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/30 dark:to-amber-900/30 rounded-lg transition-colors duration-300" role="listitem" aria-labelledby="range-heading">
-                  <div class="flex items-center justify-between mb-2">
-                    <h5 id="range-heading" class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Range</h5>
-                    <button 
-                      class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300 p-1 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50" 
-                      data-tooltip="The difference between the highest and lowest values"
-                      aria-label="Information about range calculation"
-                      type="button"
-                    >ⓘ</button>
-                  </div>
-                  <p id="range-value" class="text-2xl font-bold text-orange-600 dark:text-orange-400 transition-colors duration-300" aria-describedby="range-heading">0</p>
-                </article>
-                
-                <article class="stat-card p-4 bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/30 dark:to-rose-900/30 rounded-lg transition-colors duration-300" role="listitem" aria-labelledby="stddev-heading">
-                  <div class="flex items-center justify-between mb-2">
-                    <h5 id="stddev-heading" class="font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300">Std. Deviation</h5>
-                    <button 
-                      class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300 p-1 rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" 
-                      data-tooltip="A measure of how spread out the numbers are"
-                      aria-label="Information about standard deviation calculation"
-                      type="button"
-                    >ⓘ</button>
-                  </div>
-                  <p id="stddev-value" class="text-2xl font-bold text-red-600 dark:text-red-400 transition-colors duration-300" aria-describedby="stddev-heading">0</p>
-                </article>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4" role="list" aria-label="Detailed statistical measures" id="statistics-grid">
+                <!-- Statistics cards will be dynamically populated with current tier colors -->
               </div>
             </div>
 
@@ -393,7 +343,127 @@ export class CalculatorModal extends Modal {
             </button>
             <button 
               id="copy-result" 
-              class="copy-result-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+              class="copy-result-btn relative z-10 px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300
+                     bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-0.5 active:translate-y-0
+                     
+                     [.tier-bronze_&]:bg-gradient-to-r
+                     [.tier-bronze_&]:from-tier-bronze
+                     [.tier-bronze_&]:to-tier-bronze-dark
+                     [.tier-bronze_&]:bg-blend-overlay
+                     [.tier-bronze_&]:bg-white/35
+                     [.tier-bronze_&]:dark:bg-gradient-to-r
+                     [.tier-bronze_&]:dark:from-tier-bronze
+                     [.tier-bronze_&]:dark:to-tier-bronze-dark
+                     [.tier-bronze_&]:dark:bg-blend-normal
+                     [.tier-bronze_&]:dark:bg-transparent
+                     [.tier-bronze_&]:text-gray-800
+                     [.tier-bronze_&]:dark:text-gray-800
+                     [.tier-bronze_&]:[text-shadow:none]
+                     [.tier-bronze_&]:dark:[text-shadow:none]
+                     [.tier-bronze_&]:hover:bg-gradient-to-r
+                     [.tier-bronze_&]:hover:from-white
+                     [.tier-bronze_&]:hover:to-white
+                     [.tier-bronze_&]:hover:dark:from-gray-800
+                     [.tier-bronze_&]:hover:dark:to-gray-800
+                     [.tier-bronze_&]:hover:text-gray-800
+                     [.tier-bronze_&]:hover:dark:text-gray-300
+                     [.tier-bronze_&]:hover:border-2
+                     [.tier-bronze_&]:hover:border-tier-bronze
+                     
+                     [.tier-silver_&]:bg-gradient-to-r
+                     [.tier-silver_&]:from-tier-silver
+                     [.tier-silver_&]:to-tier-silver-dark
+                     [.tier-silver_&]:bg-blend-overlay
+                     [.tier-silver_&]:bg-white/35
+                     [.tier-silver_&]:dark:bg-gradient-to-r
+                     [.tier-silver_&]:dark:from-tier-silver
+                     [.tier-silver_&]:dark:to-tier-silver-dark
+                     [.tier-silver_&]:dark:bg-blend-normal
+                     [.tier-silver_&]:dark:bg-transparent
+                     [.tier-silver_&]:text-gray-800
+                     [.tier-silver_&]:[text-shadow:none]
+                     [.tier-silver_&]:dark:[text-shadow:none]
+                     [.tier-silver_&]:hover:bg-gradient-to-r
+                     [.tier-silver_&]:hover:from-white
+                     [.tier-silver_&]:hover:to-white
+                     [.tier-silver_&]:hover:dark:from-gray-800
+                     [.tier-silver_&]:hover:dark:to-gray-800
+                     [.tier-silver_&]:hover:text-gray-800
+                     [.tier-silver_&]:hover:dark:text-gray-300
+                     [.tier-silver_&]:hover:border-2
+                     [.tier-silver_&]:hover:border-tier-silver
+                     
+                     [.tier-gold_&]:bg-gradient-to-r
+                     [.tier-gold_&]:from-tier-gold
+                     [.tier-gold_&]:via-tier-gold-light
+                     [.tier-gold_&]:to-tier-bronze-dark
+                     [.tier-gold_&]:bg-blend-overlay
+                     [.tier-gold_&]:bg-white/35
+                     [.tier-gold_&]:dark:bg-gradient-to-r
+                     [.tier-gold_&]:dark:from-tier-gold
+                     [.tier-gold_&]:dark:via-tier-gold-light
+                     [.tier-gold_&]:dark:to-tier-bronze-dark
+                     [.tier-gold_&]:dark:bg-blend-normal
+                     [.tier-gold_&]:dark:bg-transparent
+                     [.tier-gold_&]:text-gray-800
+                     [.tier-gold_&]:[text-shadow:none]
+                     [.tier-gold_&]:dark:[text-shadow:none]
+                     [.tier-gold_&]:shadow-tier-gold/40
+                     [.tier-gold_&]:hover:bg-gradient-to-r
+                     [.tier-gold_&]:hover:from-white
+                     [.tier-gold_&]:hover:to-white
+                     [.tier-gold_&]:hover:dark:from-gray-800
+                     [.tier-gold_&]:hover:dark:to-gray-800
+                     [.tier-gold_&]:hover:text-gray-800
+                     [.tier-gold_&]:hover:dark:text-gray-300
+                     [.tier-gold_&]:hover:border-2
+                     [.tier-gold_&]:hover:border-tier-gold
+                     
+                     [.tier-platinum_&]:bg-gradient-to-r
+                     [.tier-platinum_&]:from-tier-platinum
+                     [.tier-platinum_&]:via-white
+                     [.tier-platinum_&]:to-gray-300
+                     [.tier-platinum_&]:bg-blend-overlay
+                     [.tier-platinum_&]:bg-white/35
+                     [.tier-platinum_&]:dark:bg-gradient-to-r
+                     [.tier-platinum_&]:dark:from-tier-platinum
+                     [.tier-platinum_&]:dark:via-white
+                     [.tier-platinum_&]:dark:to-gray-300
+                     [.tier-platinum_&]:dark:bg-blend-normal
+                     [.tier-platinum_&]:dark:bg-transparent
+                     [.tier-platinum_&]:text-gray-800
+                     [.tier-platinum_&]:[text-shadow:none]
+                     [.tier-platinum_&]:dark:[text-shadow:none]
+                     [.tier-platinum_&]:shadow-tier-platinum/50
+                     [.tier-platinum_&]:hover:bg-gradient-to-r
+                     [.tier-platinum_&]:hover:from-white
+                     [.tier-platinum_&]:hover:to-white
+                     [.tier-platinum_&]:hover:dark:from-gray-800
+                     [.tier-platinum_&]:hover:dark:to-gray-800
+                     [.tier-platinum_&]:hover:text-gray-800
+                     [.tier-platinum_&]:hover:dark:text-gray-300
+                     [.tier-platinum_&]:hover:border-2
+                     [.tier-platinum_&]:hover:border-tier-platinum
+                     
+                     [.tier-diamond_&]:bg-white
+                     [.tier-diamond_&]:dark:bg-gray-800
+                     [.tier-diamond_&]:text-gray-800
+                     [.tier-diamond_&]:dark:text-gray-200
+                     [.tier-diamond_&]:text-shadow-md
+                     [.tier-diamond_&]:dark:[text-shadow:none]
+                     [.tier-diamond_&]:border-2
+                     [.tier-diamond_&]:border-gray-300
+                     [.tier-diamond_&]:dark:border-gray-800
+                     [.tier-diamond_&]:hover:bg-gradient-to-r
+                     [.tier-diamond_&]:hover:from-tier-diamond-pink
+                     [.tier-diamond_&]:hover:via-tier-diamond-cyan
+                     [.tier-diamond_&]:hover:to-tier-diamond-yellow
+                     [.tier-diamond_&]:hover:bg-[length:200%_200%]
+                     [.tier-diamond_&]:hover:animate-[diamondButtonShift_3s_ease-in-out_infinite]
+                     [.tier-diamond_&]:hover:text-white
+                     [.tier-diamond_&]:hover:dark:text-gray-800
+                     
+                     focus:outline-none focus:ring-2 focus:ring-blue-500"
               aria-label="Copy calculation results to clipboard"
               aria-describedby="copy-help"
               type="button"
@@ -969,12 +1039,16 @@ export class CalculatorModal extends Modal {
       // Always switch to Overview tab when showing new results
       this.switchResultTab('overview');
 
-      // Show number pills
+      // Show number pills with tiered colors
       const pillsContainer = this.modal.querySelector('#number-pills');
+      const tierColors = this.getTierColors();
       pillsContainer.innerHTML = this.numbers
         .map(
-          (num, index) =>
-            `<span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm transition-colors duration-300" role="listitem" aria-label="Input number ${index + 1}: ${formatNumber(num)}">${formatNumber(num)}</span>`
+          (num, index) => {
+            const colorIndex = index % tierColors.length;
+            const tierColor = tierColors[colorIndex];
+            return `<span class="px-3 py-1 ${tierColor.light} ${tierColor.dark} ${tierColor.text} rounded-full text-sm font-bold transition-colors duration-300" role="listitem" aria-label="Input number ${index + 1}: ${formatNumber(num)}">${formatNumber(num)}</span>`
+          }
         )
         .join('');
 
@@ -1231,6 +1305,12 @@ Count: ${this.allStats.count}`;
     );
     this.modal.querySelector('#count-value').textContent = stats.count;
 
+    // Create statistics cards with current tier colors
+    const statisticsGrid = this.modal.querySelector('#statistics-grid');
+    if (statisticsGrid) {
+      statisticsGrid.innerHTML = this.createStatisticsCards();
+    }
+
     // Force update overview text colors for dark mode with a small delay
     setTimeout(() => {
       const isDark = document.documentElement.classList.contains('dark');
@@ -1328,8 +1408,13 @@ Count: ${this.allStats.count}`;
               ${calc.numbers
                 .slice(0, 5)
                 .map(
-                  num =>
-                    `<span class="text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-900/70 text-blue-600 dark:text-blue-200 rounded transition-colors duration-300">${formatNumber(num)}</span>`
+                  (num, index) => {
+                    const tierColors = this.getTierColors();
+                    const colorIndex = tierColors.length > 1 ? index % tierColors.length : 0;
+                    const tierColor = tierColors[colorIndex];
+                    const colorClass = `${tierColor.light} ${tierColor.dark} ${tierColor.text}`;
+                    return `<span class="text-xs px-2 py-0.5 ${colorClass} rounded font-bold transition-colors duration-300">${formatNumber(num)}</span>`
+                  }
                 )
                 .join('')}
               ${calc.numbers.length > 5 ? `<span class="text-xs text-gray-500 dark:text-gray-300 transition-colors duration-300">+${calc.numbers.length - 5} more</span>` : ''}
@@ -1371,12 +1456,16 @@ Count: ${this.allStats.count}`;
     // Update the display
     this.populateResults(calculation.results);
 
-    // Update number pills
+    // Update number pills with tiered colors
     const pillsContainer = this.modal.querySelector('#number-pills');
+    const tierColors = this.getTierColors();
     pillsContainer.innerHTML = this.numbers
       .map(
-        num =>
-          `<span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm">${formatNumber(num)}</span>`
+        (num, index) => {
+          const colorIndex = index % tierColors.length;
+          const tierColor = tierColors[colorIndex];
+          return `<span class="px-3 py-1 ${tierColor.light} ${tierColor.dark} ${tierColor.text} rounded-full text-sm font-bold transition-colors duration-300">${formatNumber(num)}</span>`
+        }
       )
       .join('');
 
@@ -1513,6 +1602,117 @@ Count: ${this.allStats.count}`;
         e.preventDefault();
         e.target.click();
         break;
+    }
+  }
+
+  /**
+   * Create statistics cards with current tier colors
+   */
+  createStatisticsCards() {
+    const tierColors = this.getTierColors();
+    const currentTierColor = tierColors[0]; // Use first tier color for all stats
+    
+    const cards = [
+      {
+        id: 'median',
+        title: 'Median',
+        tooltip: 'The middle value when numbers are sorted',
+        valueId: 'median-value'
+      },
+      {
+        id: 'variance', 
+        title: 'Variance',
+        tooltip: 'Sample variance: average squared deviation from mean (s²)',
+        valueId: 'variance-value'
+      },
+      {
+        id: 'range',
+        title: 'Range', 
+        tooltip: 'The difference between the highest and lowest values',
+        valueId: 'range-value'
+      },
+      {
+        id: 'stddev',
+        title: 'Std. Deviation',
+        tooltip: 'A measure of how spread out the numbers are', 
+        valueId: 'stddev-value'
+      }
+    ];
+
+    return cards.map(card => `
+      <article class="stat-card p-4 rounded-lg transition-colors duration-300 
+                     ${currentTierColor.light} ${currentTierColor.dark}" role="listitem" aria-labelledby="${card.id}-heading">
+        <div class="flex items-center justify-between mb-2">
+          <h5 id="${card.id}-heading" class="font-medium ${currentTierColor.text} transition-colors duration-300">${card.title}</h5>
+          <button 
+            class="tooltip-trigger text-gray-400 dark:text-gray-500 cursor-help transition-colors duration-300 p-1 rounded focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50" 
+            data-tooltip="${card.tooltip}"
+            aria-label="Information about ${card.title.toLowerCase()} calculation"
+            type="button"
+          >ⓘ</button>
+        </div>
+        <p id="${card.valueId}" class="text-2xl font-bold ${currentTierColor.text} transition-colors duration-300" aria-describedby="${card.id}-heading">0</p>
+      </article>
+    `).join('');
+  }
+
+  /**
+   * Get current tier color classes for numbered pill boxes
+   * Returns consistent color based on active tier, with cycling for diamond tier
+   */
+  getTierColors() {
+    const body = document.body;
+    
+    if (body.classList.contains('tier-bronze')) {
+      return [{
+        light: 'bg-tier-bronze/35 dark:bg-tier-bronze/85',
+        dark: 'dark:bg-tier-bronze/85',
+        text: 'text-gray-700 dark:text-gray-700'
+      }];
+    } else if (body.classList.contains('tier-silver')) {
+      return [{
+        light: 'bg-tier-silver/35 dark:bg-tier-silver/85',
+        dark: 'dark:bg-tier-silver/85',
+        text: 'text-gray-700 dark:text-gray-700'
+      }];
+    } else if (body.classList.contains('tier-gold')) {
+      return [{
+        light: 'bg-tier-gold/35 dark:bg-tier-gold/85',
+        dark: 'dark:bg-tier-gold/85',
+        text: 'text-gray-700 dark:text-gray-700'
+      }];
+    } else if (body.classList.contains('tier-platinum')) {
+      return [{
+        light: 'bg-tier-platinum/35 dark:bg-tier-platinum/85',
+        dark: 'dark:bg-tier-platinum/85',
+        text: 'text-gray-700 dark:text-gray-700'
+      }];
+    } else if (body.classList.contains('tier-diamond')) {
+      // For diamond tier, cycle through diamond colors
+      return [
+        {
+          light: 'bg-tier-diamond-pink/35 dark:bg-tier-diamond-pink/85',
+          dark: 'dark:bg-tier-diamond-pink/85',
+          text: 'text-gray-700 dark:text-gray-700'
+        },
+        {
+          light: 'bg-tier-diamond-cyan/35 dark:bg-tier-diamond-cyan/85',
+          dark: 'dark:bg-tier-diamond-cyan/85',
+          text: 'text-gray-700 dark:text-gray-700'
+        },
+        {
+          light: 'bg-tier-diamond-yellow/35 dark:bg-tier-diamond-yellow/85',
+          dark: 'dark:bg-tier-diamond-yellow/85',
+          text: 'text-gray-700 dark:text-gray-700'
+        }
+      ];
+    } else {
+      // Default blue for no tier
+      return [{
+        light: 'bg-blue-500/35 dark:bg-blue-500/85',
+        dark: 'dark:bg-blue-500/85',
+        text: 'text-gray-700 dark:text-gray-700'
+      }];
     }
   }
 

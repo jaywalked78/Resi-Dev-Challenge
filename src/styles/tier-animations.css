@@ -4,6 +4,108 @@
  * or pseudo-elements that Tailwind can't handle efficiently
  */
 
+/* 
+ * Tier-based average text colors with brightness overlays
+ * 
+ * WHY CSS INSTEAD OF TAILWIND:
+ * - Requires dynamic tier-based conditional styling with complex selectors (.tier-bronze .tier-average-text)
+ * - Uses CSS background-clip: text which isn't available in Tailwind's utility classes
+ * - Requires webkit-specific prefixes (-webkit-background-clip, -webkit-text-fill-color)
+ * - Filter brightness() adjustments with precise tier-specific values aren't efficiently achievable with Tailwind
+ * - Complex conditional styling based on parent tier classes would require excessive arbitrary Tailwind classes
+ * 
+ * ENTERPRISE JUSTIFICATION:
+ * This CSS provides tier-specific text color treatments that would require 10+ arbitrary Tailwind classes
+ * per tier, making the HTML unreadable and unmaintainable. The CSS approach centralizes the tier logic
+ * and provides better performance with native CSS selectors.
+ */
+
+/* Light mode: tier color with 20% black overlay (brightness 0.8) */
+.tier-average-text {
+  color: #3b82f6; /* Default blue */
+}
+
+.tier-bronze .tier-average-text {
+  background: linear-gradient(to bottom, #cd7f32, #cd7f32);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(0.8);
+}
+
+.tier-silver .tier-average-text {
+  background: linear-gradient(to bottom, #c0c0c0, #c0c0c0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(0.8);
+}
+
+.tier-gold .tier-average-text {
+  background: linear-gradient(to bottom, #daa520, #daa520);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(0.8);
+}
+
+.tier-platinum .tier-average-text {
+  background: linear-gradient(to bottom, #e5e7eb, #e5e7eb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(0.8);
+}
+
+.tier-diamond .tier-average-text {
+  background: linear-gradient(45deg, #ff0080, #00ffff, #ffff00, #ff0080);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(0.8);
+}
+
+/* Dark mode: tier color with 35% white overlay */
+.dark .tier-bronze .tier-average-text {
+  background: linear-gradient(to bottom, #cd7f32, #cd7f32);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(1.35);
+}
+
+.dark .tier-silver .tier-average-text {
+  background: linear-gradient(to bottom, #c0c0c0, #c0c0c0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(1.35);
+}
+
+.dark .tier-gold .tier-average-text {
+  background: linear-gradient(to bottom, #daa520, #daa520);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(1.35);
+}
+
+.dark .tier-platinum .tier-average-text {
+  background: linear-gradient(to bottom, #e5e7eb, #e5e7eb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(1.35);
+}
+
+.dark .tier-diamond .tier-average-text {
+  background: linear-gradient(45deg, #ff0080, #00ffff, #ffff00, #ff0080);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(1.35);
+}
+
 /* Platinum tier conic gradient overlay for main content */
 .tier-platinum .main-content-section::before {
   content: '';

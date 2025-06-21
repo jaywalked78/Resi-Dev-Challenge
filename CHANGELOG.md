@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## [1.2.9] - 2025-06-21
+
+### Added - CSS to Tailwind Migration & Main Page Refactor
+
+- **🎨 Main Page Tailwind Conversion**
+  - Converted main landing page from custom CSS to pure Tailwind CSS
+  - Implemented tier-specific styling using Tailwind's arbitrary value selectors
+  - Added custom tier colors, gradients, and shadows to tailwind.config.js
+  - Progressive hover effects for different tiers (bronze/silver/gold/platinum/diamond)
+
+- **✨ Enhanced Button Animations**
+  - Added pulsating glow effect to Launch MeanMachine button
+  - Tier-specific gradient backgrounds and hover states
+  - Diamond tier animated gradient shifting effect
+
+- **🏆 Tier-Aware Components**
+  - Feature cards with progressive hover animations based on tier
+  - Main content section with tier-specific borders and shadows
+  - Gold tier sweep effects for enhanced visual feedback
+  - Platinum/Diamond tier complex animations preserved in minimal CSS
+
+- **🔧 Tailwind Configuration Enhancements**
+  - Extended config with tier color palette
+  - Custom keyframe animations (goldContentSweep, diamondButtonShift, pulse-glow)
+  - Text-shadow utility plugin
+  - Maintained 15px base font size and custom spacing scale
+
+- **♻️ A/B Testing Ready**
+  - Original tier-themes.css preserved and untouched
+  - Easy switching between old CSS and new Tailwind approach
+  - Clean separation of concerns for testing purposes
+
 ## [1.2.8] - 2025-06-20
 
 ### Changed - Dark Mode Default & Achievement Update

@@ -271,7 +271,12 @@
         <!-- Tier Display -->
         <div
           id="tier-display"
-          class="absolute top-6 left-6 px-3 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 hidden"
+          class="absolute top-6 left-6 px-3 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 hidden
+                 [.tier-bronze_&]:bg-tier-display-bronze [.tier-bronze_&]:border-tier-bronze [.tier-bronze_&]:text-tier-display-bronze-text
+                 [.tier-silver_&]:bg-tier-display-silver [.tier-silver_&]:border-tier-silver [.tier-silver_&]:text-tier-display-silver-text
+                 [.tier-gold_&]:bg-tier-display-gold [.tier-gold_&]:border-tier-gold [.tier-gold_&]:text-tier-display-gold-text [.tier-gold_&]:shadow-tier-display-gold
+                 [.tier-platinum_&]:bg-tier-display-platinum [.tier-platinum_&]:border-tier-platinum [.tier-platinum_&]:text-tier-display-platinum-text [.tier-platinum_&]:shadow-tier-display-platinum
+                 [.tier-diamond_&]:bg-tier-display-diamond [.tier-diamond_&]:border-transparent [.tier-diamond_&]:text-white [.tier-diamond_&]:w-fit [.tier-diamond_&]:max-w-fit"
           aria-label="Current achievement tier"
         >
           <div class="flex items-center gap-2">
@@ -323,7 +328,7 @@
           </svg>
         </button>
 
-        <h1 class="text-4xl font-bold mb-2">MeanMachine</h1>
+        <h1 class="text-4xl font-bold mb-2 [.tier-bronze_&]:text-gray-50 [.tier-silver_&]:text-gray-50 [.tier-gold_&]:text-gray-50 [.tier-platinum_&]:text-gray-50 [.tier-diamond_&]:text-gray-50">MeanMachine</h1>
         <p class="text-lg opacity-90">Where numbers meet their destiny ✨</p>
       </header>
 
@@ -375,7 +380,7 @@
             <header class="mb-8 relative z-10">
               <h2
                 id="main-heading"
-                class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3 transition-colors duration-300 [.tier-bronze_&]:pt-1.5 [.tier-silver_&]:pt-1.5 [.tier-gold_&]:pt-1.5 [.tier-platinum_&]:pt-1.5 [.tier-diamond_&]:pt-1.5"
+                class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3 transition-colors duration-300 [.tier-bronze_&]:pt-1.5 [.tier-silver_&]:pt-1.5 [.tier-gold_&]:pt-1.5 [.tier-platinum_&]:pt-1.5 [.tier-diamond_&]:pt-1.5 [.tier-bronze_&]:dark:text-gray-50 [.tier-silver_&]:dark:text-gray-50 [.tier-gold_&]:dark:text-gray-50 [.tier-platinum_&]:dark:text-gray-50 [.tier-diamond_&]:dark:text-gray-50"
               >
                 Calculate Averages in Seconds
               </h2>
@@ -439,7 +444,7 @@
                   </div>
                   <h4
                     id="precision-heading"
-                    class="flex items-center gap-3 font-semibold mb-2 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative z-10"
+                    class="flex items-center gap-3 font-semibold mb-2 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative z-10 [.tier-bronze_&]:dark:text-gray-50 [.tier-silver_&]:dark:text-gray-50 [.tier-gold_&]:dark:text-gray-50 [.tier-platinum_&]:dark:text-gray-50 [.tier-diamond_&]:dark:text-gray-50"
                   >
                     <span class="text-2xl" role="img" aria-label="Target">🎯</span>
                     Precision Input
@@ -491,7 +496,7 @@
                 >
                   <h4
                     id="random-heading"
-                    class="flex items-center gap-3 font-semibold mb-2 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative z-10"
+                    class="flex items-center gap-3 font-semibold mb-2 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative z-10 [.tier-bronze_&]:dark:text-gray-50 [.tier-silver_&]:dark:text-gray-50 [.tier-gold_&]:dark:text-gray-50 [.tier-platinum_&]:dark:text-gray-50 [.tier-diamond_&]:dark:text-gray-50"
                   >
                     <span class="text-2xl" role="img" aria-label="Dice">🎲</span>
                     Random Mode
@@ -543,7 +548,7 @@
                 >
                   <h4
                     id="fast-heading"
-                    class="flex items-center gap-3 font-semibold mb-2 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative z-10"
+                    class="flex items-center gap-3 font-semibold mb-2 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative z-10 [.tier-bronze_&]:dark:text-gray-50 [.tier-silver_&]:dark:text-gray-50 [.tier-gold_&]:dark:text-gray-50 [.tier-platinum_&]:dark:text-gray-50 [.tier-diamond_&]:dark:text-gray-50"
                   >
                     <span class="text-2xl" role="img" aria-label="Lightning bolt">⚡</span>
                     Lightning Fast
@@ -642,8 +647,15 @@
       </main>
 
       <footer
-        class="bg-gray-800/90 dark:bg-gray-900/95 backdrop-blur-sm text-white p-5 transition-colors duration-300"
+        class="bg-gray-800/90 dark:bg-gray-900/95 backdrop-blur-sm text-white p-5 transition-colors duration-300 relative
+               [.tier-bronze_&]:shadow-footer-bronze [.tier-bronze_&]:pt-4 [.tier-bronze_&]:mt-2
+               [.tier-silver_&]:shadow-footer-silver [.tier-silver_&]:pt-4 [.tier-silver_&]:mt-2
+               [.tier-gold_&]:animate-footerGoldGlow [.tier-gold_&]:pt-4 [.tier-gold_&]:mt-2
+               [.tier-platinum_&]:animate-footerPlatinumPulse [.tier-platinum_&]:pt-4 [.tier-platinum_&]:mt-2
+               [.tier-diamond_&]:pt-4 [.tier-diamond_&]:mt-2"
       >
+        <!-- Diamond tier border effect -->
+        <div class="[.tier-diamond_&]:absolute [.tier-diamond_&]:top-0 [.tier-diamond_&]:left-0 [.tier-diamond_&]:right-0 [.tier-diamond_&]:h-1.5 [.tier-diamond_&]:bg-gradient-to-r [.tier-diamond_&]:from-tier-diamond-pink [.tier-diamond_&]:via-tier-diamond-cyan [.tier-diamond_&]:to-tier-diamond-yellow [.tier-diamond_&]:bg-[length:200%_100%] [.tier-diamond_&]:animate-diamondFooterBorder"></div>
         <p>&copy; 2025</p>
       </footer>
     </div>

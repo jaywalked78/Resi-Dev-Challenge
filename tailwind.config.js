@@ -48,6 +48,10 @@ module.exports = {
         'tier-diamond-pink': '#ff0080',
         'tier-diamond-cyan': '#00ffff',
         'tier-diamond-yellow': '#ffff00',
+        'tier-display-bronze-text': '#fbbf24',
+        'tier-display-silver-text': '#e5e7eb',
+        'tier-display-gold-text': '#fbbf24',
+        'tier-display-platinum-text': '#f8fafc',
       },
       backgroundImage: {
         // Tier gradients
@@ -56,6 +60,12 @@ module.exports = {
         'gold-gradient': 'linear-gradient(135deg, #daa520 0%, #ffb347 50%, #b8860b 100%)',
         'platinum-gradient': 'linear-gradient(135deg, #e5e7eb 0%, #ffffff 50%, #d1d5db 100%)',
         'diamond-gradient': 'linear-gradient(135deg, #ff0080 0%, #00ffff 50%, #ffff00 100%)',
+        'tier-display-bronze': 'linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(184, 134, 11, 0.3))',
+        'tier-display-silver': 'linear-gradient(135deg, rgba(192, 192, 192, 0.2), rgba(229, 231, 235, 0.3))',
+        'tier-display-gold': 'linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(255, 179, 71, 0.15))',
+        'tier-display-platinum': 'linear-gradient(135deg, rgba(229, 231, 235, 0.3), rgba(255, 255, 255, 0.4))',
+        'tier-display-diamond': 'linear-gradient(135deg, rgba(255, 0, 128, 0.2), rgba(0, 255, 255, 0.2), rgba(255, 255, 0, 0.2))',
+        'achievement-progress': 'linear-gradient(90deg, #3b82f6 0%, #10b981 50%, #f59e0b 100%)',
       },
       boxShadow: {
         'tier-bronze': '0 2px 8px rgba(205, 127, 50, 0.2)',
@@ -63,12 +73,27 @@ module.exports = {
         'tier-gold': '0 6px 20px rgba(255, 215, 0, 0.2)',
         'tier-platinum': '0 8px 24px rgba(229, 231, 235, 0.2)',
         'tier-diamond': '0 12px 36px rgba(255, 0, 128, 0.2)',
+        'footer-bronze': 'inset 0 6px 0 #cd7f32',
+        'footer-silver': 'inset 0 6px 0 #c0c0c0',
+        'tier-display-gold': '0 4px 12px rgba(255, 215, 0, 0.3)',
+        'tier-display-platinum': '0 6px 16px rgba(229, 231, 235, 0.4)',
+        'achievement-progress-glow': '0 0 10px rgba(59, 130, 246, 0.5)',
       },
       keyframes: {
         fadeInUp: {
           'from': {
             opacity: '0',
             transform: 'translateY(30px)'
+          },
+          'to': {
+            opacity: '1',
+            transform: 'translateY(0)'
+          }
+        },
+        fadeInDown: {
+          'from': {
+            opacity: '0',
+            transform: 'translateY(-30px)'
           },
           'to': {
             opacity: '1',
@@ -90,14 +115,38 @@ module.exports = {
         'pulse-glow': {
           '0%, 100%': { boxShadow: '0 0 5px rgba(59, 130, 246, 0.5)' },
           '50%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.4)' }
+        },
+        footerGoldGlow: {
+          'from': {
+            boxShadow: 'inset 0 6px 0 #daa520, 0 -4px 8px rgba(218, 165, 32, 0.3)'
+          },
+          'to': {
+            boxShadow: 'inset 0 6px 0 #daa520, 0 -4px 12px rgba(218, 165, 32, 0.5)'
+          }
+        },
+        footerPlatinumPulse: {
+          'from': {
+            boxShadow: 'inset 0 6px 0 #e5e7eb, 0 -4px 8px rgba(229, 231, 235, 0.4)'
+          },
+          'to': {
+            boxShadow: 'inset 0 6px 0 #e5e7eb, 0 -4px 12px rgba(229, 231, 235, 0.6)'
+          }
+        },
+        diamondFooterBorder: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' }
         }
       },
       animation: {
         'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
+        'fadeInDown': 'fadeInDown 0.6s ease-out forwards',
         'goldContentSweep': 'goldContentSweep 6s ease-in-out infinite',
         'goldCardSweep': 'goldCardSweep 1s ease-out',
         'diamondButtonShift': 'diamondButtonShift 3s ease-in-out infinite',
-        'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
+        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+        'footerGoldGlow': 'footerGoldGlow 3s ease-in-out infinite alternate',
+        'footerPlatinumPulse': 'footerPlatinumPulse 4s ease-in-out infinite alternate',
+        'diamondFooterBorder': 'diamondFooterBorder 3s ease-in-out infinite'
       },
       borderWidth: {
         '3': '3px',

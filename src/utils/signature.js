@@ -124,21 +124,25 @@ export class SignatureManager {
   setupAchievementProgress() {
     // Create progress bar container
     const progressBar = document.createElement('div');
-    progressBar.className = 'achievement-progress';
-    progressBar.innerHTML = '<div class="achievement-progress-bar"></div>';
+    progressBar.className = 'fixed bottom-0 left-0 right-0 h-2 bg-black/20 z-[9999] opacity-0 transition-opacity duration-300';
+    progressBar.innerHTML = '<div class="h-full bg-gradient-to-r from-blue-600 via-green-500 to-amber-500 transition-[width] duration-500 ease-out shadow-[0_0_10px_rgba(59,130,246,0.5)]" style="width: 0%;"></div>';
     document.body.appendChild(progressBar);
 
     this.progressBar = progressBar;
-    this.progressBarInner = progressBar.querySelector(
-      '.achievement-progress-bar'
-    );
+    this.progressBarInner = progressBar.querySelector('div');
   }
 
   updateAchievementProgress(progress) {
-    if (!this.progressBar) return;
+    if (!this.progressBar) {
+      console.log('Progress bar not initialized');
+      return;
+    }
+
+    console.log(`Updating achievement progress: ${progress}%`);
 
     // Show progress bar
-    this.progressBar.classList.add('show');
+    this.progressBar.classList.remove('opacity-0');
+    this.progressBar.classList.add('opacity-100');
 
     // Update width
     this.progressBarInner.style.width = `${progress}%`;
@@ -146,7 +150,8 @@ export class SignatureManager {
     // Hide after 3 seconds
     clearTimeout(this.progressTimeout);
     this.progressTimeout = setTimeout(() => {
-      this.progressBar.classList.remove('show');
+      this.progressBar.classList.remove('opacity-100');
+      this.progressBar.classList.add('opacity-0');
     }, 3000);
   }
 
